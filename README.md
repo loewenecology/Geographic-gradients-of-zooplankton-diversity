@@ -1,10 +1,10 @@
 # Geographic-gradients-of-zooplankton-diversity
 Code for calculating zooplankton biodiversity metrics and replicating analysis of elevational and latitudinal diversity gradients by generalized linear mixed effect/multilevel models.
 
-Sitebysp.csv contains zooplankton occurrence data (site rows and species columns)
-Sitebygeo.csv contains site geographic coordinate data (site rows and variable columns)
-Spbytrait.csv contains species trait data (species rows and trait/taxonomic columns)
-Taxalist.RData contains taxonomic ranks of species (RData file)
+Sitebysp.csv contains zooplankton occurrence data (site rows and species columns);
+Sitebygeo.csv contains site geographic coordinate data (site rows and variable columns);
+Spbytrait.csv contains species trait data (species rows and trait/taxonomic columns);
+Taxalist.RData contains taxonomic ranks of species (RData file); and
 Sitebysp.csv, Sitebygeo.csv, Spbytrait.csv, and Taxalist.RData are permanently archived at (url).
 
 Bio.metrics.pub.csv contains processed biodiversity data (site rows and biodiversity metric columns) for use with statistical code. 
