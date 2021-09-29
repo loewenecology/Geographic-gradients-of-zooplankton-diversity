@@ -53,3 +53,10 @@ FRic.obs.rank.ele (rank of observed value used in calculations for standardized 
 FRic.obs.z.ele (standardized effect sizes of functional richness in elevational zones);
 FRic.obs.p.ele (P-values for observed value used in calculations for standardized effect sizes of functional richness in elevational zones); and
 FRic.runs.ele (number of randomizations used in calculations for standardized effect sizes of functional richness in elevational zones).
+
+ClimateNA_input_elev_1964-2015Y.csv contains annual climate data across the entire study period (1964-2015) at each sampling location obtained using ClimateNA v6.40 (Wang et al. 2016).
+
+Wang, T., Hamann, A., Spittlehouse, D. & Carroll, C. (2016). Locally downscaled and spatially customizable climate data for historical and future periods for North America. PLoS One, 11, e0156720.
+
+MAT refers to mean annual temperature (°C) and
+TD refers to temperature difference between mean warmest month temperature and mean coldest month temperature, or continentality (°C).
