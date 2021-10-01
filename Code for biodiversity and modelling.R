@@ -4,7 +4,7 @@
 
 #........................................................................................................#
 #...........Author of the script: Charlie Loewen.........................................................#
-#...........Date latest modifications: 2021-09-29........................................................#
+#...........Date latest modifications: 2021-09-30........................................................#
 #........................................................................................................#
 
 ##########################################################################################################
@@ -40,14 +40,14 @@ library(ggeffects)
 # Load data in R environment
 ##################
 
-taxo.alpha=read.table("Sitebysp.csv", header=T, sep=",", row.names = 1) #matrix of sites (rows) by species (columns)
-taxo.beta <- taxo.alpha[1:119] # Excludes UNID cyclopoids, calanaoids, and cladocera
+taxo.alpha = read.table("Sitebysp.csv", header = T, sep = ",", row.names = 1)  # matrix of sites (rows) by species (columns)
+taxo.beta <- taxo.alpha[1:119]  # Excludes UNID cyclopoids, calanaoids, and cladocera
 
-sites=read.table("Sitebygeo.csv", header=T, sep=",") #matrix of sites (rows) by geographic constraints
+sites = read.table("Sitebygeo.csv", header = T, sep = ",")  # matrix of sites (rows) by geographic constraints
 rownames(sites) <- sites$ID
 
-traits=read.table("Spbytrait.csv", header=T, sep=",", row.names = 1) #matrix of species (rows) by traits (columns)
-taxa.list=readRDS("Taxalist.RData") #taxonomic rankings
+traits = read.table("Spbytrait.csv", header = T, sep = ",", row.names = 1)  # matrix of species (rows) by traits (columns)
+taxa.list = readRDS("Taxalist.RData")  # taxonomic rankings
 
 ##################
 # Mapping natural breaks
@@ -116,49 +116,42 @@ rownames(clean.env.lat) <- clean.env.lat$ID
 
 ## Plotting latitudinal zones
 
-a60505_6e068f<-c("#a60505","#c5600a","#e2d110","#a2ec29","#67eb4d","#70ec95","#50ebbe","#30d4ea","#1476e5","#0e1ac9","#420aac","#6e068f")
+a60505_6e068f <- c("#a60505", "#c5600a", "#e2d110", "#a2ec29", "#67eb4d", "#70ec95", "#50ebbe", "#30d4ea", "#1476e5", "#0e1ac9", "#420aac", "#6e068f")
 
 (p1.sites.ele <- ggplot() +
-    geom_vline(xintercept=elev.classes$brks, color = "grey", size=0.25) +
-    geom_hline(yintercept=lat.classes$brks, color = "grey", size=0.25) +
-    geom_point(data = clean.env.lat, aes(Elevation, Latitude, colour = lat_class), alpha=0.3) +
-    
-    scale_x_continuous("Elevation (masl)", limits=c(-3.319242, 3750), breaks=c(0,750,1500,2250,3000,3750)) +
-    scale_y_continuous("Latitude (°N)", limits=c(36, 66.17637), breaks=c(36,42,48,54,60,66)) +
-    
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f) +
-    
-    theme(strip.background=element_blank(),
-          strip.text.y=element_text(colour="black", size=9),
-          strip.text.x=element_blank(),
-          
-          panel.border=element_rect(colour="black", fill = NA),
-          panel.grid.major=element_blank(),
-          panel.grid.minor=element_blank(),
-          panel.background=element_rect(colour="black", fill="white", size=0.75),
-          panel.spacing=unit(0.12, "cm"),
-          
-          axis.text.x=element_text(colour="black", size=8),
-          axis.text.y=element_text(colour="black", size=8),
-          axis.ticks=element_line(colour="black", size=0.4),
-          axis.title.y=element_text(colour="black", size=10),
-          axis.title.x=element_text(colour="black", size=10),
-          
-          legend.key=element_rect("white"),
-          legend.key.size=unit(0.4,"cm"),
-          legend.justification=c("right","top"),
-          legend.position=c(0.99,0.985),
-          legend.direction="horizontal",
-          legend.text=element_text(size=8, colour="black"),
-          legend.title=element_text(size=10, colour="black"),
-          legend.box.background = element_rect(colour="black", size=0.8),
+    geom_vline(xintercept = elev.classes$brks, color = "grey", size = 0.25) +
+    geom_hline(yintercept = lat.classes$brks, color = "grey", size = 0.25) +
+    geom_point(data = clean.env.lat, aes(Elevation, Latitude, colour = lat_class), alpha = 0.3) +
+    scale_x_continuous("Elevation (masl)", limits = c(-3.319242, 3750), breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
+    scale_y_continuous("Latitude (°N)", limits = c(36, 66.17637), breaks = c(36, 42, 48, 54, 60, 66)) +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f) +
+    theme(strip.background = element_blank(),
+          strip.text.y = element_text(colour = "black", size = 9),
+          strip.text.x = element_blank(),
+          panel.border = element_rect(colour = "black", fill = NA),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          panel.background = element_rect(colour = "black", fill = "white", size = 0.75),
+          panel.spacing = unit(0.12, "cm"),
+          axis.text.x = element_text(colour = "black", size = 8),
+          axis.text.y = element_text(colour = "black", size = 8),
+          axis.ticks = element_line(colour = "black", size = 0.4),
+          axis.title.y = element_text(colour = "black", size = 10),
+          axis.title.x = element_text(colour = "black", size = 10),
+          legend.key = element_rect("white"),
+          legend.key.size = unit(0.4, "cm"),
+          legend.justification = c("right", "top"),
+          legend.position = c(0.99, 0.985),
+          legend.direction = "horizontal",
+          legend.text = element_text(size = 8, colour = "black"),
+          legend.title = element_text(size = 10, colour = "black"),
+          legend.box.background = element_rect(colour = "black", size = 0.8),
           legend.spacing.y = unit(0, 'cm'),
           legend.margin = margin(1, 2, 0, 1)))
 
 ## Elevational zones
 
 clean.env.elev <- clean.env.elev %>%
-  #mutate(elev_class = ifelse(as.character(elev_class) == "[-3.32,258]", "0-258", as.character(elev_class)))
   mutate(elev_class = ifelse(as.character(elev_class) == "[1e-06,258]", "0-258", as.character(elev_class)))
 
 clean.env.elev <- clean.env.elev %>%
@@ -211,57 +204,49 @@ rownames(clean.env.elev) <- clean.env.elev$ID
 
 ## Plotting elevational zones 
 
-a60505_6e068f<-c("#a60505","#c5600a","#e2d110","#a2ec29","#67eb4d","#70ec95","#50ebbe","#30d4ea","#1476e5","#0e1ac9","#420aac","#6e068f")
+a60505_6e068f <- c("#a60505", "#c5600a", "#e2d110", "#a2ec29", "#67eb4d", "#70ec95", "#50ebbe", "#30d4ea", "#1476e5", "#0e1ac9", "#420aac", "#6e068f")
 
 (p1.sites.lat <- ggplot() +
-   geom_hline(yintercept=elev.classes$brks, color = "grey", size=0.25) +
-   geom_vline(xintercept=lat.classes$brks, color = "grey", size=0.25) +
-   geom_point(data = clean.env.elev, aes(Latitude, Elevation, colour = elev_class), alpha=0.3) +
-   
-   #scale_y_continuous("Elevation (masl)", limits=c(-3.319242, 3737.901), breaks=c(0,750,1500,2250,3000,3750)) +
-   #scale_x_continuous("Latitude (°N)", limits=c(36, 66.17637), breaks=c(36,42,48,54,60,66)) +
-   
-   scale_colour_manual(name = "Latitude", values=a60505_6e068f) +
-   
-   theme(strip.background=element_blank(),
-         strip.text.y=element_text(colour="black", size=9),
-         strip.text.x=element_blank(),
-         
-         panel.border=element_rect(colour="black", fill = NA),
-         panel.grid.major=element_blank(),
-         panel.grid.minor=element_blank(),
-         panel.background=element_rect(colour="black", fill="white", size=0.75),
-         panel.spacing=unit(0.12, "cm"),
-         
-         axis.text.x=element_text(colour="black", size=8),
-         axis.text.y=element_text(colour="black", size=8),
-         axis.ticks=element_line(colour="black", size=0.4),
-         axis.title.y=element_text(colour="black", size=10),
-         axis.title.x=element_text(colour="black", size=10),
-         
-         legend.key=element_rect("white"),
-         legend.key.size=unit(0.4,"cm"),
-         legend.justification=c("right","top"),
-         legend.position=c(0.99,0.985),
-         legend.direction="horizontal",
-         legend.text=element_text(size=8, colour="black"),
-         legend.title=element_text(size=10, colour="black"),
-         legend.box.background = element_rect(colour="black", size=0.8),
+   geom_hline(yintercept = elev.classes$brks, color = "grey", size = 0.25) +
+   geom_vline(xintercept = lat.classes$brks, color = "grey", size = 0.25) +
+   geom_point(data = clean.env.elev, aes(Latitude, Elevation, colour = elev_class), alpha = 0.3) +
+   scale_colour_manual(name = "Latitude", values = a60505_6e068f) +
+   theme(strip.background = element_blank(),
+         strip.text.y = element_text(colour = "black", size = 9),
+         strip.text.x = element_blank(),
+         panel.border = element_rect(colour = "black", fill = NA),
+         panel.grid.major = element_blank(),
+         panel.grid.minor = element_blank(),
+         panel.background = element_rect(colour = "black", fill = "white", size = 0.75),
+         panel.spacing = unit(0.12, "cm"),
+         axis.text.x = element_text(colour = "black", size = 8),
+         axis.text.y = element_text(colour = "black", size = 8),
+         axis.ticks = element_line(colour = "black", size = 0.4),
+         axis.title.y = element_text(colour = "black", size = 10),
+         axis.title.x = element_text(colour = "black", size = 10),
+         legend.key = element_rect("white"),
+         legend.key.size = unit(0.4, "cm"),
+         legend.justification = c("right", "top"),
+         legend.position = c(0.99, 0.985),
+         legend.direction = "horizontal",
+         legend.text = element_text(size = 8, colour = "black"),
+         legend.title = element_text(size = 10, colour = "black"),
+         legend.box.background = element_rect(colour = "black", size = 0.8),
          legend.spacing.y = unit(0, 'cm'),
          legend.margin = margin(1, 2, 0, 1)))
 
 ## Combining latitudinal and elevational zones (Figure 1b)
 # requires some minor revisions in a graphics editor
 
-p1.sites.ele<-ggplotGrob(p1.sites.ele)
-p1.sites.lat<-ggplotGrob(p1.sites.lat)
+p1.sites.ele <- ggplotGrob(p1.sites.ele)
+p1.sites.lat <- ggplotGrob(p1.sites.lat)
 
 
-g1<-rbind(p1.sites.lat,
-             p1.sites.ele)
+g1 <- rbind(p1.sites.lat,
+            p1.sites.ele)
 
 g1$widths <- unit.pmax(p1.sites.lat$widths, 
-                          p1.sites.ele$widths)
+                       p1.sites.ele$widths)
 
 grid.newpage()
 grid.draw(g1)
@@ -271,31 +256,31 @@ grid.draw(g1)
 
 basemap <- get_stamenmap( bbox = c(left = -139.75116, bottom = 35.60120, right = -112.68687, top = 66.57637), zoom = 4, maptype = "terrain-background")
 
-clean.env.elev <- clean.env.elev[order(clean.env.elev$elev_class),]
+clean.env.elev <- clean.env.elev[order(clean.env.elev$elev_class), ]
 
 (samplingmap <- ggmap(basemap) +
-    geom_point(data = clean.env.elev, aes(Longitude, Latitude, color=elev_class), shape=16, size=3) +
-    scale_x_continuous(breaks = c(-130, -120),labels = c("-130", "-120")) +
+    geom_point(data = clean.env.elev, aes(Longitude, Latitude, color = elev_class), shape = 16, size = 3) +
+    scale_x_continuous(breaks = c(-130, -120), labels = c("-130", "-120")) +
     scale_y_continuous(breaks = (c(36, 42, 48, 54, 60, 66)),
                        labels = c("36", "42", "48", "54", "60", "66")) +
     scalebar(x.min = attr(basemap, "bb")[[2]],
-             y.min=attr(basemap, "bb")[[1]],
-             x.max =attr(basemap, "bb")[[4]],
-             y.max=attr(basemap, "bb")[[3]],
-             dist = 500, anchor = c(x=-138.75116, y=37.5),
-             transform = T, location = "bottomleft", st.size = 2.5, st.dist = 0.032,dist_unit = "km") +
+             y.min = attr(basemap, "bb")[[1]],
+             x.max = attr(basemap, "bb")[[4]],
+             y.max = attr(basemap, "bb")[[3]],
+             dist = 500, anchor = c(x = -138.75116, y = 37.5),
+             transform = T, location = "bottomleft", st.size = 2.5, st.dist = 0.032, dist_unit = "km") +
     theme(plot.title = element_text(colour = "orange"), 
-          panel.border = element_rect(colour = "black", fill=NA)) +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f)) #requires some minor revisions in a graphics editor
+          panel.border = element_rect(colour = "black", fill = NA)) +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))  # requires some minor revisions in a graphics editor
 
 basemap2 <- get_stamenmap( bbox = c(left = -168, bottom = 25, right = -85.5, top = 72), zoom = 4, maptype = "toner-background")
 
 (samplingmap2 <- ggmap(basemap2) + 
     theme(plot.title = element_text(colour = "orange"), 
-          panel.border = element_rect(colour = "black", fill=NA)))
+          panel.border = element_rect(colour = "black", fill = NA)))
 
 samplingmap2 + annotate("rect", xmin = -139.75116, xmax = -112.68687, ymin = 35.60120, ymax = 66.57637,
-                        alpha = .2, color="red", size=2) #requires some minor revisions in a graphics editor
+                        alpha = .2, color = "red", size = 2)  # requires some minor revisions in a graphics editor
 
 ##################
 # Mapping species latitudinal and elevational distributions
@@ -401,15 +386,15 @@ colnames(sp.distributions)[which(names(sp.distributions) == "Skistodiaptomus.ore
 colnames(sp.distributions)[which(names(sp.distributions) == "Streblocerus.serricaudatus")] <- "Streblocerus serricaudatus"
 colnames(sp.distributions)[which(names(sp.distributions) == "Tropocyclops.prasinus")] <- "Tropocyclops prasinus"
 
-sp.distributions <- merge(sp.distributions, sites["Elevation"], by=0)
+sp.distributions <- merge(sp.distributions, sites["Elevation"], by = 0)
 sp.distributions <- sp.distributions[-1]
 rownames(sp.distributions) <- sp.distributions$SITE
 
-sp.distributions <- merge(sp.distributions, sites["Latitude"], by=0)
+sp.distributions <- merge(sp.distributions, sites["Latitude"], by = 0)
 sp.distributions <- sp.distributions[-1]
 rownames(sp.distributions) <- sp.distributions$SITE
 
-sp.distributions <- merge(sp.distributions, sites["Longitude"], by=0)
+sp.distributions <- merge(sp.distributions, sites["Longitude"], by = 0)
 sp.distributions <- sp.distributions[-1]
 rownames(sp.distributions) <- sp.distributions$SITE
 
@@ -425,7 +410,7 @@ colnames(sp.distributions.lat) <- colnames(sp.distributions.working)
 
 speciesbylat <- gather(sp.distributions.lat, Taxa, Latitude)
 
-combinbedelevlat <- merge(speciesbyelev, speciesbylat["Latitude"], by=0)
+combinbedelevlat <- merge(speciesbyelev, speciesbylat["Latitude"], by = 0)
 rownames(combinbedelevlat) <- combinbedelevlat$Row.names
 combinbedelevlat <- combinbedelevlat[-1]
 
@@ -532,119 +517,119 @@ finaleelvlat$Taxab <- factor(finaleelvlat$Taxa, levels = c("Ectocyclops sp.",
                                                            "Streblocerus serricaudatus",
                                                            "Tropocyclops prasinus"))
 
-cols<-c("#a60505","#c5600a","#e2d110","#a2ec29","#67eb4d","#70ec95","#50ebbe","#30d4ea","#1476e5","#0e1ac9","#420aac","#6e068f")
+cols<-c("#a60505", "#c5600a", "#e2d110", "#a2ec29", "#67eb4d", "#70ec95", "#50ebbe", "#30d4ea", "#1476e5", "#0e1ac9", "#420aac", "#6e068f")
 
 (tax.ridge.elev.a <- finaleelvlat %>%
-    filter(Geo=="Elevation") %>%
-    filter(Taxaa!="NA") %>%
+    filter(Geo == "Elevation") %>%
+    filter(Taxaa != "NA") %>%
     ggplot(aes(x = Value, y = fct_rev(Taxa), fill = ..x..)) +
     geom_density_ridges_gradient(quantile_lines = TRUE, quantiles = 2, scale = 2, rel_min_height = 0.01) +
     scale_fill_binned(palette = ggplot2:::binned_pal(scales::manual_pal(values = cols)),
                       breaks = c(258, 599, 856, 1100, 1320, 1500, 1670, 1870, 2090, 2330, 2780)) +
-    scale_x_continuous("Elevational range", breaks=c(0,750,1500,2250,3000,3750), limit=c(0,3750)) +
+    scale_x_continuous("Elevational range", breaks = c(0, 750, 1500, 2250, 3000, 3750), limit = c(0, 3750)) +
     scale_y_discrete("Taxa") +
-    coord_cartesian(clip = "on", xlim = c(0,3750)) +
+    coord_cartesian(clip = "on", xlim = c(0, 3750)) +
     theme_bw() +
     theme(
-    panel.grid.major=element_line(size = 0.5), 
-    panel.background=element_rect(fill="white", colour="black", size=0.5),
-    panel.border=element_blank(), 
-    plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),
-    axis.title.x=element_text(size="10", face="plain", colour="black"),
-    axis.text.x=element_text(size="9", face="plain", colour="black"),
-    axis.title.y=element_text(size="10", face="plain", colour="black"),
-    axis.text.y=element_text(vjust = 0, size="9", face="plain", colour="black"),
-    axis.ticks=element_line(colour="black"),
-    legend.title=element_blank(),
-    legend.position="none",
+    panel.grid.major = element_line(size = 0.5), 
+    panel.background = element_rect(fill = "white", colour = "black", size = 0.5),
+    panel.border = element_blank(), 
+    plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"),
+    axis.title.x = element_text(size = "10", face = "plain", colour = "black"),
+    axis.text.x = element_text(size = "9", face = "plain", colour = "black"),
+    axis.title.y = element_text(size = "10", face = "plain", colour = "black"),
+    axis.text.y = element_text(vjust = 0, size = "9", face = "plain", colour = "black"),
+    axis.ticks = element_line(colour = "black"),
+    legend.title = element_blank(),
+    legend.position = "none",
     panel.spacing = unit(0.5, "lines"),
-    strip.background=element_rect(fill=NA),
-    strip.text=element_blank(),
-    strip.text.x = element_text(size = 12, colour="black")))
+    strip.background = element_rect(fill = NA),
+    strip.text = element_blank(),
+    strip.text.x = element_text(size = 12, colour = "black")))
 
 (tax.ridge.elev.b <- finaleelvlat %>%
-    filter(Geo=="Elevation") %>%
-    filter(Taxab!="NA") %>%
+    filter(Geo == "Elevation") %>%
+    filter(Taxab != "NA") %>%
     ggplot(aes(x = Value, y = fct_rev(Taxa), fill = ..x..)) +
     geom_density_ridges_gradient(quantile_lines = TRUE, quantiles = 2, scale = 2, rel_min_height = 0.01) +
     scale_fill_binned(palette = ggplot2:::binned_pal(scales::manual_pal(values = cols)),
                       breaks = c(258, 599, 856, 1100, 1320, 1500, 1670, 1870, 2090, 2330, 2780)) +
-    scale_x_continuous("Elevational range", breaks=c(0,750,1500,2250,3000,3750), limit=c(0,3750)) +
+    scale_x_continuous("Elevational range", breaks = c(0, 750, 1500, 2250, 3000, 3750), limit = c(0, 3750)) +
     scale_y_discrete("Taxa") +
-    coord_cartesian(clip = "on", xlim = c(0,3750)) +
+    coord_cartesian(clip = "on", xlim = c(0, 3750)) +
     theme_bw() +
     theme(
-      panel.grid.major=element_line(size = 0.5), 
-      panel.background=element_rect(fill="white", colour="black", size=0.5),
-      panel.border=element_blank(), 
-      plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),
-      axis.title.x=element_text(size="10", face="plain", colour="black"),
-      axis.text.x=element_text(size="9", face="plain", colour="black"),
-      axis.title.y=element_text(size="10", face="plain", colour="black"),
-      axis.text.y=element_text(vjust = 0, size="9", face="plain", colour="black"),
-      axis.ticks=element_line(colour="black"),
-      legend.title=element_blank(),
-      legend.position="none",
+      panel.grid.major = element_line(size = 0.5), 
+      panel.background = element_rect(fill = "white", colour = "black", size = 0.5),
+      panel.border = element_blank(), 
+      plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"),
+      axis.title.x = element_text(size = "10", face = "plain", colour = "black"),
+      axis.text.x = element_text(size = "9", face = "plain", colour = "black"),
+      axis.title.y = element_text(size = "10", face = "plain", colour = "black"),
+      axis.text.y = element_text(vjust = 0, size = "9", face = "plain", colour = "black"),
+      axis.ticks = element_line(colour = "black"),
+      legend.title = element_blank(),
+      legend.position = "none",
       panel.spacing = unit(0.5, "lines"),
-      strip.background=element_rect(fill=NA),
-      strip.text=element_blank(),
-      strip.text.x = element_text(size = 12, colour="black")))
+      strip.background = element_rect(fill = NA),
+      strip.text = element_blank(),
+      strip.text.x = element_text(size = 12, colour = "black")))
 
 (tax.ridge.lat.a <- finaleelvlat %>%
-  filter(Geo=="Latitude") %>%
-  filter(Taxaa!="NA") %>%
+  filter(Geo == "Latitude") %>%
+  filter(Taxaa != "NA") %>%
   ggplot(aes(x = Value, y = fct_rev(Taxa), fill = ..x..)) +
   geom_density_ridges_gradient(quantile_lines = TRUE, quantiles = 2, scale = 2, rel_min_height = 0.01) +
   scale_fill_binned(palette = ggplot2:::binned_pal(scales::manual_pal(values = cols)),
                     breaks = c(39.3, 41.2, 43.2, 44.6, 46.3, 48.0, 50.0, 52.1, 54.2, 58.1, 62.1)) +
-  scale_x_continuous("Latitudinal range", breaks=c(36,42,48,54,60,66), limit = c(36,66)) +
+  scale_x_continuous("Latitudinal range", breaks = c(36, 42, 48, 54, 60, 66), limit = c(36, 66)) +
   scale_y_discrete("Taxa") +
-  coord_cartesian(clip = "on", xlim = c(36,66)) +
+  coord_cartesian(clip = "on", xlim = c(36, 66)) +
   theme_bw() +
   theme(
-    panel.grid.major=element_line(size = 0.5), 
-    panel.background=element_rect(fill="white", colour="black", size=0.5),
-    panel.border=element_blank(), 
-    plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),
-    axis.title.x=element_text(size="10", face="plain", colour="black"),
-    axis.text.x=element_text(size="9", face="plain", colour="black"),
-    axis.title.y=element_text(size="10", face="plain", colour="black"),
-    axis.text.y=element_text(vjust = 0, size="9", face="plain", colour="black"),
-    axis.ticks=element_line(colour="black"),
-    legend.title=element_blank(),
-    legend.position="none",
+    panel.grid.major = element_line(size = 0.5), 
+    panel.background = element_rect(fill = "white", colour = "black", size = 0.5),
+    panel.border = element_blank(), 
+    plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"),
+    axis.title.x = element_text(size = "10", face = "plain", colour = "black"),
+    axis.text.x = element_text(size = "9", face = "plain", colour = "black"),
+    axis.title.y = element_text(size = "10", face = "plain", colour = "black"),
+    axis.text.y = element_text(vjust = 0, size = "9", face = "plain", colour = "black"),
+    axis.ticks = element_line(colour = "black"),
+    legend.title = element_blank(),
+    legend.position = "none",
     panel.spacing = unit(0.5, "lines"),
-    strip.background=element_rect(fill=NA),
-    strip.text=element_blank(),
-    strip.text.x = element_text(size = 12, colour="black")))
+    strip.background = element_rect(fill = NA),
+    strip.text = element_blank(),
+    strip.text.x = element_text(size = 12, colour = "black")))
 
 (tax.ridge.lat.b <- finaleelvlat %>%
-    filter(Geo=="Latitude") %>%
-    filter(Taxab!="NA") %>%
+    filter(Geo == "Latitude") %>%
+    filter(Taxab != "NA") %>%
     ggplot(aes(x = Value, y = fct_rev(Taxa), fill = ..x..)) +
     geom_density_ridges_gradient(quantile_lines = TRUE, quantiles = 2, scale = 2, rel_min_height = 0.01) +
     scale_fill_binned(palette = ggplot2:::binned_pal(scales::manual_pal(values = cols)),
                       breaks = c(39.3, 41.2, 43.2, 44.6, 46.3, 48.0, 50.0, 52.1, 54.2, 58.1, 62.1)) +
-    scale_x_continuous("Latitudinal range", breaks=c(36,42,48,54,60,66), limit = c(36,66)) +
+    scale_x_continuous("Latitudinal range", breaks = c(36, 42, 48, 54, 60, 66), limit = c(36, 66)) +
     scale_y_discrete("Taxa") +
-    coord_cartesian(clip = "on", xlim = c(36,66)) +
+    coord_cartesian(clip = "on", xlim = c(36, 66)) +
     theme_bw() +
     theme(
-      panel.grid.major=element_line(size = 0.5), 
-      panel.background=element_rect(fill="white", colour="black", size=0.5),
-      panel.border=element_blank(), 
-      plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),
-      axis.title.x=element_text(size="10", face="plain", colour="black"),
-      axis.text.x=element_text(size="9", face="plain", colour="black"),
-      axis.title.y=element_text(size="10", face="plain", colour="black"),
-      axis.text.y=element_text(vjust = 0, size="9", face="plain", colour="black"),
-      axis.ticks=element_line(colour="black"),
-      legend.title=element_blank(),
-      legend.position="none",
+      panel.grid.major = element_line(size = 0.5), 
+      panel.background = element_rect(fill = "white", colour = "black", size = 0.5),
+      panel.border = element_blank(), 
+      plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"),
+      axis.title.x = element_text(size = "10", face = "plain", colour = "black"),
+      axis.text.x = element_text(size = "9", face = "plain", colour = "black"),
+      axis.title.y = element_text(size = "10", face = "plain", colour = "black"),
+      axis.text.y = element_text(vjust = 0, size = "9", face = "plain", colour = "black"),
+      axis.ticks = element_line(colour = "black"),
+      legend.title = element_blank(),
+      legend.position = "none",
       panel.spacing = unit(0.5, "lines"),
-      strip.background=element_rect(fill=NA),
-      strip.text=element_blank(),
-      strip.text.x = element_text(size = 12, colour="black")))
+      strip.background = element_rect(fill = NA),
+      strip.text = element_blank(),
+      strip.text.x = element_text(size = 12, colour = "black")))
 
 sp.distributions$constant <- c(1)
 
@@ -653,50 +638,50 @@ sp.distributions$constant <- c(1)
   geom_density_ridges_gradient(quantile_lines = TRUE, quantiles = 2, scale = 2) +
   scale_fill_binned(palette = ggplot2:::binned_pal(scales::manual_pal(values = cols)),
                     breaks = c(258, 599, 856, 1100, 1320, 1500, 1670, 1870, 2090, 2330, 2780)) +
-  scale_x_continuous("Elevational range", breaks=c(0,750,1500,2250,3000,3750), limit=c(0,3750)) +
+  scale_x_continuous("Elevational range", breaks = c(0, 750, 1500, 2250, 3000, 3750), limit = c(0, 3750)) +
   coord_cartesian(clip = "on", xlim = c(0,3750)) +
   theme_bw() +
   theme(
-    panel.grid.major=element_line(size = 0.5), 
-    panel.background=element_rect(fill="white", colour="black", size=0.5),
-    panel.border=element_blank(), 
-    plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),
-    axis.title.x=element_text(size="10", face="plain", colour="black"),
-    axis.text.x=element_text(size="9", face="plain", colour="black"),
-    axis.title.y=element_text(size="10", face="plain", colour="black"),
-    axis.text.y=element_text(vjust = 0, size="9", face="plain", colour="black"),
-    axis.ticks=element_line(colour="black"),
-    legend.title=element_blank(),
-    legend.position="none",
+    panel.grid.major = element_line(size = 0.5), 
+    panel.background = element_rect(fill = "white", colour = "black", size = 0.5),
+    panel.border = element_blank(), 
+    plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"),
+    axis.title.x = element_text(size = "10", face = "plain", colour = "black"),
+    axis.text.x = element_text(size = "9", face = "plain", colour = "black"),
+    axis.title.y = element_text(size = "10", face = "plain", colour = "black"),
+    axis.text.y = element_text(vjust = 0, size = "9", face = "plain", colour = "black"),
+    axis.ticks = element_line(colour = "black"),
+    legend.title = element_blank(),
+    legend.position = "none",
     panel.spacing = unit(0.5, "lines"),
-    strip.background=element_rect(fill=NA),
-    strip.text=element_blank(),
-    strip.text.x = element_text(size = 12, colour="black")))
+    strip.background = element_rect(fill = NA),
+    strip.text = element_blank(),
+    strip.text.x = element_text(size = 12, colour = "black")))
 
 (sample.ridge.lat <- sp.distributions %>%
   ggplot(aes(x = Latitude, y = constant, fill = ..x..)) +
   geom_density_ridges_gradient(quantile_lines = TRUE, quantiles = 2, scale = 2) +
   scale_fill_binned(palette = ggplot2:::binned_pal(scales::manual_pal(values = cols)),
                     breaks = c(39.3, 41.2, 43.2, 44.6, 46.3, 48.0, 50.0, 52.1, 54.2, 58.1, 62.1)) +
-  scale_x_continuous("Latitudinal range", breaks=c(36,42,48,54,60,66), limit = c(36,66)) +
-  coord_cartesian(clip = "on", xlim = c(36,66)) +
+  scale_x_continuous("Latitudinal range", breaks = c(36, 42, 48, 54, 60, 66), limit = c(36, 66)) +
+  coord_cartesian(clip = "on", xlim = c(36, 66)) +
   theme_bw() +
   theme(
-    panel.grid.major=element_line(size = 0.5), 
-    panel.background=element_rect(fill="white", colour="black", size=0.5),
-    panel.border=element_blank(), 
-    plot.margin=unit(c(0.1,0.1,0.1,0.1),"cm"),
-    axis.title.x=element_text(size="10", face="plain", colour="black"),
-    axis.text.x=element_text(size="9", face="plain", colour="black"),
-    axis.title.y=element_text(size="10", face="plain", colour="black"),
-    axis.text.y=element_text(vjust = 0, size="9", face="plain", colour="black"),
-    axis.ticks=element_line(colour="black"),
-    legend.title=element_blank(),
-    legend.position="none",
+    panel.grid.major = element_line(size = 0.5), 
+    panel.background = element_rect(fill = "white", colour = "black", size = 0.5),
+    panel.border = element_blank(), 
+    plot.margin = unit(c(0.1, 0.1, 0.1, 0.1), "cm"),
+    axis.title.x = element_text(size = "10", face = "plain", colour = "black"),
+    axis.text.x = element_text(size = "9", face = "plain", colour = "black"),
+    axis.title.y = element_text(size = "10", face = "plain", colour = "black"),
+    axis.text.y = element_text(vjust = 0, size = "9", face = "plain", colour = "black"),
+    axis.ticks = element_line(colour = "black"),
+    legend.title = element_blank(),
+    legend.position = "none",
     panel.spacing = unit(0.5, "lines"),
-    strip.background=element_rect(fill=NA),
-    strip.text=element_blank(),
-    strip.text.x = element_text(size = 12, colour="black")))
+    strip.background = element_rect(fill = NA),
+    strip.text = element_blank(),
+    strip.text.x = element_text(size = 12, colour = "black")))
 
 ##################
 # Metrics
@@ -706,39 +691,39 @@ Bio.metrics <- data.frame(sites$ID)
 Bio.metrics <- rename(Bio.metrics, c("ID" = "sites.ID"))
 rownames(Bio.metrics) <- Bio.metrics$ID
 
-Bio.metrics <- merge(Bio.metrics, clean.env.lat["Lake"], by=0)
+Bio.metrics <- merge(Bio.metrics, clean.env.lat["Lake"], by = 0)
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
-Bio.metrics <- merge(Bio.metrics, clean.env.lat["Latitude"], by=0)
+Bio.metrics <- merge(Bio.metrics, clean.env.lat["Latitude"], by = 0)
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
-Bio.metrics <- merge(Bio.metrics, clean.env.elev["Elevation"], by=0)
+Bio.metrics <- merge(Bio.metrics, clean.env.elev["Elevation"], by = 0)
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
-Bio.metrics <- merge(Bio.metrics, clean.env.lat["lat_class"], by=0)
+Bio.metrics <- merge(Bio.metrics, clean.env.lat["lat_class"], by = 0)
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
-Bio.metrics <- merge(Bio.metrics, clean.env.elev["elev_class"], by=0)
+Bio.metrics <- merge(Bio.metrics, clean.env.elev["elev_class"], by = 0)
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
 ## Taxonomic richness
 
 taxo.alpha.sum = as.data.frame(rowSums(taxo.alpha))
-Bio.metrics <- merge(Bio.metrics, taxo.alpha.sum, by=0)
+Bio.metrics <- merge(Bio.metrics, taxo.alpha.sum, by = 0)
 Bio.metrics <- rename(Bio.metrics, c("Taxo.alpha" = "rowSums(taxo.alpha)"))
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
 ## Functional richness / dispersion
 
-t <- c("Length","Feed.ord")
+t <- c("Length", "Feed.ord")
 
-sel.trait <- traits[ ,t] # Numeric feeding groups
+sel.trait <- traits[ , t]  # Numeric feeding groups
 sel.trait <- as.matrix(sel.trait)
 rownames(sel.trait) <- traits$Sp
 
@@ -748,17 +733,17 @@ sel.trait.ord$Feed.ord <- ordered(sel.trait.ord$Feed.ord)
 func.alpha.factor <- dbFD(sel.trait.ord, taxo.beta, ord = "metric", corr = "sqrt",
                           stand.FRic = TRUE)
 
-Bio.metrics <- merge(Bio.metrics, func.alpha.factor["nbsp"], by=0)
+Bio.metrics <- merge(Bio.metrics, func.alpha.factor["nbsp"], by = 0)
 Bio.metrics <- rename(Bio.metrics, c("Glob.nbsp" = "nbsp"))
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
-Bio.metrics <- merge(Bio.metrics, func.alpha.factor["FRic"], by=0)
+Bio.metrics <- merge(Bio.metrics, func.alpha.factor["FRic"], by = 0)
 Bio.metrics <- rename(Bio.metrics, c("Glob.FRic" = "FRic"))
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
-Bio.metrics <- merge(Bio.metrics, func.alpha.factor["FDis"], by=0)
+Bio.metrics <- merge(Bio.metrics, func.alpha.factor["FDis"], by = 0)
 Bio.metrics <- rename(Bio.metrics, c("Glob.FDis" = "FDis"))
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
@@ -769,7 +754,7 @@ Bio.metrics$Glob.FDis[Bio.metrics$Glob.FDis == 0] <- NA
 
 func.alpha.cwm <- functcomp(sel.trait, as.matrix(taxo.beta))
 
-Bio.metrics <- merge(Bio.metrics, func.alpha.cwm["Length"], by=0)
+Bio.metrics <- merge(Bio.metrics, func.alpha.cwm["Length"], by = 0)
 Bio.metrics <- rename(Bio.metrics, c("CWM.Bl" = "Length"))
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
@@ -777,27 +762,27 @@ rownames(Bio.metrics) <- Bio.metrics$ID
 ## Phylogenetic metrics
 
 taxa.list.tree <- class2tree(taxa.list, varstep = TRUE, check = TRUE)
-tree.distmat.matrix<-as.matrix(taxa.list.tree$distmat)
+tree.distmat.matrix <- as.matrix(taxa.list.tree$distmat)
 
 ## Phylogenetic fan plot
 # requires some minor revisions in a graphics editor
 
-plot(taxa.list.tree, type="fan", no.margin = TRUE)
+plot(taxa.list.tree, type = "fan", no.margin = TRUE)
 
 ## Phylogenetic richness
 
-phylo.alpha.PD <- pd(taxo.beta,taxa.list.tree$phylo,include.root=FALSE)
-Bio.metrics <- merge(Bio.metrics, phylo.alpha.PD["PD"], by=0)
+phylo.alpha.PD <- pd(taxo.beta, taxa.list.tree$phylo, include.root = FALSE)
+Bio.metrics <- merge(Bio.metrics, phylo.alpha.PD["PD"], by = 0)
 Bio.metrics <- rename(Bio.metrics, c("Glob.PD" = "PD"))
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
 ## Phylogenetic mean pairwise distance
 
-phylo.alpha.MPD <- mpd(taxo.beta,tree.distmat.matrix)
+phylo.alpha.MPD <- mpd(taxo.beta, tree.distmat.matrix)
 names(phylo.alpha.MPD) <- rownames(taxo.beta)
 phylo.alpha.MPD <- as.data.frame(phylo.alpha.MPD)
-Bio.metrics <- merge(Bio.metrics, phylo.alpha.MPD, by=0)
+Bio.metrics <- merge(Bio.metrics, phylo.alpha.MPD, by = 0)
 Bio.metrics <- rename(Bio.metrics, c("Glob.MPD" = "phylo.alpha.MPD"))
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
@@ -811,23 +796,23 @@ Bio.metrics$Glob.MPD.beta <- Bio.metrics$Glob.MPD/100
 set.seed(1)
 for(i in unique(clean.env.lat$lat_class)) {
   
-  clean.env.lat.class=subset(clean.env.lat, lat_class==i)
-  sp.class <- taxo.beta[(rownames(taxo.beta) %in% rownames(clean.env.lat.class)),]
+  clean.env.lat.class = subset(clean.env.lat, lat_class == i)
+  sp.class <- taxo.beta[(rownames(taxo.beta) %in% rownames(clean.env.lat.class)), ]
   sp.class <- sp.class[, colSums(sp.class) != 0]
   
-  pruned.tree.phylo <- prune.sample(sp.class,taxa.list.tree$phylo)
+  pruned.tree.phylo <- prune.sample(sp.class, taxa.list.tree$phylo)
   
-  taxa.list.tree.distmat <- tree.distmat.matrix[(rownames(tree.distmat.matrix) %in% colnames(sp.class)),]
-  taxa.list.tree.distmat <- taxa.list.tree.distmat[,(colnames(taxa.list.tree.distmat) %in% colnames(sp.class))]
+  taxa.list.tree.distmat <- tree.distmat.matrix[(rownames(tree.distmat.matrix) %in% colnames(sp.class)), ]
+  taxa.list.tree.distmat <- taxa.list.tree.distmat[, (colnames(taxa.list.tree.distmat) %in% colnames(sp.class))]
   
   newname <- i
-  assign(newname,sp.class)
+  assign(newname, sp.class)
   
-  PD.ses.lat = ses.pd(sp.class,pruned.tree.phylo,include.root=FALSE, null.model = "independentswap", 
+  PD.ses.lat = ses.pd(sp.class, pruned.tree.phylo, include.root = FALSE, null.model = "independentswap", 
                       runs = 1000, iterations = 1000)
 
   newname.phylo.alpha.PD.ses.lat <- paste("ses.PD.lat", i, sep = "")
-  assign(newname.phylo.alpha.PD.ses.lat,PD.ses.lat)
+  assign(newname.phylo.alpha.PD.ses.lat, PD.ses.lat)
 
 }  
 
@@ -836,23 +821,23 @@ for(i in unique(clean.env.lat$lat_class)) {
 set.seed(1)
 for(i in unique(clean.env.elev$elev_class)) {
   
-  clean.env.elev.class=subset(clean.env.elev, elev_class==i)
-  sp.class <- taxo.beta[(rownames(taxo.beta) %in% rownames(clean.env.elev.class)),]
+  clean.env.elev.class = subset(clean.env.elev, elev_class == i)
+  sp.class <- taxo.beta[(rownames(taxo.beta) %in% rownames(clean.env.elev.class)), ]
   sp.class <- sp.class[, colSums(sp.class) != 0]
   
-  pruned.tree.phylo <- prune.sample(sp.class,taxa.list.tree$phylo)
+  pruned.tree.phylo <- prune.sample(sp.class, taxa.list.tree$phylo)
   
-  taxa.list.tree.distmat <- tree.distmat.matrix[(rownames(tree.distmat.matrix) %in% colnames(sp.class)),]
-  taxa.list.tree.distmat <- taxa.list.tree.distmat[,(colnames(taxa.list.tree.distmat) %in% colnames(sp.class))]
+  taxa.list.tree.distmat <- tree.distmat.matrix[(rownames(tree.distmat.matrix) %in% colnames(sp.class)), ]
+  taxa.list.tree.distmat <- taxa.list.tree.distmat[, (colnames(taxa.list.tree.distmat) %in% colnames(sp.class))]
   
   newname <- i
-  assign(newname,sp.class)
+  assign(newname, sp.class)
   
-  PD.ses.ele = ses.pd(sp.class,pruned.tree.phylo,include.root=FALSE, null.model = "independentswap", 
+  PD.ses.ele = ses.pd(sp.class, pruned.tree.phylo, include.root = FALSE, null.model = "independentswap", 
                       runs = 1000, iterations = 1000)
 
   newname.phylo.alpha.PD.ses.ele <- paste("ses.PD.ele", i, sep = "")
-  assign(newname.phylo.alpha.PD.ses.ele,PD.ses.ele)
+  assign(newname.phylo.alpha.PD.ses.ele, PD.ses.ele)
 
 }  
 
@@ -880,7 +865,7 @@ PD.ses.lat.comb <- rename(PD.ses.lat.comb, c("pd.obs.z.lat" = "pd.obs.z"))
 PD.ses.lat.comb <- rename(PD.ses.lat.comb, c("pd.obs.p.lat" = "pd.obs.p"))
 PD.ses.lat.comb <- rename(PD.ses.lat.comb, c("pd.runs.lat" = "runs"))
 
-Bio.metrics <- merge(Bio.metrics, PD.ses.lat.comb, by="row.names")
+Bio.metrics <- merge(Bio.metrics, PD.ses.lat.comb, by = "row.names")
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
@@ -920,15 +905,15 @@ ses.FRic <-
     FRic.obs <- dbFD(traits, abund, stand.FRic = FALSE, ord = "metric", corr = "sqrt")$FRic
     null.model <- match.arg(null.model)
     FRic.rand <- switch(null.model,
-                        independentswap = t(replicate(runs, dbFD(traits, randomizeMatrix(abund,null.model="independentswap", iterations), stand.FRic = FALSE, ord = "metric", corr = "sqrt")$FRic)),)
-    FRic.rand.mean <- apply(X = FRic.rand, MARGIN = 2, FUN = mean, na.rm=TRUE)
-    FRic.rand.sd <- apply(X = FRic.rand, MARGIN = 2, FUN = sd, na.rm=TRUE)
+                        independentswap = t(replicate(runs, dbFD(traits, randomizeMatrix(abund, null.model = "independentswap", iterations), stand.FRic = FALSE, ord = "metric", corr = "sqrt")$FRic)), )
+    FRic.rand.mean <- apply(X = FRic.rand, MARGIN = 2, FUN = mean, na.rm = TRUE)
+    FRic.rand.sd <- apply(X = FRic.rand, MARGIN = 2, FUN = sd, na.rm = TRUE)
     FRic.obs.z <- (FRic.obs - FRic.rand.mean)/FRic.rand.sd
     FRic.obs.rank <- apply(X = rbind(FRic.obs, FRic.rand), MARGIN = 2,
                            FUN = rank)[1, ]
-    FRic.obs.rank <- ifelse(is.na(FRic.rand.mean),NA,FRic.obs.rank)
-    data.frame(ntaxa=specnumber(abund),FRic.obs, FRic.rand.mean, FRic.rand.sd, FRic.obs.rank,
-               FRic.obs.z, FRic.obs.p=FRic.obs.rank/(runs+1),runs=runs, row.names = row.names(abund))
+    FRic.obs.rank <- ifelse(is.na(FRic.rand.mean), NA, FRic.obs.rank)
+    data.frame(ntaxa = specnumber(abund), FRic.obs, FRic.rand.mean, FRic.rand.sd, FRic.obs.rank,
+               FRic.obs.z, FRic.obs.p = FRic.obs.rank/(runs+1), runs = runs, row.names = row.names(abund))
   }
 
 # Latitudinal zones
@@ -936,11 +921,11 @@ ses.FRic <-
 set.seed(1)
 for(i in unique(clean.env.lat$lat_class)) {
   
-  clean.env.lat.class=subset(clean.env.lat, lat_class==i)
-  sp.class <- taxo.beta[(rownames(taxo.beta) %in% rownames(clean.env.lat.class)),]
+  clean.env.lat.class = subset(clean.env.lat, lat_class == i)
+  sp.class <- taxo.beta[(rownames(taxo.beta) %in% rownames(clean.env.lat.class)), ]
   sp.class <- sp.class[, colSums(sp.class) != 0]
   
-  trait.class.factor <- sel.trait.ord[(rownames(sel.trait.ord) %in% colnames(sp.class)),]
+  trait.class.factor <- sel.trait.ord[(rownames(sel.trait.ord) %in% colnames(sp.class)), ]
 
   newname <- i
   assign(newname,sp.class)
@@ -949,7 +934,7 @@ for(i in unique(clean.env.lat$lat_class)) {
                           abundance.weighted = FALSE, runs = 1000, iterations = 1000)
   
   newname.dbFD.FRic.ses.lat <- paste("ses.FRic.lat", i, sep = "")
-  assign(newname.dbFD.FRic.ses.lat,FRic.ses.lat)
+  assign(newname.dbFD.FRic.ses.lat, FRic.ses.lat)
 }
 
 # Elevational zones
@@ -957,11 +942,11 @@ for(i in unique(clean.env.lat$lat_class)) {
 set.seed(1)
 for(i in unique(clean.env.elev$elev_class)) {
   
-  clean.env.elev.class=subset(clean.env.elev, elev_class==i)
-  sp.class <- taxo.beta[(rownames(taxo.beta) %in% rownames(clean.env.elev.class)),]
+  clean.env.elev.class = subset(clean.env.elev, elev_class == i)
+  sp.class <- taxo.beta[(rownames(taxo.beta) %in% rownames(clean.env.elev.class)), ]
   sp.class <- sp.class[, colSums(sp.class) != 0]
   
-  trait.class.factor <- sel.trait.ord[(rownames(sel.trait.ord) %in% colnames(sp.class)),]
+  trait.class.factor <- sel.trait.ord[(rownames(sel.trait.ord) %in% colnames(sp.class)), ]
 
   newname <- i
   assign(newname,sp.class)
@@ -970,7 +955,7 @@ for(i in unique(clean.env.elev$elev_class)) {
                           abundance.weighted = FALSE, runs = 1000, iterations = 1000)
   
   newname.dbFD.FRic.ses.ele <- paste("ses.FRic.ele", i, sep = "")
-  assign(newname.dbFD.FRic.ses.ele,FRic.ses.ele)
+  assign(newname.dbFD.FRic.ses.ele, FRic.ses.ele)
 }
 
 # Merging
@@ -997,7 +982,7 @@ FRic.ses.lat.comb <- rename(FRic.ses.lat.comb, c("FRic.obs.z.lat" = "FRic.obs.z"
 FRic.ses.lat.comb <- rename(FRic.ses.lat.comb, c("FRic.obs.p.lat" = "FRic.obs.p"))
 FRic.ses.lat.comb <- rename(FRic.ses.lat.comb, c("FRic.runs.lat" = "runs"))
 
-Bio.metrics <- merge(Bio.metrics, FRic.ses.lat.comb, by="row.names")
+Bio.metrics <- merge(Bio.metrics, FRic.ses.lat.comb, by = "row.names")
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
@@ -1023,7 +1008,7 @@ FRic.ses.ele.comb <- rename(FRic.ses.ele.comb, c("FRic.obs.z.ele" = "FRic.obs.z"
 FRic.ses.ele.comb <- rename(FRic.ses.ele.comb, c("FRic.obs.p.ele" = "FRic.obs.p"))
 FRic.ses.ele.comb <- rename(FRic.ses.ele.comb, c("FRic.runs.ele" = "runs"))
 
-Bio.metrics <- merge(Bio.metrics, FRic.ses.ele.comb, by="row.names")
+Bio.metrics <- merge(Bio.metrics, FRic.ses.ele.comb, by = "row.names")
 Bio.metrics <- Bio.metrics[-1]
 rownames(Bio.metrics) <- Bio.metrics$ID
 
@@ -1034,40 +1019,40 @@ write.table(Bio.metrics, file = "Bio.metrics.pub.csv", sep = ",", row.names = TR
 # Bayesian generalized linear multilevel models
 ##################
 
-Bio.metrics=read.table("Bio.metrics.pub.csv",header=T,sep=",") #biometrics data
+Bio.metrics = read.table("Bio.metrics.pub.csv", header = T, sep = ",")  # biometrics data
 rownames(Bio.metrics) <- Bio.metrics$ID
 
-climate=read.table("climateNA_input_elev_1964-2015Y.csv",header=T,sep=",")
+climate = read.table("climateNA_input_elev_1964-2015Y.csv", header = T, sep = ",")
 
 ## Climate data
 
 Climate.MAT <- dcast(climate, ID1 ~ Year, value.var = "MAT")
 rownames(Climate.MAT) <- Climate.MAT$ID1
-Climate.MAT$x1964_2015 <- as.numeric(apply(Climate.MAT[,2:53], 1, mean))
-Climate.MAT <- Climate.MAT[(rownames(Climate.MAT) %in% rownames(Bio.metrics)),]
+Climate.MAT$x1964_2015 <- as.numeric(apply(Climate.MAT[, 2:53], 1, mean))
+Climate.MAT <- Climate.MAT[(rownames(Climate.MAT) %in% rownames(Bio.metrics)), ]
 Climate.MAT.x1964_2015 <- as.data.frame(Climate.MAT$x1964_2015, row.names = row.names(Climate.MAT))
 Climate.MAT.x1964_2015 <- rename(Climate.MAT.x1964_2015, c("MAT" = "Climate.MAT$x1964_2015"))
-Bio.metrics <- merge(Bio.metrics, Climate.MAT.x1964_2015, by="row.names")
+Bio.metrics <- merge(Bio.metrics, Climate.MAT.x1964_2015, by = "row.names")
 rownames(Bio.metrics) <- Bio.metrics$Row.names
-Bio.metrics <- Bio.metrics[,-1]
+Bio.metrics <- Bio.metrics[, -1]
 
 Climate.TD <- dcast(climate, ID1 ~ Year, value.var = "TD")
 rownames(Climate.TD) <- Climate.TD$ID1
-Climate.TD$x1964_2015 <- as.numeric(apply(Climate.TD[,2:53], 1, mean))
-Climate.TD <- Climate.TD[(rownames(Climate.TD) %in% rownames(Bio.metrics)),]
+Climate.TD$x1964_2015 <- as.numeric(apply(Climate.TD[, 2:53], 1, mean))
+Climate.TD <- Climate.TD[(rownames(Climate.TD) %in% rownames(Bio.metrics)), ]
 Climate.TD.x1964_2015 <- as.data.frame(Climate.TD$x1964_2015, row.names = row.names(Climate.TD))
 Climate.TD.x1964_2015 <- rename(Climate.TD.x1964_2015, c("TD" = "Climate.TD$x1964_2015"))
-Bio.metrics <- merge(Bio.metrics, Climate.TD.x1964_2015, by="row.names")
+Bio.metrics <- merge(Bio.metrics, Climate.TD.x1964_2015, by = "row.names")
 rownames(Bio.metrics) <- Bio.metrics$Row.names
-Bio.metrics <- Bio.metrics[,-1]
+Bio.metrics <- Bio.metrics[, -1]
 
 ## Prepare data
 
-Bio.metrics$Elevation.scale <- scale(Bio.metrics$Elevation, center=TRUE, scale=TRUE)
-Bio.metrics$Latitude.scale <- scale(Bio.metrics$Latitude, center=TRUE, scale=TRUE)
+Bio.metrics$Elevation.scale <- scale(Bio.metrics$Elevation, center = TRUE, scale = TRUE)
+Bio.metrics$Latitude.scale <- scale(Bio.metrics$Latitude, center = TRUE, scale = TRUE)
 
-Bio.metrics$MAT.scale <- scale(Bio.metrics$MAT, center=TRUE, scale=TRUE)
-Bio.metrics$TD.scale <- scale(Bio.metrics$TD, center=TRUE, scale=TRUE)
+Bio.metrics$MAT.scale <- scale(Bio.metrics$MAT, center = TRUE, scale = TRUE)
+Bio.metrics$TD.scale <- scale(Bio.metrics$TD, center = TRUE, scale = TRUE)
 
 Bio.metrics$lat_class <- factor(Bio.metrics$lat_class, levels = c("36.6-39.3",
                                                                   "39.3-41.2",
@@ -1096,8 +1081,8 @@ Bio.metrics$elev_class <- factor(Bio.metrics$elev_class, levels = c("0-258",
                                                                     "2780-3740"), ordered = TRUE)
 
 lmdata <- Bio.metrics %>%
-  melt(id.vars = c("ID","Lake","Elevation","Elevation.scale","Latitude","Latitude.scale","lat_class","elev_class",
-                   "MAT","MAT.scale","TD","TD.scale"),
+  melt(id.vars = c("ID", "Lake", "Elevation", "Elevation.scale", "Latitude", "Latitude.scale", "lat_class", "elev_class",
+                   "MAT", "MAT.scale", "TD", "TD.scale"),
        measure.vars = c("Taxo.alpha",
                         "Glob.PD",
                         "Glob.MPD.beta",
@@ -1109,34 +1094,31 @@ lmdata <- Bio.metrics %>%
                         "FRic.obs.z.lat",
                         "FRic.obs.z.ele"))
 
-workingtheme<-theme(strip.background=element_blank(),
-                    strip.text.y=element_text(colour="black", size=9),
-                    strip.text.x=element_blank(),
-                    
-                    panel.border=element_rect(colour="black", fill = NA),
-                    panel.grid.major=element_blank(),
-                    panel.grid.minor=element_blank(),
-                    panel.background=element_rect(colour="black", fill="white", size=0.75),
-                    panel.spacing=unit(0.12, "cm"),
-                    
-                    axis.text.x=element_text(colour="black", size=8),
-                    axis.text.y=element_text(colour="black", size=8),
-                    axis.ticks=element_line(colour="black", size=0.4),
-                    axis.title.y=element_text(colour="black", size=10),
-                    axis.title.x=element_text(colour="black", size=10),
-                    
-                    legend.key=element_rect("white"),
-                    legend.key.size=unit(0.4,"cm"),
-                    legend.justification=c("right","top"),
-                    legend.position=c(0.99,0.985),
-                    legend.direction="vertical",
-                    legend.text=element_text(size=10, colour="black"),
-                    legend.title=element_text(size=12, colour="black"),
-                    legend.box.background = element_rect(colour="black", size=0.8),
+workingtheme<-theme(strip.background = element_blank(),
+                    strip.text.y = element_text(colour = "black", size = 9),
+                    strip.text.x = element_blank(),
+                    panel.border = element_rect(colour = "black", fill = NA),
+                    panel.grid.major = element_blank(),
+                    panel.grid.minor = element_blank(),
+                    panel.background = element_rect(colour = "black", fill = "white", size = 0.75),
+                    panel.spacing = unit(0.12, "cm"),
+                    axis.text.x = element_text(colour = "black", size = 8),
+                    axis.text.y = element_text(colour = "black", size = 8),
+                    axis.ticks = element_line(colour = "black", size = 0.4),
+                    axis.title.y = element_text(colour = "black", size = 10),
+                    axis.title.x = element_text(colour = "black", size = 10),
+                    legend.key = element_rect("white"),
+                    legend.key.size = unit(0.4, "cm"),
+                    legend.justification = c("right", "top"),
+                    legend.position = c(0.99, 0.985),
+                    legend.direction = "vertical",
+                    legend.text = element_text(size = 10, colour = "black"),
+                    legend.title = element_text(size = 12, colour = "black"),
+                    legend.box.background = element_rect(colour = "black", size = 0.8),
                     legend.spacing.y = unit(0, 'cm'),
                     legend.margin = margin(1, 2, 0, 1))
 
-a60505_6e068f<-c("#a60505","#c5600a","#e2d110","#a2ec29","#67eb4d","#70ec95","#50ebbe","#30d4ea","#1476e5","#0e1ac9","#420aac","#6e068f")
+a60505_6e068f<-c("#a60505", "#c5600a", "#e2d110", "#a2ec29", "#67eb4d", "#70ec95", "#50ebbe", "#30d4ea", "#1476e5", "#0e1ac9", "#420aac", "#6e068f")
 
 options(mc.cores = parallel::detectCores())
 
@@ -1144,29 +1126,29 @@ options(mc.cores = parallel::detectCores())
 
 # check distribution
 
-dist<-subset(lmdata, variable == "Taxo.alpha")
+dist <- subset(lmdata, variable == "Taxo.alpha")
 hist(dist$value)
 
 # SR ~ simple elevation fixed effect model
 
 bayes.alpha.elev.1fe <- brm(formula = value ~ Elevation.scale,
                             data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            prior = c(set_prior("normal(0, 5)", class = "b")),
                             warmup = 1000, iter = 3000, chains = 4,
                             control = list(adapt_delta = 0.99),
-                            seed=1)
+                            seed = 1)
 
 waic(bayes.alpha.elev.1fe, pointwise = TRUE)
 loo(bayes.alpha.elev.1fe, pointwise = TRUE)
 
 # SR ~ simple elevation multilevel lat effect model
 
-bayes.alpha.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale|lat_class),
+bayes.alpha.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale | lat_class),
                             data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            prior = c(set_prior("normal(0, 5)", class = "b")),
                             warmup = 1000, iter = 3000, chains = 4,
                             control = list(adapt_delta = 0.99),
-                            seed=1)
+                            seed = 1)
 
 waic(bayes.alpha.elev.1re, pointwise = TRUE)
 loo(bayes.alpha.elev.1re, pointwise = TRUE)
@@ -1175,10 +1157,10 @@ loo(bayes.alpha.elev.1re, pointwise = TRUE)
 
 bayes.alpha.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE),
                             data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            prior = c(set_prior("normal(0, 5)", class = "b")),
                             warmup = 1000, iter = 3000, chains = 4,
                             control = list(adapt_delta = 0.99),
-                            seed=1)
+                            seed = 1)
 
 waic(bayes.alpha.elev.2fe, pointwise = TRUE)
 loo(bayes.alpha.elev.2fe, pointwise = TRUE)
@@ -1186,31 +1168,31 @@ summary(bayes.alpha.elev.2fe)
 
 # SR ~ poly elevation fixed effect plotting
 
-pra <- ggpredict(bayes.alpha.elev.2fe, terms = c("Elevation.scale [all]"), ppd=FALSE)
+pra <- ggpredict(bayes.alpha.elev.2fe, terms = c("Elevation.scale [all]"), ppd = FALSE)
 
 pra$x <- pra$x * sd(lmdata$Elevation) + mean(lmdata$Elevation) 
 
 (p1.alpha.ele.2fe <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Elevation, y = value, colour="red")) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Elevation, y = value, colour = "red")) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Species richness", breaks=c(0,5,10,15,20,25)) +
-    scale_x_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    coord_cartesian(ylim = c(0, 26), xlim = c(-3.319242, 3750)) +
+    scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
+    scale_x_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
+    coord_cartesian(ylim = c(0, 26), xlim = c(0, 3750)) +
     workingtheme +
-    theme(legend.position="none") +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    theme(legend.position = "none") +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.alpha.ele.2fe, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.ele_post.linpred.2fe.rdata")
+save(p1.alpha.ele.2fe, file = "p1.alpha.ele_post.linpred.2fe.rdata")
 
 # SR ~ poly elevation multilevel lat effect model
 
-bayes.alpha.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE) + (1 + poly(Elevation.scale, 2, raw=FALSE)|lat_class),
+bayes.alpha.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE) + (1 + poly(Elevation.scale, 2, raw = FALSE) | lat_class),
                             data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            prior = c(set_prior("normal(0, 5)", class = "b")),
                             warmup = 1000, iter = 3000, chains = 4,
                             control = list(adapt_delta = 0.99),
-                            seed=1)
+                            seed = 1)
 
 waic(bayes.alpha.elev.2re, pointwise = TRUE)
 loo(bayes.alpha.elev.2re, pointwise = TRUE)
@@ -1225,13 +1207,13 @@ control_params(bayes.alpha.elev.2re)
 
 pp_check(bayes.alpha.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.alpha.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.alpha.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.alpha.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.alpha.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -1243,50 +1225,50 @@ pra$x <- pra$x * sd(lmdata$Elevation) + mean(lmdata$Elevation)
 prb$x <- prb$x * sd(lmdata$Elevation) + mean(lmdata$Elevation) 
 
 (p1.alpha.ele <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Elevation, y = value, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Elevation, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Species richness", breaks=c(0,5,10,15,20,25)) +
-    scale_x_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    coord_cartesian(ylim = c(0, 26), xlim = c(-3.319242, 3750)) +
+    scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
+    scale_x_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
+    coord_cartesian(ylim = c(0, 26), xlim = c(0, 3750)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.alpha.ele, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.ele_post.linpred.re2.rdata")
+save(p1.alpha.ele, file = "p1.alpha.ele_post.linpred.re2.rdata")
 
 # SR ~ simple latitude fixed effect model
 
 bayes.alpha.lat.1fe <- brm(formula = value ~ Latitude.scale,
                            data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           prior = c(set_prior("normal(0, 5)", class = "b")),
                            warmup = 1000, iter = 3000, chains = 4,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.alpha.lat.1fe, pointwise = TRUE)
 loo(bayes.alpha.lat.1fe, pointwise = TRUE)
 
 # SR ~ simple latitude multilevel elev effect model
 
-bayes.alpha.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale|elev_class),
+bayes.alpha.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale | elev_class),
                            data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           prior = c(set_prior("normal(0, 5)", class = "b")),
                            warmup = 1000, iter = 3000, chains = 4,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.alpha.lat.1re, pointwise = TRUE)
 loo(bayes.alpha.lat.1re, pointwise = TRUE)
 
 # SR ~ poly latitude fixed effect model
 
-bayes.alpha.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE),
+bayes.alpha.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE),
                            data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           prior = c(set_prior("normal(0, 5)", class = "b")),
                            warmup = 1000, iter = 3000, chains = 4,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.alpha.lat.2fe, pointwise = TRUE)
 loo(bayes.alpha.lat.2fe, pointwise = TRUE)
@@ -1294,31 +1276,31 @@ summary(bayes.alpha.lat.2fe)
 
 # SR ~ poly latitude fixed effect plotting
 
-pra <- ggpredict(bayes.alpha.lat.2fe, terms = c("Latitude.scale [all]"), ppd=FALSE)
+pra <- ggpredict(bayes.alpha.lat.2fe, terms = c("Latitude.scale [all]"), ppd = FALSE)
 
 pra$x <- pra$x * sd(lmdata$Latitude) + mean(lmdata$Latitude) 
 
 (p1.alpha.lat.2fe <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Latitude, y = value, colour="red")) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Latitude, y = value, colour = "red")) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Species richness", breaks=c(0,5,10,15,20,25)) +
-    scale_x_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
+    scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
+    scale_x_continuous("Latitude (°N)", breaks = c( 36, 42, 48, 54, 60, 66)) +
     coord_cartesian(ylim = c(0, 26), xlim = c(36, 66)) +
     workingtheme +
-    theme(legend.position="none") +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    theme(legend.position = "none") +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.alpha.lat.2fe, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.lat_post.linpred.2fe.rdata")
+save(p1.alpha.lat.2fe, file = "p1.alpha.lat_post.linpred.2fe.rdata")
 
 # SR ~ poly latitude multilevel elev effect model
 
-bayes.alpha.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE) + (1 + poly(Latitude.scale, 2, raw=FALSE)|elev_class),
+bayes.alpha.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE) + (1 + poly(Latitude.scale, 2, raw = FALSE ) | elev_class),
                            data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           prior = c(set_prior("normal(0, 5)", class = "b")),
                            warmup = 1000, iter = 3000, chains = 4,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.alpha.lat.2re, pointwise = TRUE)
 loo(bayes.alpha.lat.2re, pointwise = TRUE)
@@ -1333,13 +1315,13 @@ control_params(bayes.alpha.lat.2re)
 
 pp_check(bayes.alpha.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.alpha.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.alpha.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.alpha.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.alpha.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -1351,69 +1333,69 @@ pra$x <- pra$x * sd(lmdata$Latitude) + mean(lmdata$Latitude)
 prb$x <- prb$x * sd(lmdata$Latitude) + mean(lmdata$Latitude) 
 
 (p1.alpha.lat <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Latitude, y = value, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Latitude, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Species richness", breaks=c(0,5,10,15,20,25)) +
-    scale_x_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
+    scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
+    scale_x_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
     coord_cartesian(ylim = c(0, 26), xlim = c(36, 66)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.alpha.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.lat_post.linpred.re2.rdata")
+save(p1.alpha.lat, file = "p1.alpha.lat_post.linpred.re2.rdata")
 
 ## Phylogenetic richness
 
 # check distribution
 
-dist<-subset(lmdata, variable == "Glob.PD")
+dist <- subset(lmdata, variable == "Glob.PD")
 hist(test$value)
 
 # PD ~ simple elevation fixed effect model
 
 bayes.pd.elev.1fe <- brm(formula = value ~ Elevation.scale,
                          data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
-                         prior = c(set_prior("normal(0,5)", class = "b")),
+                         prior = c(set_prior("normal(0, 5)", class = "b")),
                          warmup = 1000, iter = 3000, chains = 4,
                          control = list(adapt_delta = 0.99),
-                         seed=1)
+                         seed = 1)
 
 waic(bayes.pd.elev.1fe, pointwise = TRUE)
 loo(bayes.pd.elev.1fe, pointwise = TRUE)
 
 # PD ~ simple elevation multilevel lat effect model
 
-bayes.pd.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale|lat_class),
+bayes.pd.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale | lat_class),
                          data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
-                         prior = c(set_prior("normal(0,5)", class = "b")),
+                         prior = c(set_prior("normal(0, 5)", class = "b")),
                          warmup = 1000, iter = 3000, chains = 4,
                          control = list(adapt_delta = 0.99),
-                         seed=1)
+                         seed = 1)
 
 waic(bayes.pd.elev.1re, pointwise = TRUE)
 loo(bayes.pd.elev.1re, pointwise = TRUE)
 
 # PD ~ poly elevation fixed effect model
 
-bayes.pd.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE),
+bayes.pd.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE),
                          data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
-                         prior = c(set_prior("normal(0,5)", class = "b")),
+                         prior = c(set_prior("normal(0, 5)", class = "b")),
                          warmup = 1000, iter = 3000, chains = 4,
                          control = list(adapt_delta = 0.99),
-                         seed=1)
+                         seed = 1)
 
 waic(bayes.pd.elev.2fe, pointwise = TRUE)
 loo(bayes.pd.elev.2fe, pointwise = TRUE)
 
 # PD ~ poly elevation multilevel lat effect model
 
-bayes.pd.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE) + (1 + poly(Elevation.scale, 2, raw=FALSE)|lat_class),
+bayes.pd.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE) + (1 + poly(Elevation.scale, 2, raw = FALSE) | lat_class),
                          data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
-                         prior = c(set_prior("normal(0,5)", class = "b")),
+                         prior = c(set_prior("normal(0, 5)", class = "b")),
                          warmup = 1000, iter = 3000, chains = 4,
                          control = list(adapt_delta = 0.99),
-                         seed=1)
+                         seed = 1)
 
 waic(bayes.pd.elev.2re, pointwise = TRUE)
 loo(bayes.pd.elev.2re, pointwise = TRUE)
@@ -1428,14 +1410,14 @@ control_params(bayes.pd.elev.2re)
 
 pp_check(bayes.pd.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.pd.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.pd.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.pd.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -1447,62 +1429,62 @@ pra$x <- pra$x * sd(lmdata$Elevation) + mean(lmdata$Elevation)
 prb$x <- prb$x * sd(lmdata$Elevation) + mean(lmdata$Elevation) 
 
 (p1.pd.ele <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Glob.PD"), alpha = 0.1, aes(x = Elevation, y = value, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.PD"), alpha = 0.1, aes(x = Elevation, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Phylogenetic richness", breaks=c(0,160,320,480,640)) +
-    scale_x_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    coord_cartesian(ylim = c(0, 647.1955), xlim = c(-3.319242, 3750)) +
+    scale_y_continuous("Phylogenetic richness", breaks = c(0, 160, 320, 480, 640)) +
+    scale_x_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
+    coord_cartesian(ylim = c(0, 647.1955), xlim = c(0, 3750)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.pd.ele, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.pd.ele_post.linpred.re2.rdata")
+save(p1.pd.ele, file = "p1.pd.ele_post.linpred.re2.rdata")
 
 #  PD ~ simple latitude fixed effect model
 
 bayes.pd.lat.1fe <- brm(formula = value ~ Latitude.scale,
                         data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
-                        prior = c(set_prior("normal(0,5)", class = "b")),
+                        prior = c(set_prior("normal(0, 5)", class = "b")),
                         warmup = 1000, iter = 3000, chains = 4,
                         control = list(adapt_delta = 0.99),
-                        seed=1)
+                        seed = 1)
 
 waic(bayes.pd.lat.1fe, pointwise = TRUE)
 loo(bayes.pd.lat.1fe, pointwise = TRUE)
 
 # PD ~ simple latitude multilevel elev effect model
 
-bayes.pd.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale|elev_class),
+bayes.pd.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale | elev_class),
                         data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
-                        prior = c(set_prior("normal(0,5)", class = "b")),
+                        prior = c(set_prior("normal(0, 5)", class = "b")),
                         warmup = 1000, iter = 3000, chains = 4,
                         control = list(adapt_delta = 0.99),
-                        seed=1)
+                        seed = 1)
 
 waic(bayes.pd.lat.1re, pointwise = TRUE)
 loo(bayes.pd.lat.1re, pointwise = TRUE)
 
 # PD ~ poly latitude fixed effect model
 
-bayes.pd.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE),
+bayes.pd.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE),
                         data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
-                        prior = c(set_prior("normal(0,5)", class = "b")),
+                        prior = c(set_prior("normal(0, 5)", class = "b")),
                         warmup = 1000, iter = 3000, chains = 4,
                         control = list(adapt_delta = 0.99),
-                        seed=1)
+                        seed = 1)
 
 waic(bayes.pd.lat.2fe, pointwise = TRUE)
 loo(bayes.pd.lat.2fe, pointwise = TRUE)
 
 # PD ~ poly latitude multilevel elev effect model
 
-bayes.pd.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE) + (1 + poly(Latitude.scale, 2, raw=FALSE)|elev_class),
+bayes.pd.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE) + (1 + poly(Latitude.scale, 2, raw = FALSE) | elev_class),
                         data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
-                        prior = c(set_prior("normal(0,5)", class = "b")),
+                        prior = c(set_prior("normal(0, 5)", class = "b")),
                         warmup = 1000, iter = 3000, chains = 4,
                         control = list(adapt_delta = 0.99),
-                        seed=1)
+                        seed = 1)
 
 waic(bayes.pd.lat.2re, pointwise = TRUE)
 loo(bayes.pd.lat.2re, pointwise = TRUE)
@@ -1517,13 +1499,13 @@ control_params(bayes.pd.lat.2re)
 
 pp_check(bayes.pd.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.pd.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.pd.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.pd.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -1535,69 +1517,69 @@ pra$x <- pra$x * sd(lmdata$Latitude) + mean(lmdata$Latitude)
 prb$x <- prb$x * sd(lmdata$Latitude) + mean(lmdata$Latitude) 
 
 (p1.pd.lat <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Glob.PD"), alpha = 0.1, aes(x = Latitude, y = value, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.PD"), alpha = 0.1, aes(x = Latitude, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Phylogenetic richness", breaks=c(0,160,320,480,640)) +
-    scale_x_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
+    scale_y_continuous("Phylogenetic richness", breaks = c(0, 160, 320, 480, 640)) +
+    scale_x_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
     coord_cartesian(ylim = c(0, 647.1955), xlim = c(36, 66)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.pd.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.pd.lat_post.linpred.re2.rdata")
+save(p1.pd.lat, file = "p1.pd.lat_post.linpred.re2.rdata")
 
 ## Phylogenetic mean pairwise distance
 
 # check distribution
 
-dist<-subset(lmdata, variable == "Glob.MPD.beta")
+dist <- subset(lmdata, variable == "Glob.MPD.beta")
 hist(dist$value)
 
 # MPD ~ simple elevation fixed effect model
 
 bayes.mpd.elev.1fe <- brm(formula = value ~ Elevation.scale,
-                          data = subset(lmdata, variable == "Glob.MPD.beta"),family = zero_one_inflated_beta(link = "logit"),
-                          prior = c(set_prior("normal(0,5)", class = "b")),
+                          data = subset(lmdata, variable == "Glob.MPD.beta"), family = zero_one_inflated_beta(link = "logit"),
+                          prior = c(set_prior("normal(0, 5)", class = "b")),
                           warmup = 1000, iter = 3000, chains = 4,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.mpd.elev.1fe, pointwise = TRUE)
 loo(bayes.mpd.elev.1fe, pointwise = TRUE)
 
 # MPD ~ simple elevation multilevel lat effect model
 
-bayes.mpd.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale|lat_class),
-                          data = subset(lmdata, variable == "Glob.MPD.beta"),family = zero_one_inflated_beta(link = "logit"),
-                          prior = c(set_prior("normal(0,5)", class = "b")),
+bayes.mpd.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale | lat_class),
+                          data = subset(lmdata, variable == "Glob.MPD.beta"), family = zero_one_inflated_beta(link = "logit"),
+                          prior = c(set_prior("normal(0, 5)", class = "b")),
                           warmup = 1000, iter = 3000, chains = 4,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.mpd.elev.1re, pointwise = TRUE)
 loo(bayes.mpd.elev.1re, pointwise = TRUE)
 
 # MPD ~ poly elevation fixed effect model
 
-bayes.mpd.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE),
-                          data = subset(lmdata, variable == "Glob.MPD.beta"),family = zero_one_inflated_beta(link = "logit"),
-                          prior = c(set_prior("normal(0,5)", class = "b")),
+bayes.mpd.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE),
+                          data = subset(lmdata, variable == "Glob.MPD.beta"), family = zero_one_inflated_beta(link = "logit"),
+                          prior = c(set_prior("normal(0, 5)", class = "b")),
                           warmup = 1000, iter = 3000, chains = 4,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.mpd.elev.2fe, pointwise = TRUE)
 loo(bayes.mpd.elev.2fe, pointwise = TRUE)
 
 # MPD ~ poly elevation multilevel lat effect model
 
-bayes.mpd.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE) + (1 + poly(Elevation.scale, 2, raw=FALSE)|lat_class),
-                          data = subset(lmdata, variable == "Glob.MPD.beta"),family = zero_one_inflated_beta(link = "logit"),
-                          prior = c(set_prior("normal(0,5)", class = "b")),
+bayes.mpd.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE) + (1 + poly(Elevation.scale, 2, raw = FALSE) | lat_class),
+                          data = subset(lmdata, variable == "Glob.MPD.beta"), family = zero_one_inflated_beta(link = "logit"),
+                          prior = c(set_prior("normal(0, 5)", class = "b")),
                           warmup = 1000, iter = 3000, chains = 4,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.mpd.elev.2re, pointwise = TRUE)
 loo(bayes.mpd.elev.2re, pointwise = TRUE)
@@ -1612,13 +1594,13 @@ control_params(bayes.mpd.elev.2re)
 
 pp_check(bayes.mpd.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.mpd.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.mpd.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.mpd.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.mpd.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -1630,62 +1612,62 @@ pra$x <- pra$x * sd(lmdata$Elevation) + mean(lmdata$Elevation)
 prb$x <- prb$x * sd(lmdata$Elevation) + mean(lmdata$Elevation) 
 
 (p1.mpd.ele <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Glob.MPD.beta"), alpha = 0.1, aes(x = Elevation, y = value, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.MPD.beta"), alpha = 0.1, aes(x = Elevation, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Phylogenetic mean pairwise distance", breaks=c(0,0.2,0.4,0.6,0.8,1)) +
-    scale_x_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    coord_cartesian(ylim = c(0, 1), xlim = c(-3.319242, 3750)) +
+    scale_y_continuous("Phylogenetic mean pairwise distance", breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
+    scale_x_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
+    coord_cartesian(ylim = c(0, 1), xlim = c(0, 3750)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.mpd.ele, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.mpd.ele_post.linpred.re2.rdata")
+save(p1.mpd.ele, file = "p1.mpd.ele_post.linpred.re2.rdata")
 
 # MPD ~ simple latitude fixed effect model
 
 bayes.mpd.lat.1fe <- brm(formula = value ~ Latitude.scale,
-                         data = subset(lmdata, variable == "Glob.MPD.beta"),family = zero_one_inflated_beta(link = "logit"),
-                         prior = c(set_prior("normal(0,5)", class = "b")),
+                         data = subset(lmdata, variable == "Glob.MPD.beta"), family = zero_one_inflated_beta(link = "logit"),
+                         prior = c(set_prior("normal(0, 5)", class = "b")),
                          warmup = 1000, iter = 3000, chains = 4,
                          control = list(adapt_delta = 0.99),
-                         seed=1)
+                         seed = 1)
 
 waic(bayes.mpd.lat.1fe, pointwise = TRUE)
 loo(bayes.mpd.lat.1fe, pointwise = TRUE)
 
 # MPD ~ simple latitude multilevel elev effect model
 
-bayes.mpd.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale|elev_class),
-                         data = subset(lmdata, variable == "Glob.MPD.beta"),family = zero_one_inflated_beta(link = "logit"),
-                         prior = c(set_prior("normal(0,5)", class = "b")),
+bayes.mpd.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale | elev_class),
+                         data = subset(lmdata, variable == "Glob.MPD.beta"), family = zero_one_inflated_beta(link = "logit"),
+                         prior = c(set_prior("normal(0, 5)", class = "b")),
                          warmup = 1000, iter = 3000, chains = 4,
                          control = list(adapt_delta = 0.99),
-                         seed=1)
+                         seed = 1)
 
 waic(bayes.mpd.lat.1re, pointwise = TRUE)
 loo(bayes.mpd.lat.1re, pointwise = TRUE)
 
 # MPD ~ poly latitude fixed effect model
 
-bayes.mpd.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE),
-                         data = subset(lmdata, variable == "Glob.MPD.beta"),family = zero_one_inflated_beta(link = "logit"),
-                         prior = c(set_prior("normal(0,5)", class = "b")),
+bayes.mpd.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE),
+                         data = subset(lmdata, variable == "Glob.MPD.beta"), family = zero_one_inflated_beta(link = "logit"),
+                         prior = c(set_prior("normal(0, 5)", class = "b")),
                          warmup = 1000, iter = 3000, chains = 4,
                          control = list(adapt_delta = 0.99),
-                         seed=1)
+                         seed = 1)
 
 waic(bayes.mpd.lat.2fe, pointwise = TRUE)
 loo(bayes.mpd.lat.2fe, pointwise = TRUE)
 
 # MPD ~ poly latitude multilevel elev effect model
 
-bayes.mpd.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE) + (1 + poly(Latitude.scale, 2, raw=FALSE)|elev_class),
-                         data = subset(lmdata, variable == "Glob.MPD.beta"),family = zero_one_inflated_beta(link = "logit"),
-                         prior = c(set_prior("normal(0,5)", class = "b")),
+bayes.mpd.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE) + (1 + poly(Latitude.scale, 2, raw = FALSE) | elev_class),
+                         data = subset(lmdata, variable == "Glob.MPD.beta"), family = zero_one_inflated_beta(link = "logit"),
+                         prior = c(set_prior("normal(0, 5)", class = "b")),
                          warmup = 1000, iter = 3000, chains = 4,
                          control = list(adapt_delta = 0.99),
-                         seed=1)
+                         seed = 1)
 
 waic(bayes.mpd.lat.2re, pointwise = TRUE)
 loo(bayes.mpd.lat.2re, pointwise = TRUE)
@@ -1700,13 +1682,13 @@ control_params(bayes.mpd.lat.2re)
 
 pp_check(bayes.mpd.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.mpd.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.mpd.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.mpd.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.mpd.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -1718,36 +1700,35 @@ pra$x <- pra$x * sd(lmdata$Latitude) + mean(lmdata$Latitude)
 prb$x <- prb$x * sd(lmdata$Latitude) + mean(lmdata$Latitude)
 
 (p1.mpd.lat <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Glob.MPD.beta"), alpha = 0.1, aes(x = Latitude, y = value, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.MPD.beta"), alpha = 0.1, aes(x = Latitude, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Phylogenetic mean pairwise distance", breaks=c(0,0.2,0.4,0.6,0.8,1)) +
-    scale_x_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
+    scale_y_continuous("Phylogenetic mean pairwise distance", breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
+    scale_x_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
     coord_cartesian(ylim = c(0, 1), xlim = c(36, 66)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.mpd.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.mpd.lat_post.linpred.re2.rdata")
+save(p1.mpd.lat, file = "p1.mpd.lat_post.linpred.re2.rdata")
 
 ## Functional richness
 
 # check distribution
 
-dist<-subset(lmdata, variable == "Glob.FRic")
+dist <- subset(lmdata, variable == "Glob.FRic")
 hist(dist$value)
-hist(log(dist$value))
 
 # FRic ~ simple elevation fixed effect model
 
 mix <- mixture(Beta, Beta)
 bayes.FRic.elev.1fe <- brm(formula = value ~ Elevation.scale,
                            data = subset(lmdata, variable == "Glob.FRic"), family = mix,
-                           prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
-                                     prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                           prior = c(prior("normal(0, 5)", class = "b", dpar = mu1), prior("normal(0, 5)", class = "b", dpar = mu2), 
+                                     prior("student_t(3, -0.5, 0.2)", class = "Intercept", dpar = mu1), prior("student_t(3, 0.5, 0.2)", class = "Intercept", dpar = mu2)),
                            warmup = 1000, iter = 3000, chains = 4, inits = 0,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.FRic.elev.1fe, pointwise = TRUE)
 loo(bayes.FRic.elev.1fe, pointwise = TRUE)
@@ -1755,13 +1736,13 @@ loo(bayes.FRic.elev.1fe, pointwise = TRUE)
 # FRic ~ simple elevation multilevel lat effect model
 
 mix <- mixture(Beta, Beta)
-bayes.FRic.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale|lat_class),
+bayes.FRic.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale | lat_class),
                            data = subset(lmdata, variable == "Glob.FRic"), family = mix,
-                           prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
-                                     prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                           prior = c(prior("normal(0, 5)", class = "b", dpar = mu1), prior("normal(0, 5)", class = "b", dpar = mu2), 
+                                     prior("student_t(3, -0.5, 0.2)", class = "Intercept", dpar = mu1), prior("student_t(3, 0.5, 0.2)", class = "Intercept", dpar = mu2)),
                            warmup = 1000, iter = 3000, chains = 4, inits = 0,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.FRic.elev.1re, pointwise = TRUE)
 loo(bayes.FRic.elev.1re, pointwise = TRUE)
@@ -1769,13 +1750,13 @@ loo(bayes.FRic.elev.1re, pointwise = TRUE)
 # FRic ~ poly elevation fixed effect model
 
 mix <- mixture(Beta, Beta)
-bayes.FRic.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE),
+bayes.FRic.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE),
                            data = subset(lmdata, variable == "Glob.FRic"), family = mix,
-                           prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
-                                     prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                           prior = c(prior("normal(0, 5)", class = "b", dpar = mu1), prior("normal(0, 5)", class = "b", dpar = mu2), 
+                                     prior("student_t(3, -0.5, 0.2)", class = "Intercept", dpar = mu1), prior("student_t(3, 0.5, 0.2)", class = "Intercept", dpar = mu2)),
                            warmup = 1000, iter = 3000, chains = 4, inits = 0,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.FRic.elev.2fe, pointwise = TRUE)
 loo(bayes.FRic.elev.2fe, pointwise = TRUE)
@@ -1783,13 +1764,13 @@ loo(bayes.FRic.elev.2fe, pointwise = TRUE)
 # FRic ~ poly elevation multilevel lat effect model
 
 mix <- mixture(Beta, Beta)
-bayes.FRic.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE) + (1 + poly(Elevation.scale, 2, raw=FALSE)|lat_class),
+bayes.FRic.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE) + (1 + poly(Elevation.scale, 2, raw = FALSE) | lat_class),
                            data = subset(lmdata, variable == "Glob.FRic"), family = mix,
-                           prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
-                                     prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                           prior = c(prior("normal(0, 5)", class = "b", dpar = mu1), prior("normal(0, 5)", class = "b", dpar = mu2), 
+                                     prior("student_t(3, -0.5, 0.2)", class = "Intercept", dpar = mu1), prior("student_t(3, 0.5, 0.2)", class = "Intercept", dpar = mu2)),
                            warmup = 1000, iter = 9000, chains = 4, inits = 0,
                            control = list(adapt_delta = 0.99, max_treedepth = 15),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.FRic.elev.2re, pointwise = TRUE)
 loo(bayes.FRic.elev.2re, pointwise = TRUE)
@@ -1804,13 +1785,13 @@ control_params(bayes.FRic.elev.2re)
 
 pp_check(bayes.FRic.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.FRic.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.FRic.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.FRic.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -1822,28 +1803,28 @@ pra$x <- pra$x * sd(lmdata$Elevation) + mean(lmdata$Elevation)
 prb$x <- prb$x * sd(lmdata$Elevation) + mean(lmdata$Elevation) 
 
 (p1.FRic.ele <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Glob.FRic"), alpha = 0.1, aes(x = Elevation, y = value, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.FRic"), alpha = 0.1, aes(x = Elevation, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Functional richness", breaks=c(0,0.2,0.4,0.6,0.8,1)) +
-    scale_x_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    coord_cartesian(ylim = c(0, 1), xlim = c(-3.319242, 3750)) +
+    scale_y_continuous("Functional richness", breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
+    scale_x_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
+    coord_cartesian(ylim = c(0, 1), xlim = c(0, 3750)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.FRic.ele, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FRic.ele_post.linpred.re2.rdata")
+save(p1.FRic.ele, file = "p1.FRic.ele_post.linpred.re2.rdata")
 
 # FRic ~ simple latitude fixed effect model
 
 mix <- mixture(Beta, Beta)
 bayes.FRic.lat.1fe <- brm(formula = value ~ Latitude.scale,
                           data = subset(lmdata, variable == "Glob.FRic"), family = mix,
-                          prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
-                                    prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                          prior = c(prior("normal(0, 5)", class = "b", dpar = mu1), prior("normal(0, 5)", class = "b", dpar = mu2), 
+                                    prior("student_t(3, -0.5, 0.2)", class = "Intercept", dpar = mu1), prior("student_t(3, 0.5, 0.2)", class = "Intercept", dpar = mu2)),
                           warmup = 1000, iter = 3000, chains = 4, inits = 0,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.FRic.lat.1fe, pointwise = TRUE)
 loo(bayes.FRic.lat.1fe, pointwise = TRUE) 
@@ -1851,13 +1832,13 @@ loo(bayes.FRic.lat.1fe, pointwise = TRUE)
 # FRic ~ simple latitude multilevel elev effect model
 
 mix <- mixture(Beta, Beta)
-bayes.FRic.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale|elev_class),
+bayes.FRic.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale | elev_class),
                           data = subset(lmdata, variable == "Glob.FRic"), family = mix,
-                          prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
-                                    prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                          prior = c(prior("normal(0, 5)", class = "b", dpar = mu1), prior("normal(0, 5)", class = "b", dpar = mu2), 
+                                    prior("student_t(3, -0.5, 0.2)", class = "Intercept", dpar = mu1), prior("student_t(3, 0.5, 0.2)", class = "Intercept", dpar = mu2)),
                           warmup = 1000, iter = 3000, chains = 4, inits = 0,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.FRic.lat.1re, pointwise = TRUE)
 loo(bayes.FRic.lat.1re, pointwise = TRUE)
@@ -1865,13 +1846,13 @@ loo(bayes.FRic.lat.1re, pointwise = TRUE)
 # FRic ~ poly latitude fixed effect model
 
 mix <- mixture(Beta, Beta)
-bayes.FRic.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE),
+bayes.FRic.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE),
                           data = subset(lmdata, variable == "Glob.FRic"), family = mix,
-                          prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
-                                    prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                          prior = c(prior("normal(0, 5)", class = "b", dpar = mu1), prior("normal(0, 5)", class = "b", dpar = mu2), 
+                                    prior("student_t(3, -0.5, 0.2)", class = "Intercept", dpar = mu1), prior("student_t(3, 0.5, 0.2)", class = "Intercept", dpar = mu2)),
                           warmup = 1000, iter = 3000, chains = 4, inits = 0,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.FRic.lat.2fe, pointwise = TRUE)
 loo(bayes.FRic.lat.2fe, pointwise = TRUE)
@@ -1879,13 +1860,13 @@ loo(bayes.FRic.lat.2fe, pointwise = TRUE)
 # FRic ~ poly latitude multilevel elev effect model
 
 mix <- mixture(Beta, Beta)
-bayes.FRic.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE) + (1 + poly(Latitude.scale, 2, raw=FALSE)|elev_class),
+bayes.FRic.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE) + (1 + poly(Latitude.scale, 2, raw = FALSE) | elev_class),
                           data = subset(lmdata, variable == "Glob.FRic"), family = mix,
-                          prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
-                                    prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                          prior = c(prior("normal(0, 5)", class = "b", dpar = mu1), prior("normal(0, 5)", class = "b", dpar = mu2), 
+                                    prior("student_t(3, -0.5, 0.2)", class = "Intercept", dpar = mu1), prior("student_t(3, 0.5, 0.2)", class = "Intercept", dpar = mu2)),
                           warmup = 1000, iter = 9000, chains = 4, inits = 0,
                           control = list(adapt_delta = 0.99, max_treedepth = 15),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.FRic.lat.2re, pointwise = TRUE)
 loo(bayes.FRic.lat.2re, pointwise = TRUE)
@@ -1900,13 +1881,13 @@ control_params(bayes.FRic.lat.2re)
 
 pp_check(bayes.FRic.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.FRic.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.FRic.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.FRic.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -1918,69 +1899,69 @@ pra$x <- pra$x * sd(lmdata$Latitude) + mean(lmdata$Latitude)
 prb$x <- prb$x * sd(lmdata$Latitude) + mean(lmdata$Latitude) 
 
 (p1.FRic.lat <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Glob.FRic"), alpha = 0.1, aes(x = Latitude, y = value, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.FRic"), alpha = 0.1, aes(x = Latitude, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Functional richness", breaks=c(0,0.2,0.4,0.6,0.8,1)) +
-    scale_x_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
+    scale_y_continuous("Functional richness", breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
+    scale_x_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
     coord_cartesian(ylim = c(0, 1), xlim = c(36, 66)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.FRic.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FRic.lat_post.linpred.re2.rdata")
+save(p1.FRic.lat, file = "p1.FRic.lat_post.linpred.re2.rdata")
 
 ## Functional dispersion
 
 # check distribution
 
-dist<-subset(lmdata, variable == "Glob.FDis")
+dist <- subset(lmdata, variable == "Glob.FDis")
 hist(dist$value)
 
 # FDis ~ simple elevation fixed effect model
 
 bayes.FDis.elev.1fe <- brm(formula = value ~ Elevation.scale,
                            data = subset(lmdata, variable == "Glob.FDis"), family = Gamma(link = "log"),
-                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           prior = c(set_prior("normal(0, 5)", class = "b")),
                            warmup = 1000, iter = 3000, chains = 4,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.FDis.elev.1fe, pointwise = TRUE)
 loo(bayes.FDis.elev.1fe, pointwise = TRUE)
 
 # FDis ~ simple elevation multilevel lat effect model
 
-bayes.FDis.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale|lat_class),
+bayes.FDis.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale | lat_class),
                            data = subset(lmdata, variable == "Glob.FDis"), family = Gamma(link = "log"),
-                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           prior = c(set_prior("normal(0, 5)", class = "b")),
                            warmup = 1000, iter = 3000, chains = 4,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.FDis.elev.1re, pointwise = TRUE)
 loo(bayes.FDis.elev.1re, pointwise = TRUE)
 
 # FDis ~ poly elevation fixed effect model
 
-bayes.FDis.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE),
+bayes.FDis.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE),
                            data = subset(lmdata, variable == "Glob.FDis"), family = Gamma(link = "log"),
-                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           prior = c(set_prior("normal(0, 5)", class = "b")),
                            warmup = 1000, iter = 3000, chains = 4,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.FDis.elev.2fe, pointwise = TRUE)
 loo(bayes.FDis.elev.2fe, pointwise = TRUE)
 
 # FDis ~ poly elevation multilevel lat effect model
 
-bayes.FDis.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE) + (1 + poly(Elevation.scale, 2, raw=FALSE)|lat_class),
+bayes.FDis.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE) + (1 + poly(Elevation.scale, 2, raw = FALSE) | lat_class),
                            data = subset(lmdata, variable == "Glob.FDis"), family = Gamma(link = "log"),
-                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           prior = c(set_prior("normal(0, 5)", class = "b")),
                            warmup = 4000, iter = 12000, chains = 4,
                            control = list(adapt_delta = 0.99, max_treedepth = 15),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.FDis.elev.2re, pointwise = TRUE)
 loo(bayes.FDis.elev.2re, pointwise = TRUE)
@@ -1995,13 +1976,13 @@ control_params(bayes.FDis.elev.2re)
 
 pp_check(bayes.FDis.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.FDis.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.FDis.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.FDis.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FDis.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2013,62 +1994,62 @@ pra$x <- pra$x * sd(lmdata$Elevation) + mean(lmdata$Elevation)
 prb$x <- prb$x * sd(lmdata$Elevation) + mean(lmdata$Elevation) 
 
 (p1.FDis.ele <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Glob.FDis"), alpha = 0.1, aes(x = Elevation, y = value, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.FDis"), alpha = 0.1, aes(x = Elevation, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Functional dispersion", breaks=c(0,0.06,0.12,0.18,0.24,0.3)) +
-    scale_x_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    coord_cartesian(ylim = c(0, 0.3), xlim = c(-3.319242, 3750)) +
+    scale_y_continuous("Functional dispersion", breaks = c(0, 0.06, 0.12, 0.18, 0.24, 0.3)) +
+    scale_x_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
+    coord_cartesian(ylim = c(0, 0.3), xlim = c(0, 3750)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.FDis.ele, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FDis.ele_post.linpred.re2.rdata")
+save(p1.FDis.ele, file = "p1.FDis.ele_post.linpred.re2.rdata")
 
 # FDis ~ simple latitude fixed effect model
 
 bayes.FDis.lat.1fe <- brm(formula = value ~ Latitude.scale,
                           data = subset(lmdata, variable == "Glob.FDis"), family = Gamma(link = "log"),
-                          prior = c(set_prior("normal(0,5)", class = "b")),
+                          prior = c(set_prior("normal(0, 5)", class = "b")),
                           warmup = 1000, iter = 3000, chains = 4,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.FDis.lat.1fe, pointwise = TRUE)
 loo(bayes.FDis.lat.1fe, pointwise = TRUE)
 
 # FDis ~ simple latitude multilevel elev effect model
 
-bayes.FDis.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale|elev_class),
+bayes.FDis.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale | elev_class),
                           data = subset(lmdata, variable == "Glob.FDis"), family = Gamma(link = "log"),
-                          prior = c(set_prior("normal(0,5)", class = "b")),
+                          prior = c(set_prior("normal(0, 5)", class = "b")),
                           warmup = 1000, iter = 3000, chains = 4,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.FDis.lat.1re, pointwise = TRUE)
 loo(bayes.FDis.lat.1re, pointwise = TRUE)
 
 # FDis ~ poly latitude fixed effect model
 
-bayes.FDis.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE),
+bayes.FDis.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE),
                           data = subset(lmdata, variable == "Glob.FDis"), family = Gamma(link = "log"),
-                          prior = c(set_prior("normal(0,5)", class = "b")),
+                          prior = c(set_prior("normal(0, 5)", class = "b")),
                           warmup = 1000, iter = 3000, chains = 4,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.FDis.lat.2fe, pointwise = TRUE)
 loo(bayes.FDis.lat.2fe, pointwise = TRUE)
 
 # FDis ~ poly latitude multilevel elev effect model
 
-bayes.FDis.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE) + (1 + poly(Latitude.scale, 2, raw=FALSE)|elev_class),
+bayes.FDis.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE) + (1 + poly(Latitude.scale, 2, raw = FALSE) | elev_class),
                           data = subset(lmdata, variable == "Glob.FDis"), family = Gamma(link = "log"),
-                          prior = c(set_prior("normal(0,5)", class = "b")),
+                          prior = c(set_prior("normal(0, 5)", class = "b")),
                           warmup = 1000, iter = 3000, chains = 4,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.FDis.lat.2re, pointwise = TRUE)
 loo(bayes.FDis.lat.2re, pointwise = TRUE)
@@ -2083,13 +2064,13 @@ control_params(bayes.FDis.lat.2re)
 
 pp_check(bayes.FDis.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.FDis.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.FDis.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.FDis.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FDis.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2101,69 +2082,69 @@ pra$x <- pra$x * sd(lmdata$Latitude) + mean(lmdata$Latitude)
 prb$x <- prb$x * sd(lmdata$Latitude) + mean(lmdata$Latitude) 
 
 (p1.FDis.lat <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Glob.FDis"), alpha = 0.1, aes(x = Latitude, y = value, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.FDis"), alpha = 0.1, aes(x = Latitude, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Functional dispersion", breaks=c(0,0.06,0.12,0.18,0.24,0.3)) +
-    scale_x_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
+    scale_y_continuous("Functional dispersion", breaks = c(0, 0.06, 0.12, 0.18, 0.24, 0.3)) +
+    scale_x_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
     coord_cartesian(ylim = c(0, 0.3), xlim = c(36, 66)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.FDis.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FDis.lat_post.linpred.re2.rdata")
+save(p1.FDis.lat, file = "p1.FDis.lat_post.linpred.re2.rdata")
 
 ## Community weighted mean body lengths
 
 # check distribution
 
-dist<-subset(lmdata, variable == "CWM.Bl")
+dist <- subset(lmdata, variable == "CWM.Bl")
 hist(dist$value)
 
 # CWM.Bl ~ simple elevation fixed effect model
 
 bayes.CWM.Bl.elev.1fe <- brm(formula = value ~ Elevation.scale,
                              data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
-                             prior = c(set_prior("normal(0,5)", class = "b")),
+                             prior = c(set_prior("normal(0, 5)", class = "b")),
                              warmup = 1000, iter = 3000, chains = 4,
                              control = list(adapt_delta = 0.99),
-                             seed=1)
+                             seed = 1)
 
 waic(bayes.CWM.Bl.elev.1fe, pointwise = TRUE)
 loo(bayes.CWM.Bl.elev.1fe, pointwise = TRUE)
 
 # CWM.Bl ~ simple elevation multilevel lat effect model
 
-bayes.CWM.Bl.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale|lat_class),
+bayes.CWM.Bl.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale | lat_class),
                              data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
-                             prior = c(set_prior("normal(0,5)", class = "b")),
+                             prior = c(set_prior("normal(0, 5)", class = "b")),
                              warmup = 1000, iter = 3000, chains = 4,
                              control = list(adapt_delta = 0.99),
-                             seed=1)
+                             seed = 1)
 
 waic(bayes.CWM.Bl.elev.1re, pointwise = TRUE)
 loo(bayes.CWM.Bl.elev.1re, pointwise = TRUE)
 
 # CWM.Bl ~ poly elevation fixed effect model
 
-bayes.CWM.Bl.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE),
+bayes.CWM.Bl.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE),
                              data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
-                             prior = c(set_prior("normal(0,5)", class = "b")),
+                             prior = c(set_prior("normal(0, 5)", class = "b")),
                              warmup = 1000, iter = 3000, chains = 4,
                              control = list(adapt_delta = 0.99),
-                             seed=1)
+                             seed = 1)
 
 waic(bayes.CWM.Bl.elev.2fe, pointwise = TRUE)
 loo(bayes.CWM.Bl.elev.2fe, pointwise = TRUE)
 
 # CWM.Bl ~ poly elevation multilevel lat effect model
 
-bayes.CWM.Bl.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE) + (1 + poly(Elevation.scale, 2, raw=FALSE)|lat_class),
+bayes.CWM.Bl.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE) + (1 + poly(Elevation.scale, 2, raw = FALSE) | lat_class),
                              data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
-                             prior = c(set_prior("normal(0,5)", class = "b")),
+                             prior = c(set_prior("normal(0, 5)", class = "b")),
                              warmup = 1000, iter = 3000, chains = 4,
                              control = list(adapt_delta = 0.99),
-                             seed=1)
+                             seed = 1)
 
 waic(bayes.CWM.Bl.elev.2re, pointwise = TRUE)
 loo(bayes.CWM.Bl.elev.2re, pointwise = TRUE)
@@ -2178,13 +2159,13 @@ control_params(bayes.CWM.Bl.elev.2re)
 
 pp_check(bayes.CWM.Bl.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.CWM.Bl.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.CWM.Bl.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.CWM.Bl.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.CWM.Bl.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2196,62 +2177,62 @@ pra$x <- pra$x * sd(lmdata$Elevation) + mean(lmdata$Elevation)
 prb$x <- prb$x * sd(lmdata$Elevation) + mean(lmdata$Elevation) 
 
 (p1.CWM.Bl.ele <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "CWM.Bl"), alpha = 0.1, aes(x = Elevation, y = value, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "CWM.Bl"), alpha = 0.1, aes(x = Elevation, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Community mean body length (mm)", breaks=c(0,0.5,1,1.5,2,2.5,3,3.5)) +
-    scale_x_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    coord_cartesian(ylim = c(0, 3.5), xlim = c(-3.319242, 3750)) +
+    scale_y_continuous("Community mean body length (mm)", breaks = c(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5)) +
+    scale_x_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
+    coord_cartesian(ylim = c(0, 3.5), xlim = c(0, 3750)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.CWM.Bl.ele, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.CWM.Bl.ele_post.linpred.re2.rdata")
+save(p1.CWM.Bl.ele, file = "p1.CWM.Bl.ele_post.linpred.re2.rdata")
 
 # CWM.Bl ~ simple latitude fixed effect model
 
 bayes.CWM.Bl.lat.1fe <- brm(formula = value ~ Latitude.scale,
                             data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
-                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            prior = c(set_prior("normal(0, 5)", class = "b")),
                             warmup = 1000, iter = 3000, chains = 4,
                             control = list(adapt_delta = 0.99),
-                            seed=1)
+                            seed = 1)
 
 waic(bayes.CWM.Bl.lat.1fe, pointwise = TRUE)
 loo(bayes.CWM.Bl.lat.1fe, pointwise = TRUE)
 
 # CWM.Bl ~ simple latitude multilevel elev effect model
 
-bayes.CWM.Bl.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale|elev_class),
+bayes.CWM.Bl.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale | elev_class),
                             data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
-                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            prior = c(set_prior("normal(0, 5)", class = "b")),
                             warmup = 1000, iter = 3000, chains = 4,
                             control = list(adapt_delta = 0.99),
-                            seed=1)
+                            seed = 1)
 
 waic(bayes.CWM.Bl.lat.1re, pointwise = TRUE)
 loo(bayes.CWM.Bl.lat.1re, pointwise = TRUE)
 
 # CWM.Bl ~ poly latitude fixed effect model
 
-bayes.CWM.Bl.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE),
+bayes.CWM.Bl.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE),
                             data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
-                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            prior = c(set_prior("normal(0, 5)", class = "b")),
                             warmup = 1000, iter = 3000, chains = 4,
                             control = list(adapt_delta = 0.99),
-                            seed=1)
+                            seed = 1)
 
 waic(bayes.CWM.Bl.lat.2fe, pointwise = TRUE)
 loo(bayes.CWM.Bl.lat.2fe, pointwise = TRUE)
 
 # CWM.Bl ~ poly latitude multilevel elev effect model
 
-bayes.CWM.Bl.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE) + (1 + poly(Latitude.scale, 2, raw=FALSE)|elev_class),
+bayes.CWM.Bl.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE) + (1 + poly(Latitude.scale, 2, raw = FALSE) | elev_class),
                             data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
-                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            prior = c(set_prior("normal(0, 5)", class = "b")),
                             warmup = 1000, iter = 3000, chains = 4,
                             control = list(adapt_delta = 0.99),
-                            seed=1)
+                            seed = 1)
 
 waic(bayes.CWM.Bl.lat.2re, pointwise = TRUE)
 loo(bayes.CWM.Bl.lat.2re, pointwise = TRUE)
@@ -2266,13 +2247,13 @@ control_params(bayes.CWM.Bl.lat.2re)
 
 pp_check(bayes.CWM.Bl.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.CWM.Bl.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.CWM.Bl.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.CWM.Bl.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.CWM.Bl.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2284,72 +2265,72 @@ pra$x <- pra$x * sd(lmdata$Latitude) + mean(lmdata$Latitude)
 prb$x <- prb$x * sd(lmdata$Latitude) + mean(lmdata$Latitude) 
 
 (p1.CWM.Bl.lat <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "CWM.Bl"), alpha = 0.1, aes(x = Latitude, y = value, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "CWM.Bl"), alpha = 0.1, aes(x = Latitude, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Community mean body length (mm)", breaks=c(0,0.5,1,1.5,2,2.5,3,3.5)) +
-    scale_x_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
+    scale_y_continuous("Community mean body length (mm)", breaks = c(0 ,0.5, 1, 1.5, 2, 2.5, 3, 3.5)) +
+    scale_x_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
     coord_cartesian(ylim = c(0, 3.5), xlim = c(36, 66)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.CWM.Bl.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.CWM.Bl.lat_post.linpred.re2.rdata")
+save(p1.CWM.Bl.lat, file = "p1.CWM.Bl.lat_post.linpred.re2.rdata")
 
 ## Standardized phylogenetic richness
 
 # check distribution
 
-dist<-subset(lmdata, variable == "pd.obs.z.lat")
+dist <- subset(lmdata, variable == "pd.obs.z.lat")
 hist(dist$value)
 
-dist<-subset(lmdata, variable == "pd.obs.z.ele")
+dist <- subset(lmdata, variable == "pd.obs.z.ele")
 hist(dist$value)
 
 # PD.obs.z ~ simple elevation fixed effect model
 
 bayes.pd.obs.z.lat.elev.1fe <- brm(formula = value ~ Elevation.scale,
                                    data = subset(lmdata, variable == "pd.obs.z.lat"),family = skew_normal(),
-                                   prior = c(set_prior("normal(0,5)", class = "b")),
+                                   prior = c(set_prior("normal(0, 5)", class = "b")),
                                    warmup = 1000, iter = 3000, chains = 4,
                                    control = list(adapt_delta = 0.99),
-                                   seed=1)
+                                   seed = 1)
 
 waic(bayes.pd.obs.z.lat.elev.1fe, pointwise = TRUE)
 loo(bayes.pd.obs.z.lat.elev.1fe, pointwise = TRUE)
 
 # PD.obs.z ~ simple elevation multilevel lat effect model
 
-bayes.pd.obs.z.lat.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale|lat_class),
+bayes.pd.obs.z.lat.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale | lat_class),
                                    data = subset(lmdata, variable == "pd.obs.z.lat"),family = skew_normal(),
-                                   prior = c(set_prior("normal(0,5)", class = "b")),
+                                   prior = c(set_prior("normal(0, 5)", class = "b")),
                                    warmup = 1000, iter = 3000, chains = 4,
                                    control = list(adapt_delta = 0.99),
-                                   seed=1)
+                                   seed = 1)
 
 waic(bayes.pd.obs.z.lat.elev.1re, pointwise = TRUE)
 loo(bayes.pd.obs.z.lat.elev.1re, pointwise = TRUE)
 
 # PD.obs.z ~ poly elevation fixed effect model
 
-bayes.pd.obs.z.lat.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE),
+bayes.pd.obs.z.lat.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE),
                                    data = subset(lmdata, variable == "pd.obs.z.lat"),family = skew_normal(),
-                                   prior = c(set_prior("normal(0,5)", class = "b")),
+                                   prior = c(set_prior("normal(0, 5)", class = "b")),
                                    warmup = 1000, iter = 3000, chains = 4,
                                    control = list(adapt_delta = 0.99),
-                                   seed=1)
+                                   seed = 1)
 
 waic(bayes.pd.obs.z.lat.elev.2fe, pointwise = TRUE)
 loo(bayes.pd.obs.z.lat.elev.2fe, pointwise = TRUE)
 
 # PD.obs.z ~ poly elevation multilevel lat effect model
 
-bayes.pd.obs.z.lat.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE) + (1 + poly(Elevation.scale, 2, raw=FALSE)|lat_class),
+bayes.pd.obs.z.lat.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE) + (1 + poly(Elevation.scale, 2, raw = FALSE) | lat_class),
                                    data = subset(lmdata, variable == "pd.obs.z.lat"),family = skew_normal(),
-                                   prior = c(set_prior("normal(0,5)", class = "b")),
+                                   prior = c(set_prior("normal(0, 5)", class = "b")),
                                    warmup = 1000, iter = 3000, chains = 4,
                                    control = list(adapt_delta = 0.99),
-                                   seed=1)
+                                   seed = 1)
 
 waic(bayes.pd.obs.z.lat.elev.2re, pointwise = TRUE)
 loo(bayes.pd.obs.z.lat.elev.2re, pointwise = TRUE)
@@ -2364,13 +2345,13 @@ control_params(bayes.pd.obs.z.lat.elev.2re)
 
 pp_check(bayes.pd.obs.z.lat.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.pd.obs.z.lat.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.pd.obs.z.lat.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.pd.obs.z.lat.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.obs.z.lat.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2382,63 +2363,63 @@ pra$x <- pra$x * sd(lmdata$Elevation) + mean(lmdata$Elevation)
 prb$x <- prb$x * sd(lmdata$Elevation) + mean(lmdata$Elevation) 
 
 (p1.pd.obs.z.lat.elev <- ggplot() +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "pd.obs.z.lat"), alpha = 0.1, aes(x = Elevation, y = value, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size = 0.5) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "pd.obs.z.lat"), alpha = 0.1, aes(x = Elevation, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Standardized phylogenetic richness", breaks=c(-5,-3,-1,1,3)) +
-    scale_x_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    coord_cartesian(ylim = c(-5.002173, 3.12004), xlim = c(-3.319242, 3750)) +
+    scale_y_continuous("Standardized phylogenetic richness", breaks = c(-5, -3, -1, 1, 3)) +
+    scale_x_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
+    coord_cartesian(ylim = c(-5.002173, 3.12004), xlim = c(0, 3750)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.pd.obs.z.lat.elev, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.pd.obs.z.lat.elev_post.linpred.re2.rdata")
+save(p1.pd.obs.z.lat.elev, file = "p1.pd.obs.z.lat.elev_post.linpred.re2.rdata")
 
 # PD.obs.z ~ simple latitude fixed effect model
 
 bayes.pd.obs.z.ele.lat.1fe <- brm(formula = value ~ Latitude.scale,
                                   data = subset(lmdata, variable == "pd.obs.z.ele"),family = skew_normal(),
-                                  prior = c(set_prior("normal(0,5)", class = "b")),
+                                  prior = c(set_prior("normal(0, 5)", class = "b")),
                                   warmup = 1000, iter = 3000, chains = 4,
                                   control = list(adapt_delta = 0.99),
-                                  seed=1)
+                                  seed = 1)
 
 waic(bayes.pd.obs.z.ele.lat.1fe, pointwise = TRUE)
 loo(bayes.pd.obs.z.ele.lat.1fe, pointwise = TRUE)
 
 # PD.obs.z ~ simple latitude multilevel elev effect model
 
-bayes.pd.obs.z.ele.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale|elev_class),
+bayes.pd.obs.z.ele.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale | elev_class),
                                   data = subset(lmdata, variable == "pd.obs.z.ele"),family = skew_normal(),
-                                  prior = c(set_prior("normal(0,5)", class = "b")),
+                                  prior = c(set_prior("normal(0, 5)", class = "b")),
                                   warmup = 1000, iter = 3000, chains = 4,
                                   control = list(adapt_delta = 0.99),
-                                  seed=1)
+                                  seed = 1)
 
 waic(bayes.pd.obs.z.ele.lat.1re, pointwise = TRUE)
 loo(bayes.pd.obs.z.ele.lat.1re, pointwise = TRUE)
 
 # PD.obs.z ~ poly latitude fixed effect model
 
-bayes.pd.obs.z.ele.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE),
+bayes.pd.obs.z.ele.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE),
                                   data = subset(lmdata, variable == "pd.obs.z.ele"),family = skew_normal(),
-                                  prior = c(set_prior("normal(0,5)", class = "b")),
+                                  prior = c(set_prior("normal(0, 5)", class = "b")),
                                   warmup = 1000, iter = 3000, chains = 4,
                                   control = list(adapt_delta = 0.99),
-                                  seed=1)
+                                  seed = 1)
 
 waic(bayes.pd.obs.z.ele.lat.2fe, pointwise = TRUE)
 loo(bayes.pd.obs.z.ele.lat.2fe, pointwise = TRUE)
 
 # PD.obs.z ~ poly latitude multilevel elev effect model
 
-bayes.pd.obs.z.ele.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE) + (1 + poly(Latitude.scale, 2, raw=FALSE)|elev_class),
+bayes.pd.obs.z.ele.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE) + (1 + poly(Latitude.scale, 2, raw = FALSE) | elev_class),
                                   data = subset(lmdata, variable == "pd.obs.z.ele"),family = skew_normal(),
-                                  prior = c(set_prior("normal(0,5)", class = "b")),
+                                  prior = c(set_prior("normal(0, 5)", class = "b")),
                                   warmup = 1000, iter = 3000, chains = 4,
                                   control = list(adapt_delta = 0.99),
-                                  seed=1)
+                                  seed = 1)
 
 waic(bayes.pd.obs.z.ele.lat.2re, pointwise = TRUE)
 loo(bayes.pd.obs.z.ele.lat.2re, pointwise = TRUE)
@@ -2453,13 +2434,13 @@ control_params(bayes.pd.obs.z.ele.lat.2re)
 
 pp_check(bayes.pd.obs.z.ele.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.pd.obs.z.ele.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.pd.obs.z.ele.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.pd.obs.z.ele.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd = FALSE )
+prb <- ggpredict(bayes.pd.obs.z.ele.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2471,73 +2452,73 @@ pra$x <- pra$x * sd(lmdata$Latitude) + mean(lmdata$Latitude)
 prb$x <- prb$x * sd(lmdata$Latitude) + mean(lmdata$Latitude) 
 
 (p1.pd.obs.z.ele.lat <- ggplot() +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "pd.obs.z.ele"), alpha = 0.1, aes(x = Latitude, y = value, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size = 0.5) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "pd.obs.z.ele"), alpha = 0.1, aes(x = Latitude, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Standardized phylogenetic richness", breaks=c(-5,-3,-1,1,3)) +
-    scale_x_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
+    scale_y_continuous("Standardized phylogenetic richness", breaks = c(-5, -3, -1, 1, 3)) +
+    scale_x_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
     coord_cartesian(ylim = c(-5.002173, 3.12004), xlim = c(36, 66)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.pd.obs.z.ele.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.pd.obs.z.ele.lat_post.linpred.re2.rdata")
+save(p1.pd.obs.z.ele.lat, file = "p1.pd.obs.z.ele.lat_post.linpred.re2.rdata")
 
 ## Standardized functional richness
 
 # check distribution
 
-dist<-subset(lmdata, variable == "FRic.obs.z.lat")
+dist <- subset(lmdata, variable == "FRic.obs.z.lat")
 hist(dist$value)
 
-dist<-subset(lmdata, variable == "FRic.obs.z.ele")
+dist <- subset(lmdata, variable == "FRic.obs.z.ele")
 hist(dist$value)
 
 # FRic.obs.z ~ simple elevation fixed effect model
 
 bayes.FRic.obs.z.lat.elev.1fe <- brm(formula = value ~ Elevation.scale,
                                      data = subset(lmdata, variable == "FRic.obs.z.lat"), family = skew_normal(),
-                                     prior = c(set_prior("normal(0,5)", class = "b")),
+                                     prior = c(set_prior("normal(0, 5)", class = "b")),
                                      warmup = 1000, iter = 3000, chains = 4,
                                      control = list(adapt_delta = 0.99),
-                                     seed=1)
+                                     seed = 1)
 
 waic(bayes.FRic.obs.z.lat.elev.1fe, pointwise = TRUE)
 loo(bayes.FRic.obs.z.lat.elev.1fe, pointwise = TRUE)
 
 # FRic.obs.z ~ simple elevation multilevel lat effect model
 
-bayes.FRic.obs.z.lat.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale|lat_class),
+bayes.FRic.obs.z.lat.elev.1re <- brm(formula = value ~ Elevation.scale + (1 + Elevation.scale | lat_class),
                                      data = subset(lmdata, variable == "FRic.obs.z.lat"), family = skew_normal(),
-                                     prior = c(set_prior("normal(0,5)", class = "b")),
+                                     prior = c(set_prior("normal(0, 5)", class = "b")),
                                      warmup = 1000, iter = 3000, chains = 4,
                                      control = list(adapt_delta = 0.99),
-                                     seed=1)
+                                     seed = 1)
 
 waic(bayes.FRic.obs.z.lat.elev.1re, pointwise = TRUE)
 loo(bayes.FRic.obs.z.lat.elev.1re, pointwise = TRUE)
 
 # FRic.obs.z ~ poly elevation fixed effect model
 
-bayes.FRic.obs.z.lat.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE),
+bayes.FRic.obs.z.lat.elev.2fe <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE),
                                      data = subset(lmdata, variable == "FRic.obs.z.lat"), family = skew_normal(),
-                                     prior = c(set_prior("normal(0,5)", class = "b")),
+                                     prior = c(set_prior("normal(0, 5)", class = "b")),
                                      warmup = 1000, iter = 3000, chains = 4,
                                      control = list(adapt_delta = 0.99),
-                                     seed=1)
+                                     seed = 1)
 
 waic(bayes.FRic.obs.z.lat.elev.2fe, pointwise = TRUE)
 loo(bayes.FRic.obs.z.lat.elev.2fe, pointwise = TRUE)
 
 # FRic.obs.z ~ poly elevation multilevel lat effect model
 
-bayes.FRic.obs.z.lat.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw=FALSE) + (1 + poly(Elevation.scale, 2, raw=FALSE)|lat_class),
+bayes.FRic.obs.z.lat.elev.2re <- brm(formula = value ~ poly(Elevation.scale, 2, raw = FALSE) + (1 + poly(Elevation.scale, 2, raw = FALSE) | lat_class),
                                      data = subset(lmdata, variable == "FRic.obs.z.lat"), family = skew_normal(),
-                                     prior = c(set_prior("normal(0,5)", class = "b")),
+                                     prior = c(set_prior("normal(0, 5)", class = "b")),
                                      warmup = 1000, iter = 3000, chains = 4,
                                      control = list(adapt_delta = 0.99),
-                                     seed=1)
+                                     seed = 1)
 
 waic(bayes.FRic.obs.z.lat.elev.2re, pointwise = TRUE)
 loo(bayes.FRic.obs.z.lat.elev.2re, pointwise = TRUE)
@@ -2552,13 +2533,13 @@ control_params(bayes.FRic.obs.z.lat.elev.2re)
 
 pp_check(bayes.FRic.obs.z.lat.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.FRic.obs.z.lat.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.FRic.obs.z.lat.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.FRic.obs.z.lat.elev.2re, terms = c("Elevation.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.obs.z.lat.elev.2re, terms = c("Elevation.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2570,63 +2551,63 @@ pra$x <- pra$x * sd(lmdata$Elevation) + mean(lmdata$Elevation)
 prb$x <- prb$x * sd(lmdata$Elevation) + mean(lmdata$Elevation) 
 
 (p1.FRic.obs.z.lat.elev <- ggplot() +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "FRic.obs.z.lat"), alpha = 0.1, aes(x = Elevation, y = value, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size = 0.5) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "FRic.obs.z.lat"), alpha = 0.1, aes(x = Elevation, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Standardized functional richness", breaks=c(-4,-2,0,2,4)) +
-    scale_x_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    coord_cartesian(ylim = c(-4, 4), xlim = c(-3.319242, 3750)) +
+    scale_y_continuous("Standardized functional richness", breaks = c(-4, -2, 0, 2, 4)) +
+    scale_x_continuous("Elevation (masl)", breaks=c(0, 750, 1500, 2250, 3000, 3750)) +
+    coord_cartesian(ylim = c(-4, 4), xlim = c(0, 3750)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.FRic.obs.z.lat.elev, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FRic.obs.z.lat.elev_post.linpred.re2.rdata")
+save(p1.FRic.obs.z.lat.elev, file = "p1.FRic.obs.z.lat.elev_post.linpred.re2.rdata")
 
 # FRic.obs.z ~ simple latitude fixed effect model
 
 bayes.FRic.obs.z.ele.lat.1fe <- brm(formula = value ~ Latitude.scale,
                                     data = subset(lmdata, variable == "FRic.obs.z.ele"), family = skew_normal(),
-                                    prior = c(set_prior("normal(0,5)", class = "b")),
+                                    prior = c(set_prior("normal(0, 5)", class = "b")),
                                     warmup = 1000, iter = 3000, chains = 4,
                                     control = list(adapt_delta = 0.99),
-                                    seed=1)
+                                    seed = 1)
 
 waic(bayes.FRic.obs.z.ele.lat.1fe, pointwise = TRUE)
 loo(bayes.FRic.obs.z.ele.lat.1fe, pointwise = TRUE)
 
 # FRic.obs.z ~ simple latitude multilevel elev effect model
 
-bayes.FRic.obs.z.ele.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale|elev_class),
+bayes.FRic.obs.z.ele.lat.1re <- brm(formula = value ~ Latitude.scale + (1 + Latitude.scale | elev_class),
                                     data = subset(lmdata, variable == "FRic.obs.z.ele"), family = skew_normal(),
-                                    prior = c(set_prior("normal(0,5)", class = "b")),
+                                    prior = c(set_prior("normal(0, 5)", class = "b")),
                                     warmup = 1000, iter = 3000, chains = 4,
                                     control = list(adapt_delta = 0.99),
-                                    seed=1)
+                                    seed = 1)
 
 waic(bayes.FRic.obs.z.ele.lat.1re, pointwise = TRUE)
 loo(bayes.FRic.obs.z.ele.lat.1re, pointwise = TRUE)
 
 # FRic.obs.z ~ poly latitude fixed effect model
 
-bayes.FRic.obs.z.ele.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE),
+bayes.FRic.obs.z.ele.lat.2fe <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE),
                                     data = subset(lmdata, variable == "FRic.obs.z.ele"), family = skew_normal(),
-                                    prior = c(set_prior("normal(0,5)", class = "b")),
+                                    prior = c(set_prior("normal(0, 5)", class = "b")),
                                     warmup = 1000, iter = 3000, chains = 4,
                                     control = list(adapt_delta = 0.99),
-                                    seed=1)
+                                    seed = 1)
 
 waic(bayes.FRic.obs.z.ele.lat.2fe, pointwise = TRUE)
 loo(bayes.FRic.obs.z.ele.lat.2fe, pointwise = TRUE)
 
 # FRic.obs.z ~ poly latitude multilevel elev effect model
 
-bayes.FRic.obs.z.ele.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw=FALSE) + (1 + poly(Latitude.scale, 2, raw=FALSE)|elev_class),
+bayes.FRic.obs.z.ele.lat.2re <- brm(formula = value ~ poly(Latitude.scale, 2, raw = FALSE) + (1 + poly(Latitude.scale, 2, raw = FALSE) | elev_class),
                                     data = subset(lmdata, variable == "FRic.obs.z.ele"), family = skew_normal(),
-                                    prior = c(set_prior("normal(0,5)", class = "b")),
+                                    prior = c(set_prior("normal(0, 5)", class = "b")),
                                     warmup = 1000, iter = 3000, chains = 4,
                                     control = list(adapt_delta = 0.99),
-                                    seed=1)
+                                    seed = 1)
 
 waic(bayes.FRic.obs.z.ele.lat.2re, pointwise = TRUE)
 loo(bayes.FRic.obs.z.ele.lat.2re, pointwise = TRUE)
@@ -2641,13 +2622,13 @@ control_params(bayes.FRic.obs.z.ele.lat.2re)
 
 pp_check(bayes.FRic.obs.z.ele.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.FRic.obs.z.ele.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.FRic.obs.z.ele.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.FRic.obs.z.ele.lat.2re, terms = c("Latitude.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.obs.z.ele.lat.2re, terms = c("Latitude.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2659,98 +2640,98 @@ pra$x <- pra$x * sd(lmdata$Latitude) + mean(lmdata$Latitude)
 prb$x <- prb$x * sd(lmdata$Latitude) + mean(lmdata$Latitude) 
 
 (p1.FRic.obs.z.ele.lat <- ggplot() +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "FRic.obs.z.ele"), alpha = 0.1, aes(x = Latitude, y = value, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size = 0.5) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "FRic.obs.z.ele"), alpha = 0.1, aes(x = Latitude, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Standardized functional richness", breaks=c(-4,-2,0,2,4)) +
-    scale_x_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
+    scale_y_continuous("Standardized functional richness", breaks = c(-4, -2, 0, 2, 4)) +
+    scale_x_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
     coord_cartesian(ylim = c(-4, 4), xlim = c(36, 66)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.FRic.obs.z.ele.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FRic.obs.z.ele.lat_post.linpred.re2.rdata")
+save(p1.FRic.obs.z.ele.lat, file = "p1.FRic.obs.z.ele.lat_post.linpred.re2.rdata")
 
 ## Plotting biodiversity by elevation and latitude (Figure 3)
 # requires some minor revisions in a graphics editor
 
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.ele_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.pd.ele_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.pd.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.mpd.ele_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.mpd.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FRic.ele_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FRic.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FDis.ele_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FDis.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.CWM.Bl.ele_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.CWM.Bl.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.pd.obs.z.ele.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.pd.obs.z.lat.elev_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FRic.obs.z.ele.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.FRic.obs.z.lat.elev_post.linpred.re2.rdata")
+load("p1.alpha.ele_post.linpred.re2.rdata")
+load("p1.alpha.lat_post.linpred.re2.rdata")
+load("p1.pd.ele_post.linpred.re2.rdata")
+load("p1.pd.lat_post.linpred.re2.rdata")
+load("p1.mpd.ele_post.linpred.re2.rdata")
+load("p1.mpd.lat_post.linpred.re2.rdata")
+load("p1.FRic.ele_post.linpred.re2.rdata")
+load("p1.FRic.lat_post.linpred.re2.rdata")
+load("p1.FDis.ele_post.linpred.re2.rdata")
+load("p1.FDis.lat_post.linpred.re2.rdata")
+load("p1.CWM.Bl.ele_post.linpred.re2.rdata")
+load("p1.CWM.Bl.lat_post.linpred.re2.rdata")
+load("p1.pd.obs.z.ele.lat_post.linpred.re2.rdata")
+load("p1.pd.obs.z.lat.elev_post.linpred.re2.rdata")
+load("p1.FRic.obs.z.ele.lat_post.linpred.re2.rdata")
+load("p1.FRic.obs.z.lat.elev_post.linpred.re2.rdata")
 
 
-p1.alpha.ele<-ggplotGrob(p1.alpha.ele)
-p1.alpha.lat<-ggplotGrob(p1.alpha.lat)
-p1.pd.ele<-ggplotGrob(p1.pd.ele)
-p1.pd.lat<-ggplotGrob(p1.pd.lat)
-p1.mpd.ele<-ggplotGrob(p1.mpd.ele)
-p1.mpd.lat<-ggplotGrob(p1.mpd.lat)
-p1.FRic.ele<-ggplotGrob(p1.FRic.ele)
-p1.FRic.lat<-ggplotGrob(p1.FRic.lat)
-p1.FDis.ele<-ggplotGrob(p1.FDis.ele)
-p1.FDis.lat<-ggplotGrob(p1.FDis.lat)
-p1.CWM.Bl.ele<-ggplotGrob(p1.CWM.Bl.ele)
-p1.CWM.Bl.lat<-ggplotGrob(p1.CWM.Bl.lat)
-p1.pd.obs.z.ele.lat<-ggplotGrob(p1.pd.obs.z.ele.lat)
-p1.pd.obs.z.lat.elev<-ggplotGrob(p1.pd.obs.z.lat.elev)
-p1.FRic.obs.z.ele.lat<-ggplotGrob(p1.FRic.obs.z.ele.lat)
-p1.FRic.obs.z.lat.elev<-ggplotGrob(p1.FRic.obs.z.lat.elev)
+p1.alpha.ele <- ggplotGrob(p1.alpha.ele)
+p1.alpha.lat <- ggplotGrob(p1.alpha.lat)
+p1.pd.ele <- ggplotGrob(p1.pd.ele)
+p1.pd.lat <- ggplotGrob(p1.pd.lat)
+p1.mpd.ele <- ggplotGrob(p1.mpd.ele)
+p1.mpd.lat <- ggplotGrob(p1.mpd.lat)
+p1.FRic.ele <- ggplotGrob(p1.FRic.ele)
+p1.FRic.lat <- ggplotGrob(p1.FRic.lat)
+p1.FDis.ele <- ggplotGrob(p1.FDis.ele)
+p1.FDis.lat <- ggplotGrob(p1.FDis.lat)
+p1.CWM.Bl.ele <- ggplotGrob(p1.CWM.Bl.ele)
+p1.CWM.Bl.lat <- ggplotGrob(p1.CWM.Bl.lat)
+p1.pd.obs.z.ele.lat <- ggplotGrob(p1.pd.obs.z.ele.lat)
+p1.pd.obs.z.lat.elev <- ggplotGrob(p1.pd.obs.z.lat.elev)
+p1.FRic.obs.z.ele.lat <- ggplotGrob(p1.FRic.obs.z.ele.lat)
+p1.FRic.obs.z.lat.elev <- ggplotGrob(p1.FRic.obs.z.lat.elev)
 
-g2.c1<-rbind(p1.alpha.ele,
-             p1.FRic.ele,
-             p1.pd.ele,
-             p1.FDis.ele)
+g2.c1 <- rbind(p1.alpha.ele,
+               p1.FRic.ele,
+               p1.pd.ele,
+               p1.FDis.ele)
 
 g2.c1$widths <- unit.pmax(p1.alpha.ele$widths, 
                           p1.FRic.ele$widths,
                           p1.pd.ele$widths,
                           p1.FDis.ele$widths)
 
-g2.c2<-rbind(p1.CWM.Bl.ele,
-             p1.FRic.obs.z.lat.elev,
-             p1.pd.obs.z.lat.elev,
-             p1.mpd.ele)
+g2.c2 <- rbind(p1.CWM.Bl.ele,
+               p1.FRic.obs.z.lat.elev,
+               p1.pd.obs.z.lat.elev,
+               p1.mpd.ele)
 
 g2.c2$widths <- unit.pmax(p1.CWM.Bl.ele$widths, 
                           p1.FRic.obs.z.lat.elev$widths,
                           p1.pd.obs.z.lat.elev$widths,
                           p1.mpd.ele$widths)
 
-g2.c3<-rbind(p1.alpha.lat,
-             p1.FRic.lat,
-             p1.pd.lat,
-             p1.FDis.lat)
+g2.c3 <- rbind(p1.alpha.lat,
+               p1.FRic.lat,
+               p1.pd.lat,
+               p1.FDis.lat)
 
 g2.c3$widths <- unit.pmax(p1.alpha.lat$widths, 
                           p1.FRic.lat$widths,
                           p1.pd.lat$widths,
                           p1.FDis.lat$widths)
 
-g2.c4<-rbind(p1.CWM.Bl.lat,
-             p1.FRic.obs.z.ele.lat,
-             p1.pd.obs.z.ele.lat,
-             p1.mpd.lat)
+g2.c4 <- rbind(p1.CWM.Bl.lat,
+               p1.FRic.obs.z.ele.lat,
+               p1.pd.obs.z.ele.lat,
+               p1.mpd.lat)
 
 g2.c4$widths <- unit.pmax(p1.CWM.Bl.lat$widths, 
                           p1.FRic.obs.z.ele.lat$widths,
                           p1.pd.obs.z.ele.lat$widths,
                           p1.mpd.lat$widths)
 
-g2<-cbind(g2.c1,g2.c2,g2.c3,g2.c4)
+g2 <- cbind(g2.c1, g2.c2, g2.c3, g2.c4)
 grid.newpage()
 grid.draw(g2)
 
@@ -2766,12 +2747,12 @@ hist(log(lmdata$Latitude))
 
 # Elevation ~ poly MAT multilevel lat effect model
 
-bayes.ELEV.MAT.lat.2re <- brm(formula = Elevation.scale ~ poly(MAT.scale, 2, raw=FALSE) + (1 + poly(MAT.scale, 2, raw=FALSE)|lat_class),
+bayes.ELEV.MAT.lat.2re <- brm(formula = Elevation.scale ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | lat_class),
                               data = subset(lmdata, variable == "Taxo.alpha"), family = gaussian(),
-                              prior = c(set_prior("normal(0,5)", class = "b")),
+                              prior = c(set_prior("normal(0, 5)", class = "b")),
                               warmup = 1000, iter = 3000, chains = 4,
                               control = list(adapt_delta = 0.99, max_treedepth = 15),
-                              seed=1)
+                              seed = 1)
 
 waic(bayes.ELEV.MAT.lat.2re, pointwise = TRUE)
 loo(bayes.ELEV.MAT.lat.2re, pointwise = TRUE)
@@ -2786,13 +2767,13 @@ control_params(bayes.ELEV.MAT.lat.2re)
 
 pp_check(bayes.ELEV.MAT.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.ELEV.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.ELEV.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.ELEV.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.ELEV.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2813,26 +2794,26 @@ pra$conf.high <- pra$conf.high * sd(subset(lmdata, variable == "Taxo.alpha")$Ele
 prb$conf.high <- prb$conf.high * sd(subset(lmdata, variable == "Taxo.alpha")$Elevation) + mean(subset(lmdata, variable == "Taxo.alpha")$Elevation)
 
 (p1.ELEV.MAT.lat <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = MAT, y = Elevation, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = MAT, y = Elevation, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    scale_x_continuous("Mean annual temperature (°C)", breaks=c(-8, -4, 0, 4, 8, 12)) +
-    coord_cartesian(ylim = c(-3.319242, 3750), xlim = c(-7.859615, 11.5)) +
+    scale_y_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000,3750)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(0, 3750), xlim = c(-7.859615, 11.5)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.ELEV.MAT.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.ELEV.MAT.lat_post.linpred.re2.rdata")
+save(p1.ELEV.MAT.lat, file = "p1.ELEV.MAT.lat_post.linpred.re2.rdata")
 
 # Latitude ~ poly MAT multilevel elev effect model
 
-bayes.LAT.MAT.elev.2re <- brm(formula = Latitude.scale ~ poly(MAT.scale, 2, raw=FALSE) + (1 + poly(MAT.scale, 2, raw=FALSE)|elev_class),
+bayes.LAT.MAT.elev.2re <- brm(formula = Latitude.scale ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | elev_class),
                               data = subset(lmdata, variable == "Taxo.alpha"), family = gaussian(),
-                              prior = c(set_prior("normal(0,5)", class = "b")),
+                              prior = c(set_prior("normal(0, 5)", class = "b")),
                               warmup = 1000, iter = 3000, chains = 4,
                               control = list(adapt_delta = 0.99, max_treedepth = 15),
-                              seed=1)
+                              seed = 1)
 
 waic(bayes.LAT.MAT.elev.2re, pointwise = TRUE)
 loo(bayes.LAT.MAT.elev.2re, pointwise = TRUE)
@@ -2847,13 +2828,13 @@ control_params(bayes.LAT.MAT.elev.2re)
 
 pp_check(bayes.LAT.MAT.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.LAT.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.LAT.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.LAT.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.LAT.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2874,26 +2855,26 @@ pra$conf.high <- pra$conf.high * sd(subset(lmdata, variable == "Taxo.alpha")$Lat
 prb$conf.high <- prb$conf.high * sd(subset(lmdata, variable == "Taxo.alpha")$Latitude) + mean(subset(lmdata, variable == "Taxo.alpha")$Latitude)
 
 (p1.LAT.MAT.elev <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = MAT, y = Latitude, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = MAT, y = Latitude, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
-    scale_x_continuous("Mean annual temperature (°C)", breaks=c(-8, -4, 0, 4, 8, 12)) +
+    scale_y_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
     coord_cartesian(ylim = c(36, 66.2), xlim = c(-7.859615, 11.5)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.LAT.MAT.elev, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.LAT.MAT.elev_post.linpred.re2.rdata")
+save(p1.LAT.MAT.elev, file = "p1.LAT.MAT.elev_post.linpred.re2.rdata")
 
 # SP ~ poly MAT fixed effect model
 
-bayes.alpha.MAT.2fe <- brm(formula = value ~ poly(MAT.scale, 2, raw=FALSE) + (1 + poly(MAT.scale, 2, raw=FALSE)),
+bayes.alpha.MAT.2fe <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE)),
                            data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           prior = c(set_prior("normal(0, 5)", class = "b")),
                            warmup = 1000, iter = 3000, chains = 4,
                            control = list(adapt_delta = 0.99),
-                           seed=1)
+                           seed = 1)
 
 waic(bayes.alpha.MAT.2fe, pointwise = TRUE)
 loo(bayes.alpha.MAT.2fe, pointwise = TRUE)
@@ -2901,31 +2882,31 @@ summary(bayes.alpha.MAT.2fe)
 
 # SP ~ poly MAT fixed effect plotting
 
-pra <- ggpredict(bayes.alpha.MAT.2fe, terms = c("MAT.scale [all]"), ppd=FALSE)
+pra <- ggpredict(bayes.alpha.MAT.2fe, terms = c("MAT.scale [all]"), ppd = FALSE)
 
 pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
 
 (p1.alpha.MAT.2fe <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = MAT, y = value, colour="red")) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = MAT, y = value, colour = "red")) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Species richness", breaks=c(0,5,10,15,20,25)) +
-    scale_x_continuous("Mean annual temperature (°C)", breaks=c(-8, -4, 0, 4, 8, 12)) +
+    scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
     coord_cartesian(ylim = c(0, 26), xlim = c(-7.859615, 11.5)) +
     workingtheme +
     theme(legend.position="none") +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.alpha.MAT.2fe, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.MAT_post.linpred.2fe.rdata")
+save(p1.alpha.MAT.2fe, file = "p1.alpha.MAT_post.linpred.2fe.rdata")
 
 # SP ~ poly MAT multilevel lat effect model
 
-bayes.alpha.MAT.lat.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw=FALSE) + (1 + poly(MAT.scale, 2, raw=FALSE)|lat_class),
+bayes.alpha.MAT.lat.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | lat_class),
                                data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                               prior = c(set_prior("normal(0,5)", class = "b")),
+                               prior = c(set_prior("normal(0, 5)", class = "b")),
                                warmup = 1000, iter = 3000, chains = 4,
                                control = list(adapt_delta = 0.99),
-                               seed=1)
+                               seed = 1)
 
 waic(bayes.alpha.MAT.lat.2re, pointwise = TRUE)
 loo(bayes.alpha.MAT.lat.2re, pointwise = TRUE)
@@ -2940,13 +2921,13 @@ control_params(bayes.alpha.MAT.lat.2re)
 
 pp_check(bayes.alpha.MAT.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.alpha.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.alpha.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.alpha.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.alpha.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -2958,26 +2939,26 @@ pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT)
 prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
 
 (p1.alpha.MAT.lat <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = MAT, y = value, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = MAT, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Species richness", breaks=c(0,5,10,15,20,25)) +
-    scale_x_continuous("Mean annual temperature (°C)", breaks=c(-8, -4, 0, 4, 8, 12)) +
+    scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
     coord_cartesian(ylim = c(0, 26), xlim = c(-7.859615, 11.5)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.alpha.MAT.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.MAT.lat_post.linpred.re2.rdata")
+save(p1.alpha.MAT.lat, file = "p1.alpha.MAT.lat_post.linpred.re2.rdata")
 
 # SP ~ poly MAT multilevel elev effect model
 
-bayes.alpha.MAT.elev.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw=FALSE) + (1 + poly(MAT.scale, 2, raw=FALSE)|elev_class),
+bayes.alpha.MAT.elev.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | elev_class),
                                 data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                                prior = c(set_prior("normal(0,5)", class = "b")),
+                                prior = c(set_prior("normal(0, 5)", class = "b")),
                                 warmup = 1000, iter = 3000, chains = 4,
                                 control = list(adapt_delta = 0.99),
-                                seed=1)
+                                seed = 1)
 
 waic(bayes.alpha.MAT.elev.2re, pointwise = TRUE)
 loo(bayes.alpha.MAT.elev.2re, pointwise = TRUE)
@@ -2992,13 +2973,13 @@ control_params(bayes.alpha.MAT.elev.2re)
 
 pp_check(bayes.alpha.MAT.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.alpha.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.alpha.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.alpha.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.alpha.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -3010,17 +2991,17 @@ pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT)
 prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
 
 (p1.alpha.MAT.elev <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = MAT, y = value, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = MAT, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Species richness", breaks=c(0,5,10,15,20,25)) +
-    scale_x_continuous("Mean annual temperature (°C)", breaks=c(-8, -4, 0, 4, 8, 12)) +
+    scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
     coord_cartesian(ylim = c(0, 26), xlim = c(-7.859615, 11.5)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.alpha.MAT.elev, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.MAT.elev_post.linpred.re2.rdata")
+save(p1.alpha.MAT.elev, file = "p1.alpha.MAT.elev_post.linpred.re2.rdata")
 
 ## Mean temperature difference models
 
@@ -3031,12 +3012,12 @@ hist(log(lmdata$TD))
 
 # Elevation ~ poly TD multilevel lat effect model
 
-bayes.ELEV.TD.lat.2re <- brm(formula = Elevation.scale ~ poly(TD.scale, 2, raw=FALSE) + (1 + poly(TD.scale, 2, raw=FALSE)|lat_class),
+bayes.ELEV.TD.lat.2re <- brm(formula = Elevation.scale ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | lat_class),
                              data = subset(lmdata, variable == "Taxo.alpha"), family = gaussian(),
-                             prior = c(set_prior("normal(0,5)", class = "b")),
+                             prior = c(set_prior("normal(0, 5)", class = "b")),
                              warmup = 1000, iter = 3000, chains = 4,
                              control = list(adapt_delta = 0.99, max_treedepth = 15),
-                             seed=1)
+                             seed = 1)
 
 waic(bayes.ELEV.TD.lat.2re, pointwise = TRUE)
 loo(bayes.ELEV.TD.lat.2re, pointwise = TRUE)
@@ -3051,13 +3032,13 @@ control_params(bayes.ELEV.TD.lat.2re)
 
 pp_check(bayes.ELEV.TD.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.ELEV.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.ELEV.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.ELEV.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.ELEV.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -3078,26 +3059,26 @@ pra$conf.high <- pra$conf.high * sd(subset(lmdata, variable == "Taxo.alpha")$Ele
 prb$conf.high <- prb$conf.high * sd(subset(lmdata, variable == "Taxo.alpha")$Elevation) + mean(subset(lmdata, variable == "Taxo.alpha")$Elevation)
 
 (p1.ELEV.TD.lat <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = TD, y = Elevation, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = TD, y = Elevation, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Elevation (masl)", breaks=c(0,750,1500,2250,3000,3750)) +
-    scale_x_continuous("Temperature difference (°C)", breaks=c(12, 22, 32, 42)) +
-    coord_cartesian(ylim = c(-3.319242, 3750), xlim = c(11.95769, 42.71731)) +
+    scale_y_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(0, 3750), xlim = c(11.95769, 42.71731)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.ELEV.TD.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.ELEV.TD.lat_post.linpred.re2.rdata")
+save(p1.ELEV.TD.lat, file = "p1.ELEV.TD.lat_post.linpred.re2.rdata")
 
 # Latitude ~ poly TD multilevel elev effect model
 
-bayes.LAT.TD.elev.2re <- brm(formula = Latitude.scale ~ poly(TD.scale, 2, raw=FALSE) + (1 + poly(TD.scale, 2, raw=FALSE)|elev_class),
+bayes.LAT.TD.elev.2re <- brm(formula = Latitude.scale ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | elev_class),
                              data = subset(lmdata, variable == "Taxo.alpha"), family = gaussian(),
-                             prior = c(set_prior("normal(0,5)", class = "b")),
+                             prior = c(set_prior("normal(0, 5)", class = "b")),
                              warmup = 1000, iter = 3000, chains = 4,
                              control = list(adapt_delta = 0.99, max_treedepth = 15),
-                             seed=1)
+                             seed = 1)
 
 waic(bayes.LAT.TD.elev.2re, pointwise = TRUE)
 loo(bayes.LAT.TD.elev.2re, pointwise = TRUE)
@@ -3112,13 +3093,13 @@ control_params(bayes.LAT.TD.elev.2re)
 
 pp_check(bayes.LAT.TD.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.LAT.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.LAT.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.LAT.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.LAT.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -3139,26 +3120,26 @@ pra$conf.high <- pra$conf.high * sd(subset(lmdata, variable == "Taxo.alpha")$Lat
 prb$conf.high <- prb$conf.high * sd(subset(lmdata, variable == "Taxo.alpha")$Latitude) + mean(subset(lmdata, variable == "Taxo.alpha")$Latitude)
 
 (p1.LAT.TD.elev <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = TD, y = Latitude, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = TD, y = Latitude, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Latitude (°N)", breaks=c(36,42,48,54,60,66)) +
-    scale_x_continuous("Temperature difference (°C)", breaks=c(12, 22, 32, 42)) +
+    scale_y_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
     coord_cartesian(ylim = c(36, 66.2), xlim = c(11.95769, 42.71731)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.LAT.TD.elev, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.LAT.TD.elev_post.linpred.re2.rdata")
+save(p1.LAT.TD.elev, file = "p1.LAT.TD.elev_post.linpred.re2.rdata")
 
 # SP ~ poly TD fixed effect model
 
-bayes.alpha.TD.2fe <- brm(formula = value ~ poly(TD.scale, 2, raw=FALSE) + (1 + poly(TD.scale, 2, raw=FALSE)),
+bayes.alpha.TD.2fe <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE)),
                           data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                          prior = c(set_prior("normal(0,5)", class = "b")),
+                          prior = c(set_prior("normal(0, 5)", class = "b")),
                           warmup = 1000, iter = 3000, chains = 4,
                           control = list(adapt_delta = 0.99),
-                          seed=1)
+                          seed = 1)
 
 waic(bayes.alpha.TD.2fe, pointwise = TRUE)
 loo(bayes.alpha.TD.2fe, pointwise = TRUE)
@@ -3166,31 +3147,31 @@ summary(bayes.alpha.TD.2fe)
 
 # SP ~ poly TD fixed effect plotting
 
-pra <- ggpredict(bayes.alpha.TD.2fe, terms = c("TD.scale [all]"), ppd=FALSE)
+pra <- ggpredict(bayes.alpha.TD.2fe, terms = c("TD.scale [all]"), ppd = FALSE)
 
 pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
 
 (p1.alpha.TD.2fe <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = TD, y = value, colour="red")) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = TD, y = value, colour = "red")) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Species richness", breaks=c(0,5,10,15,20,25)) +
-    scale_x_continuous("Temperature difference (°C)", breaks=c(12, 22, 32, 42)) +
+    scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
     coord_cartesian(ylim = c(0, 26), xlim = c(11.95769, 42.71731)) +
     workingtheme +
     theme(legend.position="none") +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.alpha.TD.2fe, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.TD_post.linpred.2fe.rdata")
+save(p1.alpha.TD.2fe, file = "p1.alpha.TD_post.linpred.2fe.rdata")
 
 # SP ~ poly TD multilevel lat effect model
 
-bayes.alpha.TD.lat.2re <- brm(formula = value ~ poly(TD.scale, 2, raw=FALSE) + (1 + poly(TD.scale, 2, raw=FALSE)|lat_class),
+bayes.alpha.TD.lat.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | lat_class),
                               data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                              prior = c(set_prior("normal(0,5)", class = "b")),
+                              prior = c(set_prior("normal(0, 5)", class = "b")),
                               warmup = 1000, iter = 3000, chains = 4,
                               control = list(adapt_delta = 0.99, max_treedepth = 15),
-                              seed=1)
+                              seed = 1)
 
 waic(bayes.alpha.TD.lat.2re, pointwise = TRUE)
 loo(bayes.alpha.TD.lat.2re, pointwise = TRUE)
@@ -3205,13 +3186,13 @@ control_params(bayes.alpha.TD.lat.2re)
 
 pp_check(bayes.alpha.TD.lat.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.alpha.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.alpha.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.alpha.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.alpha.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -3223,26 +3204,26 @@ pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD)
 prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
 
 (p1.alpha.TD.lat <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = TD, y = value, colour=lat_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = TD, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Species richness", breaks=c(0,5,10,15,20,25)) +
-    scale_x_continuous("Temperature difference (°C)", breaks=c(12, 22, 32, 42)) +
+    scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
     coord_cartesian(ylim = c(0, 26), xlim = c(11.95769, 42.71731)) +
     workingtheme +
-    scale_colour_manual(name = "Latitude", values=a60505_6e068f))
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
 
-save(p1.alpha.TD.lat, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.TD.lat_post.linpred.re2.rdata")
+save(p1.alpha.TD.lat, file = "p1.alpha.TD.lat_post.linpred.re2.rdata")
 
 # SP ~ poly TD multilevel elev effect model
 
-bayes.alpha.TD.elev.2re <- brm(formula = value ~ poly(TD.scale, 2, raw=FALSE) + (1 + poly(TD.scale, 2, raw=FALSE)|elev_class),
+bayes.alpha.TD.elev.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | elev_class),
                                data = subset(lmdata, variable == "Taxo.alpha"), family = negbinomial(),
-                               prior = c(set_prior("normal(0,5)", class = "b")),
+                               prior = c(set_prior("normal(0, 5)", class = "b")),
                                warmup = 1000, iter = 3000, chains = 4,
                                control = list(adapt_delta = 0.99),
-                               seed=1)
+                               seed = 1)
 
 waic(bayes.alpha.TD.elev.2re, pointwise = TRUE)
 loo(bayes.alpha.TD.elev.2re, pointwise = TRUE)
@@ -3257,13 +3238,13 @@ control_params(bayes.alpha.TD.elev.2re)
 
 pp_check(bayes.alpha.TD.elev.2re, plotfun = "dens_overlay", nsamples = 100)
 
-pra <- ggpredict(bayes.alpha.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd=FALSE)
-prb <- ggpredict(bayes.alpha.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd=FALSE)
+pra <- ggpredict(bayes.alpha.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.alpha.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd = FALSE)
 
 raw_data <- attr(prb, "rawdata", exact = TRUE)
 !is.null(raw_data)
 
-ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE),3))
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
 for (i in names(ranges)) {
   remove <- prb$group == i & prb$x < ranges[[i]][1]
   prb$x[remove] <- NA
@@ -3275,96 +3256,96 @@ pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD)
 prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
 
 (p1.alpha.TD.elev <- ggplot() +
-    geom_ribbon(data = pra, aes(ymin=conf.low, ymax=conf.high, x=x), alpha=0.075) +
-    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = TD, y = value, colour=elev_class)) +
-    geom_line(data = prb, aes(x, predicted, colour=group)) +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = TD, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
-    scale_y_continuous("Species richness", breaks=c(0,5,10,15,20,25)) +
-    scale_x_continuous("Temperature difference (°C)", breaks=c(12, 22, 32, 42)) +
+    scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
     coord_cartesian(ylim = c(0, 26), xlim = c(11.95769, 42.71731)) +
     workingtheme +
-    scale_colour_manual(name = "Elevation", values=a60505_6e068f))
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
 
-save(p1.alpha.TD.elev, file = "G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.TD.elev_post.linpred.re2.rdata")
+save(p1.alpha.TD.elev, file = "p1.alpha.TD.elev_post.linpred.re2.rdata")
 
 ## Plotting climate by elevation, latitude, and species richness (Figure 4)
 # requires some minor revisions in a graphics editor
 
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.ELEV.MAT.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.LAT.MAT.elev_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.ELEV.TD.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.LAT.TD.elev_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.MAT.elev_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.MAT.lat_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.TD.elev_post.linpred.re2.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.TD.lat_post.linpred.re2.rdata")
+load("p1.ELEV.MAT.lat_post.linpred.re2.rdata")
+load("p1.LAT.MAT.elev_post.linpred.re2.rdata")
+load("p1.ELEV.TD.lat_post.linpred.re2.rdata")
+load("p1.LAT.TD.elev_post.linpred.re2.rdata")
+load("p1.alpha.MAT.elev_post.linpred.re2.rdata")
+load("p1.alpha.MAT.lat_post.linpred.re2.rdata")
+load("p1.alpha.TD.elev_post.linpred.re2.rdata")
+load("p1.alpha.TD.lat_post.linpred.re2.rdata")
 
-p1.ELEV.MAT.lat<-ggplotGrob(p1.ELEV.MAT.lat)
-p1.LAT.MAT.elev<-ggplotGrob(p1.LAT.MAT.elev)
-p1.ELEV.TD.lat<-ggplotGrob(p1.ELEV.TD.lat)
-p1.LAT.TD.elev<-ggplotGrob(p1.LAT.TD.elev)
-p1.alpha.MAT.elev<-ggplotGrob(p1.alpha.MAT.elev)
-p1.alpha.MAT.lat<-ggplotGrob(p1.alpha.MAT.lat)
-p1.alpha.TD.elev<-ggplotGrob(p1.alpha.TD.elev)
-p1.alpha.TD.lat<-ggplotGrob(p1.alpha.TD.lat)
+p1.ELEV.MAT.lat <- ggplotGrob(p1.ELEV.MAT.lat)
+p1.LAT.MAT.elev <- ggplotGrob(p1.LAT.MAT.elev)
+p1.ELEV.TD.lat <- ggplotGrob(p1.ELEV.TD.lat)
+p1.LAT.TD.elev <- ggplotGrob(p1.LAT.TD.elev)
+p1.alpha.MAT.elev <- ggplotGrob(p1.alpha.MAT.elev)
+p1.alpha.MAT.lat <- ggplotGrob(p1.alpha.MAT.lat)
+p1.alpha.TD.elev <- ggplotGrob(p1.alpha.TD.elev)
+p1.alpha.TD.lat <- ggplotGrob(p1.alpha.TD.lat)
 
-g3.c1<-rbind(p1.ELEV.MAT.lat,
-             p1.alpha.MAT.lat,
-             p1.ELEV.TD.lat,
-             p1.alpha.TD.lat)
+g3.c1 <- rbind(p1.ELEV.MAT.lat,
+               p1.alpha.MAT.lat,
+               p1.ELEV.TD.lat,
+               p1.alpha.TD.lat)
 
 g3.c1$widths <- unit.pmax(p1.ELEV.MAT.lat$widths,
                           p1.alpha.MAT.lat$widths, 
                           p1.ELEV.TD.lat$widths,
                           p1.alpha.TD.lat$widths)
 
-g3.c2<-rbind(p1.LAT.MAT.elev,
-             p1.alpha.MAT.elev,
-             p1.LAT.TD.elev,
-             p1.alpha.TD.elev)
+g3.c2 <- rbind(p1.LAT.MAT.elev,
+               p1.alpha.MAT.elev,
+               p1.LAT.TD.elev,
+               p1.alpha.TD.elev)
 
 g3.c2$widths <- unit.pmax(p1.LAT.MAT.elev$widths,
                           p1.alpha.MAT.elev$widths, 
                           p1.LAT.TD.elev$widths,
                           p1.alpha.TD.elev$widths)
 
-g3<-cbind(g3.c1,g3.c2)
+g3 <- cbind(g3.c1, g3.c2)
 grid.newpage()
 grid.draw(g3)
 
 ## Species richness by polynomial elevation, latitude, MAT, and TD fixed effect plots (SI)
 # requires some minor revisions in a graphics editor
 
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.ele_post.linpred.2fe.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.lat_post.linpred.2fe.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.MAT_post.linpred.2fe.rdata")
-load("G:\\My Drive\\Postdoc\\UT\\Biogeo\\Bayes model sum\\p1.alpha.TD_post.linpred.2fe.rdata")
+load("p1.alpha.ele_post.linpred.2fe.rdata")
+load("p1.alpha.lat_post.linpred.2fe.rdata")
+load("p1.alpha.MAT_post.linpred.2fe.rdata")
+load("p1.alpha.TD_post.linpred.2fe.rdata")
 
-p1.alpha.ele.2fe<-ggplotGrob(p1.alpha.ele.2fe)
-p1.alpha.lat.2fe<-ggplotGrob(p1.alpha.lat.2fe)
-p1.alpha.MAT.2fe<-ggplotGrob(p1.alpha.MAT.2fe)
-p1.alpha.TD.2fe<-ggplotGrob(p1.alpha.TD.2fe)
+p1.alpha.ele.2fe <- ggplotGrob(p1.alpha.ele.2fe)
+p1.alpha.lat.2fe <- ggplotGrob(p1.alpha.lat.2fe)
+p1.alpha.MAT.2fe <- ggplotGrob(p1.alpha.MAT.2fe)
+p1.alpha.TD.2fe <- ggplotGrob(p1.alpha.TD.2fe)
 
-g4.c1<-rbind(p1.alpha.ele.2fe,
-             p1.alpha.MAT.2fe)
+g4.c1 <- rbind(p1.alpha.ele.2fe,
+               p1.alpha.MAT.2fe)
 
 g4.c1$widths <- unit.pmax(p1.alpha.ele.2fe$widths,
                           p1.alpha.MAT.2fe$widths)
 
-g4.c2<-rbind(p1.alpha.lat.2fe,
-             p1.alpha.TD.2fe)
+g4.c2 <- rbind(p1.alpha.lat.2fe,
+               p1.alpha.TD.2fe)
 
 g4.c2$widths <- unit.pmax(p1.alpha.lat.2fe$widths,
                           p1.alpha.TD.2fe$widths)
 
-g4<-cbind(g4.c1,g4.c2)
+g4 <- cbind(g4.c1, g4.c2)
 grid.newpage()
 grid.draw(g4)
 
 ## Coefficient plots
 
-coef=read.table("coefficients.bio.metrics.csv",header=T,sep=",")
-coef=read.table("coefficients.clim.csv",header=T,sep=",")
+coef = read.table("coefficients.bio.metrics.csv", header = T, sep = ",")
+coef = read.table("coefficients.clim.csv", header = T, sep = ",")
 
 # Prepare data
 
@@ -3404,230 +3385,230 @@ coef.lat$Class <- factor(coef.lat$Class, levels = c("0-258",
 ## Biodiversity model intercepts
 
 (coef.int.sr.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Species richness"), 
-                           aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                           aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.sr.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Species richness"), 
-                            aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                            aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.cwm.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Community mean body length"), 
-                            aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                            aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Community mean body length") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.cwm.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Community mean body length"), 
-                             aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                             aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Community mean body length") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.fricmu1.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Functional richness mu1"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu1") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.fricmu1.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Functional richness mu1"), 
-                                 aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                 aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu1") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.fricmu2.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Functional richness mu2"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu2") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.fricmu2.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Functional richness mu2"), 
-                                 aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                 aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu2") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.fric.obs.z.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Standardized functional richness"), 
-                                   aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                   aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized functional richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.fric.obs.z.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Standardized functional richness"), 
-                                    aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                    aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized functional richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.pd.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Phylogenetic richness"), 
-                           aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                           aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.pd.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Phylogenetic richness"), 
-                            aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                            aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.pd.obs.z.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Standardized phylogenetic richness"), 
-                                 aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                 aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized phylogenetic richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.pd.obs.z.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Standardized phylogenetic richness"), 
-                                  aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                  aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized phylogenetic richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.fdis.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Functional dispersion"), 
-                             aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                             aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional dispersion") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.fdis.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Functional dispersion"), 
-                              aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                              aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional dispersion") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.mpd.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Phylogenetic mean pairwise distance"), 
-                            aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                            aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic mean pairwise distance") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.mpd.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Phylogenetic mean pairwise distance"), 
-                             aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                             aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic mean pairwise distance") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 ## Plotting biodiversity model intercepts
 # requires some minor revisions in a graphics editor
 
-coef.int.sr.lat<-ggplotGrob(coef.int.sr.lat)
-coef.int.sr.elev<-ggplotGrob(coef.int.sr.elev)
-coef.int.cwm.lat<-ggplotGrob(coef.int.cwm.lat)
-coef.int.cwm.elev<-ggplotGrob(coef.int.cwm.elev)
-coef.int.fricmu1.lat<-ggplotGrob(coef.int.fricmu1.lat)
-coef.int.fricmu1.elev<-ggplotGrob(coef.int.fricmu1.elev)
-coef.int.fricmu2.lat<-ggplotGrob(coef.int.fricmu2.lat)
-coef.int.fricmu2.elev<-ggplotGrob(coef.int.fricmu2.elev)
-coef.int.fric.obs.z.lat<-ggplotGrob(coef.int.fric.obs.z.lat)
-coef.int.fric.obs.z.elev<-ggplotGrob(coef.int.fric.obs.z.elev)
-coef.int.pd.lat<-ggplotGrob(coef.int.pd.lat)
-coef.int.pd.elev<-ggplotGrob(coef.int.pd.elev)
-coef.int.pd.obs.z.lat<-ggplotGrob(coef.int.pd.obs.z.lat)
-coef.int.pd.obs.z.elev<-ggplotGrob(coef.int.pd.obs.z.elev)
-coef.int.fdis.lat<-ggplotGrob(coef.int.fdis.lat)
-coef.int.fdis.elev<-ggplotGrob(coef.int.fdis.elev)
-coef.int.mpd.lat<-ggplotGrob(coef.int.mpd.lat)
-coef.int.mpd.elev<-ggplotGrob(coef.int.mpd.elev)
+coef.int.sr.lat <- ggplotGrob(coef.int.sr.lat)
+coef.int.sr.elev <- ggplotGrob(coef.int.sr.elev)
+coef.int.cwm.lat <- ggplotGrob(coef.int.cwm.lat)
+coef.int.cwm.elev <- ggplotGrob(coef.int.cwm.elev)
+coef.int.fricmu1.lat <- ggplotGrob(coef.int.fricmu1.lat)
+coef.int.fricmu1.elev <- ggplotGrob(coef.int.fricmu1.elev)
+coef.int.fricmu2.lat <- ggplotGrob(coef.int.fricmu2.lat)
+coef.int.fricmu2.elev<- ggplotGrob(coef.int.fricmu2.elev)
+coef.int.fric.obs.z.lat <- ggplotGrob(coef.int.fric.obs.z.lat)
+coef.int.fric.obs.z.elev <- ggplotGrob(coef.int.fric.obs.z.elev)
+coef.int.pd.lat <- ggplotGrob(coef.int.pd.lat)
+coef.int.pd.elev <- ggplotGrob(coef.int.pd.elev)
+coef.int.pd.obs.z.lat <- ggplotGrob(coef.int.pd.obs.z.lat)
+coef.int.pd.obs.z.elev <- ggplotGrob(coef.int.pd.obs.z.elev)
+coef.int.fdis.lat <- ggplotGrob(coef.int.fdis.lat)
+coef.int.fdis.elev <- ggplotGrob(coef.int.fdis.elev)
+coef.int.mpd.lat <- ggplotGrob(coef.int.mpd.lat)
+coef.int.mpd.elev <- ggplotGrob(coef.int.mpd.elev)
 
-g5.c1<-rbind(coef.int.sr.lat,
-             coef.int.fricmu1.lat,
-             coef.int.fricmu2.lat,
-             coef.int.pd.lat,
-             coef.int.fdis.lat)
+g5.c1 <- rbind(coef.int.sr.lat,
+               coef.int.fricmu1.lat,
+               coef.int.fricmu2.lat,
+               coef.int.pd.lat,
+               coef.int.fdis.lat)
 
 g5.c1$widths <- unit.pmax(coef.int.sr.lat$widths, 
                           coef.int.fricmu1.lat$widths,
@@ -3635,11 +3616,11 @@ g5.c1$widths <- unit.pmax(coef.int.sr.lat$widths,
                           coef.int.pd.lat$widths,
                           coef.int.fdis.lat$widths)
 
-g5.c2<-rbind(coef.int.cwm.lat,
-             coef.int.fric.obs.z.lat,
-             coef.int.fricmu2.lat,
-             coef.int.pd.obs.z.lat,
-             coef.int.mpd.lat)
+g5.c2 <- rbind(coef.int.cwm.lat,
+               coef.int.fric.obs.z.lat,
+               coef.int.fricmu2.lat,
+               coef.int.pd.obs.z.lat,
+               coef.int.mpd.lat)
 
 g5.c2$widths <- unit.pmax(coef.int.cwm.lat$widths, 
                           coef.int.fric.obs.z.lat$widths,
@@ -3647,11 +3628,11 @@ g5.c2$widths <- unit.pmax(coef.int.cwm.lat$widths,
                           coef.int.pd.obs.z.lat$widths,
                           coef.int.mpd.lat$widths)
 
-g5.c3<-rbind(coef.int.sr.elev,
-             coef.int.fricmu1.elev,
-             coef.int.fricmu2.elev,
-             coef.int.pd.elev,
-             coef.int.fdis.elev)
+g5.c3 <- rbind(coef.int.sr.elev,
+               coef.int.fricmu1.elev,
+               coef.int.fricmu2.elev,
+               coef.int.pd.elev,
+               coef.int.fdis.elev)
 
 g5.c3$widths <- unit.pmax(coef.int.sr.elev$widths, 
                           coef.int.fricmu1.elev$widths,
@@ -3659,11 +3640,11 @@ g5.c3$widths <- unit.pmax(coef.int.sr.elev$widths,
                           coef.int.pd.elev$widths,
                           coef.int.fdis.elev$widths)
 
-g5.c4<-rbind(coef.int.cwm.elev,
-             coef.int.fric.obs.z.elev,
-             coef.int.fricmu2.elev,
-             coef.int.pd.obs.z.elev,
-             coef.int.mpd.elev)
+g5.c4 <- rbind(coef.int.cwm.elev,
+               coef.int.fric.obs.z.elev,
+               coef.int.fricmu2.elev,
+               coef.int.pd.obs.z.elev,
+               coef.int.mpd.elev)
 
 g5.c4$widths <- unit.pmax(coef.int.cwm.elev$widths, 
                           coef.int.fric.obs.z.elev$widths,
@@ -3671,237 +3652,237 @@ g5.c4$widths <- unit.pmax(coef.int.cwm.elev$widths,
                           coef.int.pd.obs.z.elev$widths,
                           coef.int.mpd.elev$widths)
 
-g5<-cbind(g5.c1,g5.c2,g5.c3,g5.c4)
+g5 <- cbind(g5.c1, g5.c2, g5.c3, g5.c4)
 grid.newpage()
 grid.draw(g5)
 
 ## Biodiversity model B1 slopes
 
 (coef.B1.sr.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Species richness"), 
-                          aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                          aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.sr.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Species richness"), 
-                           aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                           aes(x = Class, y = Estimate, colour =Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.cwm.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Community mean body length"), 
-                           aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                           aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Community mean body length") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.cwm.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Community mean body length"), 
-                            aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                            aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Community mean body length") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.fricmu1.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Functional richness mu1"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu1") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.fricmu1.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Functional richness mu1"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu1") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.fricmu2.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Functional richness mu2"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu2") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.fricmu2.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Functional richness mu2"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu2") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.fric.obs.z.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Standardized functional richness"), 
-                                  aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                  aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized functional richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.fric.obs.z.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Standardized functional richness"), 
-                                   aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                   aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized functional richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.pd.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Phylogenetic richness"), 
-                          aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                          aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.pd.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Phylogenetic richness"), 
-                           aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                           aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.pd.obs.z.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Standardized phylogenetic richness"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized phylogenetic richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.pd.obs.z.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Standardized phylogenetic richness"), 
-                                 aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                 aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized phylogenetic richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.fdis.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Functional dispersion"), 
-                            aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                            aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional dispersion") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.fdis.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Functional dispersion"), 
-                             aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                             aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional dispersion") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.mpd.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Phylogenetic mean pairwise distance"), 
-                           aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                           aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic mean pairwise distance") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.mpd.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Phylogenetic mean pairwise distance"), 
-                            aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                            aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic mean pairwise distance") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 ## Plotting biodiversity model B1 slopes
 # requires some minor revisions in a graphics editor
 
-coef.B1.sr.lat<-ggplotGrob(coef.B1.sr.lat)
-coef.B1.sr.elev<-ggplotGrob(coef.B1.sr.elev)
-coef.B1.cwm.lat<-ggplotGrob(coef.B1.cwm.lat)
-coef.B1.cwm.elev<-ggplotGrob(coef.B1.cwm.elev)
-coef.B1.fricmu1.lat<-ggplotGrob(coef.B1.fricmu1.lat)
-coef.B1.fricmu1.elev<-ggplotGrob(coef.B1.fricmu1.elev)
-coef.B1.fricmu2.lat<-ggplotGrob(coef.B1.fricmu2.lat)
-coef.B1.fricmu2.elev<-ggplotGrob(coef.B1.fricmu2.elev)
-coef.B1.fric.obs.z.lat<-ggplotGrob(coef.B1.fric.obs.z.lat)
-coef.B1.fric.obs.z.elev<-ggplotGrob(coef.B1.fric.obs.z.elev)
-coef.B1.pd.lat<-ggplotGrob(coef.B1.pd.lat)
-coef.B1.pd.elev<-ggplotGrob(coef.B1.pd.elev)
-coef.B1.pd.obs.z.lat<-ggplotGrob(coef.B1.pd.obs.z.lat)
-coef.B1.pd.obs.z.elev<-ggplotGrob(coef.B1.pd.obs.z.elev)
-coef.B1.fdis.lat<-ggplotGrob(coef.B1.fdis.lat)
-coef.B1.fdis.elev<-ggplotGrob(coef.B1.fdis.elev)
-coef.B1.mpd.lat<-ggplotGrob(coef.B1.mpd.lat)
-coef.B1.mpd.elev<-ggplotGrob(coef.B1.mpd.elev)
+coef.B1.sr.lat <- ggplotGrob(coef.B1.sr.lat)
+coef.B1.sr.elev <- ggplotGrob(coef.B1.sr.elev)
+coef.B1.cwm.lat <- ggplotGrob(coef.B1.cwm.lat)
+coef.B1.cwm.elev <- ggplotGrob(coef.B1.cwm.elev)
+coef.B1.fricmu1.lat <- ggplotGrob(coef.B1.fricmu1.lat)
+coef.B1.fricmu1.elev <- ggplotGrob(coef.B1.fricmu1.elev)
+coef.B1.fricmu2.lat <- ggplotGrob(coef.B1.fricmu2.lat)
+coef.B1.fricmu2.elev <- ggplotGrob(coef.B1.fricmu2.elev)
+coef.B1.fric.obs.z.lat <- ggplotGrob(coef.B1.fric.obs.z.lat)
+coef.B1.fric.obs.z.elev <- ggplotGrob(coef.B1.fric.obs.z.elev)
+coef.B1.pd.lat <- ggplotGrob(coef.B1.pd.lat)
+coef.B1.pd.elev <- ggplotGrob(coef.B1.pd.elev)
+coef.B1.pd.obs.z.lat <- ggplotGrob(coef.B1.pd.obs.z.lat)
+coef.B1.pd.obs.z.elev <- ggplotGrob(coef.B1.pd.obs.z.elev)
+coef.B1.fdis.lat <- ggplotGrob(coef.B1.fdis.lat)
+coef.B1.fdis.elev <- ggplotGrob(coef.B1.fdis.elev)
+coef.B1.mpd.lat <- ggplotGrob(coef.B1.mpd.lat)
+coef.B1.mpd.elev <- ggplotGrob(coef.B1.mpd.elev)
 
-g6.c1<-rbind(coef.B1.sr.lat,
-             coef.B1.fricmu1.lat,
-             coef.B1.fricmu2.lat,
-             coef.B1.pd.lat,
-             coef.B1.fdis.lat)
+g6.c1 <- rbind(coef.B1.sr.lat,
+               coef.B1.fricmu1.lat,
+               coef.B1.fricmu2.lat,
+               coef.B1.pd.lat,
+               coef.B1.fdis.lat)
 
 g6.c1$widths <- unit.pmax(coef.B1.sr.lat$widths, 
                           coef.B1.fricmu1.lat$widths,
@@ -3909,11 +3890,11 @@ g6.c1$widths <- unit.pmax(coef.B1.sr.lat$widths,
                           coef.B1.pd.lat$widths,
                           coef.B1.fdis.lat$widths)
 
-g6.c2<-rbind(coef.B1.cwm.lat,
-             coef.B1.fric.obs.z.lat,
-             coef.B1.fricmu2.lat,
-             coef.B1.pd.obs.z.lat,
-             coef.B1.mpd.lat)
+g6.c2 <- rbind(coef.B1.cwm.lat,
+               coef.B1.fric.obs.z.lat,
+               coef.B1.fricmu2.lat,
+               coef.B1.pd.obs.z.lat,
+               coef.B1.mpd.lat)
 
 g6.c2$widths <- unit.pmax(coef.B1.cwm.lat$widths, 
                           coef.B1.fric.obs.z.lat$widths,
@@ -3921,11 +3902,11 @@ g6.c2$widths <- unit.pmax(coef.B1.cwm.lat$widths,
                           coef.B1.pd.obs.z.lat$widths,
                           coef.B1.mpd.lat$widths)
 
-g6.c3<-rbind(coef.B1.sr.elev,
-             coef.B1.fricmu1.elev,
-             coef.B1.fricmu2.elev,
-             coef.B1.pd.elev,
-             coef.B1.fdis.elev)
+g6.c3 <- rbind(coef.B1.sr.elev,
+               coef.B1.fricmu1.elev,
+               coef.B1.fricmu2.elev,
+               coef.B1.pd.elev,
+               coef.B1.fdis.elev)
 
 g6.c3$widths <- unit.pmax(coef.B1.sr.elev$widths, 
                           coef.B1.fricmu1.elev$widths,
@@ -3933,11 +3914,11 @@ g6.c3$widths <- unit.pmax(coef.B1.sr.elev$widths,
                           coef.B1.pd.elev$widths,
                           coef.B1.fdis.elev$widths)
 
-g6.c4<-rbind(coef.B1.cwm.elev,
-             coef.B1.fric.obs.z.elev,
-             coef.B1.fricmu2.elev,
-             coef.B1.pd.obs.z.elev,
-             coef.B1.mpd.elev)
+g6.c4 <- rbind(coef.B1.cwm.elev,
+               coef.B1.fric.obs.z.elev,
+               coef.B1.fricmu2.elev,
+               coef.B1.pd.obs.z.elev,
+               coef.B1.mpd.elev)
 
 g6.c4$widths <- unit.pmax(coef.B1.cwm.elev$widths, 
                           coef.B1.fric.obs.z.elev$widths,
@@ -3945,237 +3926,237 @@ g6.c4$widths <- unit.pmax(coef.B1.cwm.elev$widths,
                           coef.B1.pd.obs.z.elev$widths,
                           coef.B1.mpd.elev$widths)
 
-g6<-cbind(g6.c1,g6.c2,g6.c3,g6.c4)
+g6 <- cbind(g6.c1, g6.c2, g6.c3, g6.c4)
 grid.newpage()
 grid.draw(g6)
 
 ## Biodiversity model B2 slopes
 
 (coef.B2.sr.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Species richness"), 
-                          aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                          aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.sr.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Species richness"), 
-                           aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                           aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.cwm.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Community mean body length"), 
-                           aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                           aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Community mean body length") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.cwm.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Community mean body length"), 
-                            aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                            aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Community mean body length") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.fricmu1.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Functional richness mu1"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu1") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.fricmu1.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Functional richness mu1"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu1") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.fricmu2.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Functional richness mu2"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu2") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.fricmu2.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Functional richness mu2"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional richness mu2") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.fric.obs.z.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Standardized functional richness"), 
-                                  aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                  aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized functional richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.fric.obs.z.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Standardized functional richness"), 
-                                   aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                   aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized functional richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.pd.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Phylogenetic richness"), 
-                          aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                          aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.pd.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Phylogenetic richness"), 
-                           aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                           aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.pd.obs.z.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Standardized phylogenetic richness"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized phylogenetic richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.pd.obs.z.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Standardized phylogenetic richness"), 
-                                 aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                 aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Standardized phylogenetic richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.fdis.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Functional dispersion"), 
-                            aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                            aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional dispersion") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.fdis.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Functional dispersion"), 
-                             aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                             aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Functional dispersion") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.mpd.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Phylogenetic mean pairwise distance"), 
-                           aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                           aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic mean pairwise distance") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.mpd.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Phylogenetic mean pairwise distance"), 
-                            aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                            aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Phylogenetic mean pairwise distance") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 ## Plotting biodiversity model B2 slopes
 # requires some minor revisions in a graphics editor
 
-coef.B2.sr.lat<-ggplotGrob(coef.B2.sr.lat)
-coef.B2.sr.elev<-ggplotGrob(coef.B2.sr.elev)
-coef.B2.cwm.lat<-ggplotGrob(coef.B2.cwm.lat)
-coef.B2.cwm.elev<-ggplotGrob(coef.B2.cwm.elev)
-coef.B2.fricmu1.lat<-ggplotGrob(coef.B2.fricmu1.lat)
-coef.B2.fricmu1.elev<-ggplotGrob(coef.B2.fricmu1.elev)
-coef.B2.fricmu2.lat<-ggplotGrob(coef.B2.fricmu2.lat)
-coef.B2.fricmu2.elev<-ggplotGrob(coef.B2.fricmu2.elev)
-coef.B2.fric.obs.z.lat<-ggplotGrob(coef.B2.fric.obs.z.lat)
-coef.B2.fric.obs.z.elev<-ggplotGrob(coef.B2.fric.obs.z.elev)
-coef.B2.pd.lat<-ggplotGrob(coef.B2.pd.lat)
-coef.B2.pd.elev<-ggplotGrob(coef.B2.pd.elev)
-coef.B2.pd.obs.z.lat<-ggplotGrob(coef.B2.pd.obs.z.lat)
-coef.B2.pd.obs.z.elev<-ggplotGrob(coef.B2.pd.obs.z.elev)
-coef.B2.fdis.lat<-ggplotGrob(coef.B2.fdis.lat)
-coef.B2.fdis.elev<-ggplotGrob(coef.B2.fdis.elev)
-coef.B2.mpd.lat<-ggplotGrob(coef.B2.mpd.lat)
-coef.B2.mpd.elev<-ggplotGrob(coef.B2.mpd.elev)
+coef.B2.sr.lat <- ggplotGrob(coef.B2.sr.lat)
+coef.B2.sr.elev <- ggplotGrob(coef.B2.sr.elev)
+coef.B2.cwm.lat <- ggplotGrob(coef.B2.cwm.lat)
+coef.B2.cwm.elev <- ggplotGrob(coef.B2.cwm.elev)
+coef.B2.fricmu1.lat <- ggplotGrob(coef.B2.fricmu1.lat)
+coef.B2.fricmu1.elev <- ggplotGrob(coef.B2.fricmu1.elev)
+coef.B2.fricmu2.lat <- ggplotGrob(coef.B2.fricmu2.lat)
+coef.B2.fricmu2.elev <- ggplotGrob(coef.B2.fricmu2.elev)
+coef.B2.fric.obs.z.lat <- ggplotGrob(coef.B2.fric.obs.z.lat)
+coef.B2.fric.obs.z.elev <- ggplotGrob(coef.B2.fric.obs.z.elev)
+coef.B2.pd.lat <- ggplotGrob(coef.B2.pd.lat)
+coef.B2.pd.elev <- ggplotGrob(coef.B2.pd.elev)
+coef.B2.pd.obs.z.lat <- ggplotGrob(coef.B2.pd.obs.z.lat)
+coef.B2.pd.obs.z.elev <- ggplotGrob(coef.B2.pd.obs.z.elev)
+coef.B2.fdis.lat <- ggplotGrob(coef.B2.fdis.lat)
+coef.B2.fdis.elev <- ggplotGrob(coef.B2.fdis.elev)
+coef.B2.mpd.lat <- ggplotGrob(coef.B2.mpd.lat)
+coef.B2.mpd.elev <- ggplotGrob(coef.B2.mpd.elev)
 
-g7.c1<-rbind(coef.B2.sr.lat,
-             coef.B2.fricmu1.lat,
-             coef.B2.fricmu2.lat,
-             coef.B2.pd.lat,
-             coef.B2.fdis.lat)
+g7.c1 <- rbind(coef.B2.sr.lat,
+               coef.B2.fricmu1.lat,
+               coef.B2.fricmu2.lat,
+               coef.B2.pd.lat,
+               coef.B2.fdis.lat)
 
 g7.c1$widths <- unit.pmax(coef.B2.sr.lat$widths, 
                           coef.B2.fricmu1.lat$widths,
@@ -4183,11 +4164,11 @@ g7.c1$widths <- unit.pmax(coef.B2.sr.lat$widths,
                           coef.B2.pd.lat$widths,
                           coef.B2.fdis.lat$widths)
 
-g7.c2<-rbind(coef.B2.cwm.lat,
-             coef.B2.fric.obs.z.lat,
-             coef.B2.fricmu2.lat,
-             coef.B2.pd.obs.z.lat,
-             coef.B2.mpd.lat)
+g7.c2 <- rbind(coef.B2.cwm.lat,
+               coef.B2.fric.obs.z.lat,
+               coef.B2.fricmu2.lat,
+               coef.B2.pd.obs.z.lat,
+               coef.B2.mpd.lat)
 
 g7.c2$widths <- unit.pmax(coef.B2.cwm.lat$widths, 
                           coef.B2.fric.obs.z.lat$widths,
@@ -4195,11 +4176,11 @@ g7.c2$widths <- unit.pmax(coef.B2.cwm.lat$widths,
                           coef.B2.pd.obs.z.lat$widths,
                           coef.B2.mpd.lat$widths)
 
-g7.c3<-rbind(coef.B2.sr.elev,
-             coef.B2.fricmu1.elev,
-             coef.B2.fricmu2.elev,
-             coef.B2.pd.elev,
-             coef.B2.fdis.elev)
+g7.c3 <- rbind(coef.B2.sr.elev,
+               coef.B2.fricmu1.elev,
+               coef.B2.fricmu2.elev,
+               coef.B2.pd.elev,
+               coef.B2.fdis.elev)
 
 g7.c3$widths <- unit.pmax(coef.B2.sr.elev$widths, 
                           coef.B2.fricmu1.elev$widths,
@@ -4207,11 +4188,11 @@ g7.c3$widths <- unit.pmax(coef.B2.sr.elev$widths,
                           coef.B2.pd.elev$widths,
                           coef.B2.fdis.elev$widths)
 
-g7.c4<-rbind(coef.B2.cwm.elev,
-             coef.B2.fric.obs.z.elev,
-             coef.B2.fricmu2.elev,
-             coef.B2.pd.obs.z.elev,
-             coef.B2.mpd.elev)
+g7.c4 <- rbind(coef.B2.cwm.elev,
+               coef.B2.fric.obs.z.elev,
+               coef.B2.fricmu2.elev,
+               coef.B2.pd.obs.z.elev,
+               coef.B2.mpd.elev)
 
 g7.c4$widths <- unit.pmax(coef.B2.cwm.elev$widths, 
                           coef.B2.fric.obs.z.elev$widths,
@@ -4219,385 +4200,385 @@ g7.c4$widths <- unit.pmax(coef.B2.cwm.elev$widths,
                           coef.B2.pd.obs.z.elev$widths,
                           coef.B2.mpd.elev$widths)
 
-g7<-cbind(g7.c1,g7.c2,g7.c3,g7.c4)
+g7 <- cbind(g7.c1, g7.c2, g7.c3, g7.c4)
 grid.newpage()
 grid.draw(g7)
 
 ## Climate model intercepts
 
 (coef.int.sr.mat.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Species richness" & Climate == "Mean temperature"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.sr.mat.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Species richness" & Climate == "Mean temperature"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.sr.td.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Species richness" & Climate == "Temperature difference"), 
-                              aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                              aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.sr.td.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Species richness" & Climate == "Temperature difference"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.elev.mat.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Elevation" & Climate == "Mean temperature"), 
-                                 aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                 aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Elevation") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.lat.mat.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Latitude" & Climate == "Mean temperature"), 
-                                 aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                 aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Latitude") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.elev.td.lat <- ggplot(data = subset(coef.elev, Parameter == "Intercept" & Metric == "Elevation" & Climate == "Temperature difference"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Elevation") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.int.lat.td.elev <- ggplot(data = subset(coef.lat, Parameter == "Intercept" & Metric == "Latitude" & Climate == "Temperature difference"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Latitude") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 ## Plotting climate model intercepts 
 # requires some minor revisions in a graphics editor
 
-coef.int.sr.mat.lat<-ggplotGrob(coef.int.sr.mat.lat)
-coef.int.sr.mat.elev<-ggplotGrob(coef.int.sr.mat.elev)
-coef.int.sr.td.lat<-ggplotGrob(coef.int.sr.td.lat)
-coef.int.sr.td.elev<-ggplotGrob(coef.int.sr.td.elev)
-coef.int.elev.mat.lat<-ggplotGrob(coef.int.elev.mat.lat)
-coef.int.lat.mat.elev<-ggplotGrob(coef.int.lat.mat.elev)
-coef.int.elev.td.lat<-ggplotGrob(coef.int.elev.td.lat)
-coef.int.lat.td.elev<-ggplotGrob(coef.int.lat.td.elev)
+coef.int.sr.mat.lat <- ggplotGrob(coef.int.sr.mat.lat)
+coef.int.sr.mat.elev <- ggplotGrob(coef.int.sr.mat.elev)
+coef.int.sr.td.lat <- ggplotGrob(coef.int.sr.td.lat)
+coef.int.sr.td.elev <- ggplotGrob(coef.int.sr.td.elev)
+coef.int.elev.mat.lat <- ggplotGrob(coef.int.elev.mat.lat)
+coef.int.lat.mat.elev <- ggplotGrob(coef.int.lat.mat.elev)
+coef.int.elev.td.lat <- ggplotGrob(coef.int.elev.td.lat)
+coef.int.lat.td.elev <- ggplotGrob(coef.int.lat.td.elev)
 
-g8.c1<-rbind(coef.int.elev.mat.lat,
-             coef.int.sr.mat.lat,
-             coef.int.elev.td.lat,
-             coef.int.sr.td.lat)
+g8.c1 <- rbind(coef.int.elev.mat.lat,
+               coef.int.sr.mat.lat,
+               coef.int.elev.td.lat,
+               coef.int.sr.td.lat)
 
 g8.c1$widths <- unit.pmax(coef.int.elev.mat.lat$widths,
                           coef.int.sr.mat.lat$widths,
                           coef.int.elev.td.lat$widths,
                           coef.int.sr.td.lat$widths)
 
-g8.c2<-rbind(coef.int.lat.mat.elev,
-             coef.int.sr.mat.elev,
-             coef.int.lat.td.elev,
-             coef.int.sr.td.elev)
+g8.c2 <- rbind(coef.int.lat.mat.elev,
+               coef.int.sr.mat.elev,
+               coef.int.lat.td.elev,
+               coef.int.sr.td.elev)
 
 g8.c2$widths <- unit.pmax(coef.int.lat.mat.elev$widths,
                           coef.int.sr.mat.elev$widths, 
                           coef.int.lat.td.elev$widths,
                           coef.int.sr.td.elev$widths)
 
-g8<-cbind(g8.c1,g8.c2)
+g8 <- cbind(g8.c1, g8.c2)
 grid.newpage()
 grid.draw(g8)
 
 ## Climate model B1 slopes
 
 (coef.B1.sr.mat.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Species richness" & Climate == "Mean temperature"),
-                              aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                              aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.sr.mat.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Species richness" & Climate == "Mean temperature"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.sr.td.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Species richness" & Climate == "Temperature difference"), 
-                             aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                             aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.sr.td.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Species richness" & Climate == "Temperature difference"), 
-                              aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                              aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.elev.mat.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Elevation" & Climate == "Mean temperature"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Elevation") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.lat.mat.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Latitude" & Climate == "Mean temperature"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Latitude") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.elev.td.lat <- ggplot(data = subset(coef.elev, Parameter == "B1" & Metric == "Elevation" & Climate == "Temperature difference"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Elevation") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B1.lat.td.elev <- ggplot(data = subset(coef.lat, Parameter == "B1" & Metric == "Latitude" & Climate == "Temperature difference"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Latitude") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 ## Plotting climate model B1 slopes
 # requires some minor revisions in a graphics editor
 
-coef.B1.sr.mat.lat<-ggplotGrob(coef.B1.sr.mat.lat)
-coef.B1.sr.mat.elev<-ggplotGrob(coef.B1.sr.mat.elev)
-coef.B1.sr.td.lat<-ggplotGrob(coef.B1.sr.td.lat)
-coef.B1.sr.td.elev<-ggplotGrob(coef.B1.sr.td.elev)
-coef.B1.elev.mat.lat<-ggplotGrob(coef.B1.elev.mat.lat)
-coef.B1.lat.mat.elev<-ggplotGrob(coef.B1.lat.mat.elev)
-coef.B1.elev.td.lat<-ggplotGrob(coef.B1.elev.td.lat)
-coef.B1.lat.td.elev<-ggplotGrob(coef.B1.lat.td.elev)
+coef.B1.sr.mat.lat <- ggplotGrob(coef.B1.sr.mat.lat)
+coef.B1.sr.mat.elev <- ggplotGrob(coef.B1.sr.mat.elev)
+coef.B1.sr.td.lat <- ggplotGrob(coef.B1.sr.td.lat)
+coef.B1.sr.td.elev <- ggplotGrob(coef.B1.sr.td.elev)
+coef.B1.elev.mat.lat <- ggplotGrob(coef.B1.elev.mat.lat)
+coef.B1.lat.mat.elev <- ggplotGrob(coef.B1.lat.mat.elev)
+coef.B1.elev.td.lat <- ggplotGrob(coef.B1.elev.td.lat)
+coef.B1.lat.td.elev <- ggplotGrob(coef.B1.lat.td.elev)
 
-g9.c1<-rbind(coef.B1.elev.mat.lat,
-             coef.B1.sr.mat.lat,
-             coef.B1.elev.td.lat,
-             coef.B1.sr.td.lat)
+g9.c1 <- rbind(coef.B1.elev.mat.lat,
+               coef.B1.sr.mat.lat,
+               coef.B1.elev.td.lat,
+               coef.B1.sr.td.lat)
 
 g9.c1$widths <- unit.pmax(coef.B1.elev.mat.lat$widths,
                           coef.B1.sr.mat.lat$widths, 
                           coef.B1.elev.td.lat$widths,
                           coef.B1.sr.td.lat$widths)
 
-g9.c2<-rbind(coef.B1.lat.mat.elev,
-             coef.B1.sr.mat.elev,
-             coef.B1.lat.td.elev,
-             coef.B1.sr.td.elev)
+g9.c2 <- rbind(coef.B1.lat.mat.elev,
+               coef.B1.sr.mat.elev,
+               coef.B1.lat.td.elev,
+               coef.B1.sr.td.elev)
 
 g9.c2$widths <- unit.pmax(coef.B1.lat.mat.elev$widths,
                           coef.B1.sr.mat.elev$widths,
                           coef.B1.lat.td.elev$widths,
                           coef.B1.sr.td.elev$widths)
 
-g9<-cbind(g9.c1,g9.c2)
+g9 <- cbind(g9.c1, g9.c2)
 grid.newpage()
 grid.draw(g9)
 
 ## Climate model B2 slopes
 
 (coef.B2.sr.mat.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Species richness" & Climate == "Mean temperature"),
-                              aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                              aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.sr.mat.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Species richness" & Climate == "Mean temperature"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.sr.td.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Species richness" & Climate == "Temperature difference"), 
-                             aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                             aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.sr.td.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Species richness" & Climate == "Temperature difference"), 
-                              aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                              aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Species richness") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.elev.mat.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Elevation" & Climate == "Mean temperature"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Elevation") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.lat.mat.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Latitude" & Climate == "Mean temperature"), 
-                                aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                                aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Latitude") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.elev.td.lat <- ggplot(data = subset(coef.elev, Parameter == "B2" & Metric == "Elevation" & Climate == "Temperature difference"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Elevation") +
     scale_x_discrete("Latitudinal zone (°N)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 (coef.B2.lat.td.elev <- ggplot(data = subset(coef.lat, Parameter == "B2" & Metric == "Latitude" & Climate == "Temperature difference"), 
-                               aes(x = Class, y = Estimate, colour=Class)) +
-    geom_hline(yintercept=0, linetype = "dashed", color = "grey", size=0.5) +
+                               aes(x = Class, y = Estimate, colour = Class)) +
+    geom_hline(yintercept = 0, linetype = "dashed", color = "grey", size = 0.5) +
     geom_point(alpha = 0.5, size = 6) +
-    geom_errorbar(aes(ymin=Q2.5, ymax=Q97.5), width=.2, position=position_dodge(.9)) +
+    geom_errorbar(aes(ymin = Q2.5, ymax = Q97.5), width = .2, position = position_dodge(.9)) +
     scale_y_continuous("Latitude") +
     scale_x_discrete("Elevational zone (masl)") +
     workingtheme +
-    theme(axis.text.x = element_text(angle = 67.5, hjust=1)) +
-    scale_colour_manual(name = "Class", values=a60505_6e068f))
+    theme(axis.text.x = element_text(angle = 67.5, hjust = 1)) +
+    scale_colour_manual(name = "Class", values = a60505_6e068f))
 
 ## Plotting climate model B2 slopes
 # requires some minor revisions in a graphics editor
 
-coef.B2.sr.mat.lat<-ggplotGrob(coef.B2.sr.mat.lat)
-coef.B2.sr.mat.elev<-ggplotGrob(coef.B2.sr.mat.elev)
-coef.B2.sr.td.lat<-ggplotGrob(coef.B2.sr.td.lat)
-coef.B2.sr.td.elev<-ggplotGrob(coef.B2.sr.td.elev)
-coef.B2.elev.mat.lat<-ggplotGrob(coef.B2.elev.mat.lat)
-coef.B2.lat.mat.elev<-ggplotGrob(coef.B2.lat.mat.elev)
-coef.B2.elev.td.lat<-ggplotGrob(coef.B2.elev.td.lat)
-coef.B2.lat.td.elev<-ggplotGrob(coef.B2.lat.td.elev)
+coef.B2.sr.mat.lat <- ggplotGrob(coef.B2.sr.mat.lat)
+coef.B2.sr.mat.elev <- ggplotGrob(coef.B2.sr.mat.elev)
+coef.B2.sr.td.lat <- ggplotGrob(coef.B2.sr.td.lat)
+coef.B2.sr.td.elev <- ggplotGrob(coef.B2.sr.td.elev)
+coef.B2.elev.mat.lat <- ggplotGrob(coef.B2.elev.mat.lat)
+coef.B2.lat.mat.elev <- ggplotGrob(coef.B2.lat.mat.elev)
+coef.B2.elev.td.lat <- ggplotGrob(coef.B2.elev.td.lat)
+coef.B2.lat.td.elev <- ggplotGrob(coef.B2.lat.td.elev)
 
-g10.c1<-rbind(coef.B2.elev.mat.lat,
-             coef.B2.sr.mat.lat,
-             coef.B2.elev.td.lat,
-             coef.B2.sr.td.lat)
+g10.c1 <- rbind(coef.B2.elev.mat.lat,
+                coef.B2.sr.mat.lat,
+                coef.B2.elev.td.lat,
+                coef.B2.sr.td.lat)
 
 g10.c1$widths <- unit.pmax(coef.B2.elev.mat.lat$widths,
                           coef.B2.sr.mat.lat$widths,
                           coef.B2.elev.td.lat$widths,
                           coef.B2.sr.td.lat$widths)
 
-g10.c2<-rbind(coef.B2.lat.mat.elev,
-             coef.B2.sr.mat.elev,
-             coef.B2.lat.td.elev,
-             coef.B2.sr.td.elev)
+g10.c2 <- rbind(coef.B2.lat.mat.elev,
+                coef.B2.sr.mat.elev,
+                coef.B2.lat.td.elev,
+                coef.B2.sr.td.elev)
 
 g10.c2$widths <- unit.pmax(coef.B2.lat.mat.elev$widths,
                           coef.B2.sr.mat.elev$widths,
                           coef.B2.lat.td.elev$widths,
                           coef.B2.sr.td.elev$widths)
 
-g10<-cbind(g10.c1,g10.c2)
+g10 <- cbind(g10.c1, g10.c2)
 grid.newpage()
 grid.draw(g10)
 
