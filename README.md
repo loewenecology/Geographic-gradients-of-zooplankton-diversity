@@ -1,5 +1,5 @@
 # Geographic-gradients-of-zooplankton-diversity
-Code for calculating zooplankton biodiversity metrics and replicating analysis of elevational and latitudinal diversity gradients by generalized linear mixed effect/multilevel models.
+Code and data for calculating zooplankton biodiversity metrics and replicating analysis of elevational and latitudinal diversity gradients by generalized linear mixed effect/multilevel models.
 
 Sitebysp.csv contains zooplankton occurrence data (site rows and species columns);
 Sitebygeo.csv contains site geographic coordinate data (site rows and variable columns);
