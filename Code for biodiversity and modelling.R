@@ -16,23 +16,18 @@
 # Load R packages
 ##################
 
-library(dplyr)
-library(reshape2)
 library(tidyverse)
-
 library(classInt)
 library(FD)
 library(betapart)
 library(picante)
 library(taxize)
-
 library(ggplot2)
 library(grid)
 library(gtable)
 library(ggmap)
 library(ggsn)
 library(ggridges)
-
 library(brms)
 library(ggeffects)
 
