@@ -1,15 +1,15 @@
 #........................................................................................................#
-#.....Upward and poleward - zooplankton biodiversity diverges along geographic temperature gradients.....#
+#..................Biodiversity patterns diverge along geographic temperature gradients..................#
 #........................................................................................................#
 
 #........................................................................................................#
-#.....Author of the script: Charlie Loewen...............................................................#
-#.....Date latest modifications: 2021-11-18..............................................................#
+#..................Author of the script: Charlie Loewen..................................................#
+#..................Date latest modifications: 2022-01-05.................................................#
 #........................................................................................................#
 
 ##########################################################################################################
-########### For calculating biodiversity metrics and evaluating elevational and latitudinal
-########### relationships by Bayesian generalized linear mixed effect/multilevel models
+################## For calculating biodiversity metrics and evaluating elevational and latitudinal
+################## relationships by Bayesian generalized linear mixed effect/multilevel models
 ##########################################################################################################
 
 ##################
