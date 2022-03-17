@@ -3219,7 +3219,7 @@ grid.newpage()
 grid.draw(g2)
 
 
-## Model mean annual temperatures models
+## Model mean annual temperatures relationships to species richness, elevation, and latitude
 
 # Check distribution
 hist(lmdata$MAT)
@@ -3475,7 +3475,7 @@ prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT)
 save(p1.alpha.MAT.elev, file = "p1.alpha.MAT.elev_post.linpred.re2.rdata")
 
                  
-## Model mean temperature difference models
+## Model mean temperature difference relationships to species richness, elevation, and latitude
 
 # Check distribution
 hist(lmdata$TD)
@@ -5038,5 +5038,1579 @@ g10.c2$widths <- unit.pmax(coef.B2.lat.mat.elev$widths,
 g10 <- cbind(g10.c1, g10.c2)
 grid.newpage()
 grid.draw(g10)
+
+
+## Model mean annual temperature relationships to other diversity metrics
+
+# PD ~ poly MAT multilevel lat effect model
+bayes.pd.MAT.lat.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | lat_class),
+                            data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
+                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            warmup = 1000, iter = 3000, chains = 4,
+                            control = list(adapt_delta = 0.99),
+                            seed = 1)
+
+waic(bayes.pd.MAT.lat.2re, pointwise = TRUE)
+loo(bayes.pd.MAT.lat.2re, pointwise = TRUE)
+summary(bayes.pd.MAT.lat.2re)
+prior_summary(bayes.pd.MAT.lat.2re)
+coef(bayes.pd.MAT.lat.2re)
+fixef(bayes.pd.MAT.lat.2re)
+bayes_R2(bayes.pd.MAT.lat.2re)
+control_params(bayes.pd.MAT.lat.2re)
+
+# PD ~ poly MAT multilevel lat effect plotting
+pp_check(bayes.pd.MAT.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.pd.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.pd.MAT.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.PD"), alpha = 0.1, aes(x = MAT, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Phylogenetic richness", breaks = c(0, 160, 320, 480, 640)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(0, 647.1955), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.pd.MAT.lat, file = "p1.pd.MAT.lat_post.linpred.re2.rdata")
+
+# PD ~ poly MAT multilevel elev effect model
+bayes.pd.MAT.elev.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | elev_class),
+                             data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
+                             prior = c(set_prior("normal(0,5)", class = "b")),
+                             warmup = 1000, iter = 3000, chains = 4,
+                             control = list(adapt_delta = 0.99),
+                             seed = 1)
+
+waic(bayes.pd.MAT.elev.2re, pointwise = TRUE)
+loo(bayes.pd.MAT.elev.2re, pointwise = TRUE)
+summary(bayes.pd.MAT.elev.2re)
+prior_summary(bayes.pd.MAT.elev.2re)
+coef(bayes.pd.MAT.elev.2re)
+fixef(bayes.pd.MAT.elev.2re)
+bayes_R2(bayes.pd.MAT.elev.2re)
+control_params(bayes.pd.MAT.elev.2re)
+
+# PD ~ poly MAT multilevel elev effect plotting
+pp_check(bayes.pd.MAT.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.pd.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.pd.MAT.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.PD"), alpha = 0.1, aes(x = MAT, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Phylogenetic richness", breaks = c(0, 160, 320, 480, 640)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(0, 647.1955), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.pd.MAT.elev, file = "p1.pd.MAT.elev_post.linpred.re2.rdata")
+
+# FRic ~ poly MAT multilevel lat effect model
+mix <- mixture(Beta, Beta)
+bayes.FRic.MAT.lat.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | lat_class),
+                              data = subset(lmdata, variable == "Glob.FRic"), family = mix,
+                              prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
+                                        prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                              warmup = 1000, iter = 9000, chains = 4, inits = 0,
+                              control = list(adapt_delta = 0.99, max_treedepth = 15),
+                              seed = 1)
+
+waic(bayes.FRic.MAT.lat.2re, pointwise = TRUE)
+loo(bayes.FRic.MAT.lat.2re, pointwise = TRUE)
+summary(bayes.FRic.MAT.lat.2re)
+prior_summary(bayes.FRic.MAT.lat.2re)
+coef(bayes.FRic.MAT.lat.2re)
+fixef(bayes.FRic.MAT.lat.2re)
+bayes_R2(bayes.FRic.MAT.lat.2re)
+control_params(bayes.FRic.MAT.lat.2re)
+
+# FRic ~ poly MAT multilevel lat effect plotting
+pp_check(bayes.FRic.MAT.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FRic.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.FRic.MAT.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.FRic"), alpha = 0.1, aes(x = MAT, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Functional richness", breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(0, 1), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.FRic.MAT.lat, file = "p1.FRic.MAT.lat_post.linpred.re2.rdata")
+
+# FRic ~ poly MAT multilevel elev effect model
+mix <- mixture(Beta, Beta)
+bayes.FRic.MAT.elev.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | elev_class),
+                               data = subset(lmdata, variable == "Glob.FRic"), family = mix,
+                               prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
+                                         prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                               warmup = 1000, iter = 9000, chains = 4, inits = 0,
+                               control = list(adapt_delta = 0.99, max_treedepth = 15),
+                               seed = 1)
+
+waic(bayes.FRic.MAT.elev.2re, pointwise = TRUE)
+loo(bayes.FRic.MAT.elev.2re, pointwise = TRUE)
+summary(bayes.FRic.MAT.elev.2re)
+prior_summary(bayes.FRic.MAT.elev.2re)
+coef(bayes.FRic.MAT.elev.2re)
+fixef(bayes.FRic.MAT.elev.2re)
+bayes_R2(bayes.FRic.MAT.elev.2re)
+control_params(bayes.FRic.MAT.elev.2re)
+
+# FRic ~ poly MAT multilevel elev effect plotting
+pp_check(bayes.FRic.MAT.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FRic.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.FRic.MAT.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.FRic"), alpha = 0.1, aes(x = MAT, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Functional richness", breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(0, 1), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.FRic.MAT.elev, file = "p1.FRic.MAT.elev_post.linpred.re2.rdata")
+
+# CWM.Bl ~ poly MAT multilevel lat effect model
+bayes.CWM.Bl.MAT.lat.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | lat_class),
+                                data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
+                                prior = c(set_prior("normal(0,5)", class = "b")),
+                                warmup = 1000, iter = 3000, chains = 4,
+                                control = list(adapt_delta = 0.99),
+                                seed = 1)
+
+waic(bayes.CWM.Bl.MAT.lat.2re, pointwise = TRUE)
+loo(bayes.CWM.Bl.MAT.lat.2re, pointwise = TRUE)
+summary(bayes.CWM.Bl.MAT.lat.2re)
+prior_summary(bayes.CWM.Bl.MAT.lat.2re)
+coef(bayes.CWM.Bl.MAT.lat.2re)
+fixef(bayes.CWM.Bl.MAT.lat.2re)
+bayes_R2(bayes.CWM.Bl.MAT.lat.2re)
+control_params(bayes.CWM.Bl.MAT.lat.2re)
+
+# CWM.Bl ~ poly MAT multilevel lat effect plotting
+pp_check(bayes.CWM.Bl.MAT.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.CWM.Bl.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.CWM.Bl.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.CWM.Bl.MAT.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "CWM.Bl"), alpha = 0.1, aes(x = MAT, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Community mean body length", breaks = c(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(0, 3.5), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.CWM.Bl.MAT.lat, file = "p1.CWM.Bl.MAT.lat_post.linpred.re2.rdata")
+
+# CWM.Bl ~ poly MAT multilevel elev effect model
+bayes.CWM.Bl.MAT.elev.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | elev_class),
+                                 data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
+                                 prior = c(set_prior("normal(0,5)", class = "b")),
+                                 warmup = 1000, iter = 3000, chains = 4,
+                                 control = list(adapt_delta = 0.99),
+                                 seed = 1)
+
+waic(bayes.CWM.Bl.MAT.elev.2re, pointwise = TRUE)
+loo(bayes.CWM.Bl.MAT.elev.2re, pointwise = TRUE)
+summary(bayes.CWM.Bl.MAT.elev.2re)
+prior_summary(bayes.CWM.Bl.MAT.elev.2re)
+coef(bayes.CWM.Bl.MAT.elev.2re)
+fixef(bayes.CWM.Bl.MAT.elev.2re)
+bayes_R2(bayes.CWM.Bl.MAT.elev.2re)
+control_params(bayes.CWM.Bl.MAT.elev.2re)
+
+# CWM.Bl ~ poly MAT multilevel elev effect plotting
+pp_check(bayes.CWM.Bl.MAT.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.CWM.Bl.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.CWM.Bl.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.CWM.Bl.MAT.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "CWM.Bl"), alpha = 0.1, aes(x = MAT, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Community mean body length", breaks = c(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(0, 3.5), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.CWM.Bl.MAT.elev, file = "p1.CWM.Bl.MAT.elev_post.linpred.re2.rdata")
+
+# PD.obs.z ~ poly MAT multilevel lat effect model
+bayes.pd.obs.z.lat.MAT.lat.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | lat_class),
+                                      data = subset(lmdata, variable == "pd.obs.z.lat"),family = skew_normal(),
+                                      prior = c(set_prior("normal(0,5)", class = "b")),
+                                      warmup = 1000, iter = 3000, chains = 4,
+                                      control = list(adapt_delta = 0.99),
+                                      seed = 1)
+
+waic(bayes.pd.obs.z.lat.MAT.lat.2re, pointwise = TRUE)
+loo(bayes.pd.obs.z.lat.MAT.lat.2re, pointwise = TRUE)
+summary(bayes.pd.obs.z.lat.MAT.lat.2re)
+prior_summary(bayes.pd.obs.z.lat.MAT.lat.2re)
+coef(bayes.pd.obs.z.lat.MAT.lat.2re)
+fixef(bayes.pd.obs.z.lat.MAT.lat.2re)
+bayes_R2(bayes.pd.obs.z.lat.MAT.lat.2re)
+control_params(bayes.pd.obs.z.lat.MAT.lat.2re)
+
+# PD.obs.z ~ poly MAT multilevel lat effect plotting
+pp_check(bayes.pd.obs.z.lat.MAT.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.pd.obs.z.lat.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.obs.z.lat.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.pd.obs.z.lat.MAT.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "pd.obs.z.lat"), alpha = 0.1, aes(x = MAT, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized phylogenetic richness", breaks = c(-5, -3, -1, 1, 3)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(-4.75, 3.361625), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.pd.obs.z.lat.MAT.lat, file = "p1.pd.obs.z.lat.MAT.lat_post.linpred.re2.rdata")
+
+# PD.obs.z ~ poly MAT multilevel elev effect model
+bayes.pd.obs.z.ele.MAT.elev.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | elev_class),
+                                       data = subset(lmdata, variable == "pd.obs.z.ele"),family = skew_normal(),
+                                       prior = c(set_prior("normal(0,5)", class = "b")),
+                                       warmup = 1000, iter = 3000, chains = 4,
+                                       control = list(adapt_delta = 0.99),
+                                       seed = 1)
+
+waic(bayes.pd.obs.z.ele.MAT.elev.2re, pointwise = TRUE)
+loo(bayes.pd.obs.z.ele.MAT.elev.2re, pointwise = TRUE)
+summary(bayes.pd.obs.z.ele.MAT.elev.2re)
+prior_summary(bayes.pd.obs.z.ele.MAT.elev.2re)
+coef(bayes.pd.obs.z.ele.MAT.elev.2re)
+fixef(bayes.pd.obs.z.ele.MAT.elev.2re)
+bayes_R2(bayes.pd.obs.z.ele.MAT.elev.2re)
+control_params(bayes.pd.obs.z.ele.MAT.elev.2re)
+
+# PD.obs.z ~ poly MAT multilevel elev effect plotting
+pp_check(bayes.pd.obs.z.ele.MAT.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.pd.obs.z.ele.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.obs.z.ele.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.pd.obs.z.ele.MAT.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "pd.obs.z.ele"), alpha = 0.1, aes(x = MAT, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized phylogenetic richness", breaks = c(-5, -3, -1, 1, 3)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(-4.75, 3.361625), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.pd.obs.z.ele.MAT.elev, file = "p1.pd.obs.z.ele.MAT.elev_post.linpred.re2.rdata")
+
+# MPD.obs.z ~ poly MAT multilevel lat effect model
+bayes.mpd.obs.z.lat.MAT.lat.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | lat_class),
+                                       data = subset(lmdata, variable == "mpd.obs.z.lat"),family = skew_normal(),
+                                       prior = c(set_prior("normal(0,5)", class = "b")),
+                                       warmup = 1000, iter = 3000, chains = 4,
+                                       control = list(adapt_delta = 0.99),
+                                       seed = 1)
+
+waic(bayes.mpd.obs.z.lat.MAT.lat.2re, pointwise = TRUE)
+loo(bayes.mpd.obs.z.lat.MAT.lat.2re, pointwise = TRUE)
+summary(bayes.mpd.obs.z.lat.MAT.lat.2re)
+prior_summary(bayes.mpd.obs.z.lat.MAT.lat.2re)
+coef(bayes.mpd.obs.z.lat.MAT.lat.2re)
+fixef(bayes.mpd.obs.z.lat.MAT.lat.2re)
+bayes_R2(bayes.mpd.obs.z.lat.MAT.lat.2re)
+control_params(bayes.mpd.obs.z.lat.MAT.lat.2re)
+
+# MPD.obs.z ~ poly MAT multilevel lat effect plotting
+pp_check(bayes.mpd.obs.z.lat.MAT.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.mpd.obs.z.lat.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.mpd.obs.z.lat.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.mpd.obs.z.lat.MAT.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "mpd.obs.z.lat"), alpha = 0.1, aes(x = MAT, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized phylogenetic MPD", breaks = c(-5, -2.5, 0, 2.5)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(-5.255725, 2.434389), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.mpd.obs.z.lat.MAT.lat, file = "p1.mpd.obs.z.lat.MAT.lat_post.linpred.re2.rdata")
+
+# MPD.obs.z ~ poly MAT multilevel elev effect model
+bayes.mpd.obs.z.ele.MAT.elev.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | elev_class),
+                                        data = subset(lmdata, variable == "mpd.obs.z.ele"),family = skew_normal(),
+                                        prior = c(set_prior("normal(0,5)", class = "b")),
+                                        warmup = 1000, iter = 3000, chains = 4,
+                                        control = list(adapt_delta = 0.99),
+                                        seed = 1)
+
+waic(bayes.mpd.obs.z.ele.MAT.elev.2re, pointwise = TRUE)
+loo(bayes.mpd.obs.z.ele.MAT.elev.2re, pointwise = TRUE)
+summary(bayes.mpd.obs.z.ele.MAT.elev.2re)
+prior_summary(bayes.mpd.obs.z.ele.MAT.elev.2re)
+coef(bayes.mpd.obs.z.ele.MAT.elev.2re)
+fixef(bayes.mpd.obs.z.ele.MAT.elev.2re)
+bayes_R2(bayes.mpd.obs.z.ele.MAT.elev.2re)
+control_params(bayes.mpd.obs.z.ele.MAT.elev.2re)
+
+# MPD.obs.z ~ poly MAT multilevel elev effect plotting
+pp_check(bayes.mpd.obs.z.ele.MAT.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.mpd.obs.z.ele.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.mpd.obs.z.ele.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.mpd.obs.z.ele.MAT.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "mpd.obs.z.ele"), alpha = 0.1, aes(x = MAT, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized phylogenetic MPD", breaks = c(-5, -2.5, 0, 2.5)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(-5.255725, 2.434389), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.mpd.obs.z.ele.MAT.elev, file = "p1.mpd.obs.z.ele.MAT.elev_post.linpred.re2.rdata")
+
+# FRic.obs.z ~ poly MAT multilevel lat effect model
+bayes.FRic.obs.z.lat.MAT.lat.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | lat_class),
+                                        data = subset(lmdata, variable == "FRic.obs.z.lat"), family = skew_normal(),
+                                        prior = c(set_prior("normal(0,5)", class = "b")),
+                                        warmup = 1000, iter = 3000, chains = 4,
+                                        control = list(adapt_delta = 0.99),
+                                        seed = 1)
+
+waic(bayes.FRic.obs.z.lat.MAT.lat.2re, pointwise = TRUE)
+loo(bayes.FRic.obs.z.lat.MAT.lat.2re, pointwise = TRUE)
+summary(bayes.FRic.obs.z.lat.MAT.lat.2re)
+prior_summary(bayes.FRic.obs.z.lat.MAT.lat.2re)
+coef(bayes.FRic.obs.z.lat.MAT.lat.2re)
+fixef(bayes.FRic.obs.z.lat.MAT.lat.2re)
+bayes_R2(bayes.FRic.obs.z.lat.MAT.lat.2re)
+control_params(bayes.FRic.obs.z.lat.MAT.lat.2re)
+
+# FRic.obs.z ~ poly MAT multilevel lat effect plotting
+pp_check(bayes.FRic.obs.z.lat.MAT.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FRic.obs.z.lat.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.obs.z.lat.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.FRic.obs.z.lat.MAT.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "FRic.obs.z.lat"), alpha = 0.1, aes(x = MAT, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized functional richness", breaks = c(-4, -2, 0, 2, 4)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(-4.067616, 4), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.FRic.obs.z.lat.MAT.lat, file = "p1.FRic.obs.z.lat.MAT.lat_post.linpred.re2.rdata")
+
+# FRic.obs.z ~ poly MAT multilevel elev effect model
+bayes.FRic.obs.z.ele.MAT.elev.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | elev_class),
+                                         data = subset(lmdata, variable == "FRic.obs.z.ele"), family = skew_normal(),
+                                         prior = c(set_prior("normal(0,5)", class = "b")),
+                                         warmup = 1000, iter = 3000, chains = 4,
+                                         control = list(adapt_delta = 0.99),
+                                         seed = 1)
+
+waic(bayes.FRic.obs.z.ele.MAT.elev.2re, pointwise = TRUE)
+loo(bayes.FRic.obs.z.ele.MAT.elev.2re, pointwise = TRUE)
+summary(bayes.FRic.obs.z.ele.MAT.elev.2re)
+prior_summary(bayes.FRic.obs.z.ele.MAT.elev.2re)
+coef(bayes.FRic.obs.z.ele.MAT.elev.2re)
+fixef(bayes.FRic.obs.z.ele.MAT.elev.2re)
+bayes_R2(bayes.FRic.obs.z.ele.MAT.elev.2re)
+control_params(bayes.FRic.obs.z.ele.MAT.elev.2re)
+
+# FRic.obs.z ~ poly MAT multilevel elev effect plotting
+pp_check(bayes.FRic.obs.z.ele.MAT.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FRic.obs.z.ele.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.obs.z.ele.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.FRic.obs.z.ele.MAT.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "FRic.obs.z.ele"), alpha = 0.1, aes(x = MAT, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized functional richness", breaks = c(-4, -2, 0, 2, 4)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(-4.067616, 4), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.FRic.obs.z.ele.MAT.elev, file = "p1.FRic.obs.z.ele.MAT.elev_post.linpred.re2.rdata")
+
+# FDis.obs.z ~ poly MAT multilevel lat effect model
+bayes.FDis.obs.z.lat.MAT.lat.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | lat_class),
+                                        data = subset(lmdata, variable == "FDis.obs.z.lat"), family = skew_normal(),
+                                        prior = c(set_prior("normal(0,5)", class = "b")),
+                                        warmup = 1000, iter = 3000, chains = 4,
+                                        control = list(adapt_delta = 0.99),
+                                        seed = 1)
+
+waic(bayes.FDis.obs.z.lat.MAT.lat.2re, pointwise = TRUE)
+loo(bayes.FDis.obs.z.lat.MAT.lat.2re, pointwise = TRUE)
+summary(bayes.FDis.obs.z.lat.MAT.lat.2re)
+prior_summary(bayes.FDis.obs.z.lat.MAT.lat.2re)
+coef(bayes.FDis.obs.z.lat.MAT.lat.2re)
+fixef(bayes.FDis.obs.z.lat.MAT.lat.2re)
+bayes_R2(bayes.FDis.obs.z.lat.MAT.lat.2re)
+control_params(bayes.FDis.obs.z.lat.MAT.lat.2re)
+
+# FDis.obs.z ~ poly MAT multilevel lat effect plotting
+pp_check(bayes.FDis.obs.z.lat.MAT.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FDis.obs.z.lat.MAT.lat.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FDis.obs.z.lat.MAT.lat.2re, terms = c("MAT.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.FDis.obs.z.lat.MAT.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "FDis.obs.z.lat"), alpha = 0.1, aes(x = MAT, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized functional dispersion", breaks = c(-3, -1.5, 0, 1.5, 3)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(-3.079376, 2.948407), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.FDis.obs.z.lat.MAT.lat, file = "p1.FDis.obs.z.lat.MAT.lat_post.linpred.re2.rdata")
+
+# FDis.obs.z ~ poly MAT multilevel elev effect model
+bayes.FDis.obs.z.ele.MAT.elev.2re <- brm(formula = value ~ poly(MAT.scale, 2, raw = FALSE) + (1 + poly(MAT.scale, 2, raw = FALSE) | elev_class),
+                                         data = subset(lmdata, variable == "FDis.obs.z.ele"), family = skew_normal(),
+                                         prior = c(set_prior("normal(0,5)", class = "b")),
+                                         warmup = 1000, iter = 3000, chains = 4,
+                                         control = list(adapt_delta = 0.99),
+                                         seed = 1)
+
+waic(bayes.FDis.obs.z.ele.MAT.elev.2re, pointwise = TRUE)
+loo(bayes.FDis.obs.z.ele.MAT.elev.2re, pointwise = TRUE)
+summary(bayes.FDis.obs.z.ele.MAT.elev.2re)
+prior_summary(bayes.FDis.obs.z.ele.MAT.elev.2re)
+coef(bayes.FDis.obs.z.ele.MAT.elev.2re)
+fixef(bayes.FDis.obs.z.ele.MAT.elev.2re)
+bayes_R2(bayes.FDis.obs.z.ele.MAT.elev.2re)
+control_params(bayes.FDis.obs.z.ele.MAT.elev.2re)
+
+# FDis.obs.z ~ poly MAT multilevel elev effect plotting
+pp_check(bayes.FDis.obs.z.ele.MAT.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FDis.obs.z.ele.MAT.elev.2re, terms = c("MAT.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FDis.obs.z.ele.MAT.elev.2re, terms = c("MAT.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+prb$x <- prb$x * sd(lmdata$MAT) + mean(lmdata$MAT) 
+
+(p1.FDis.obs.z.ele.MAT.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "FDis.obs.z.ele"), alpha = 0.1, aes(x = MAT, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized functional dispersion", breaks = c(-3, -1.5, 0, 1.5, 3)) +
+    scale_x_continuous("Mean annual temperature (°C)", breaks = c(-8, -4, 0, 4, 8, 12)) +
+    coord_cartesian(ylim = c(-3.079376, 2.948407), xlim = c(-7.859615, 11.5)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.FDis.obs.z.ele.MAT.elev, file = "p1.FDis.obs.z.ele.MAT.elev_post.linpred.re2.rdata")
+
+
+## Model mean temperature difference relationships to other diversity metrics
+
+# PD ~ poly TD multilevel lat effect model
+bayes.pd.TD.lat.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | lat_class),
+                           data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
+                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           warmup = 1000, iter = 3000, chains = 4,
+                           control = list(adapt_delta = 0.99),
+                           seed = 1)
+
+waic(bayes.pd.TD.lat.2re, pointwise = TRUE)
+loo(bayes.pd.TD.lat.2re, pointwise = TRUE)
+summary(bayes.pd.TD.lat.2re)
+prior_summary(bayes.pd.TD.lat.2re)
+coef(bayes.pd.TD.lat.2re)
+fixef(bayes.pd.TD.lat.2re)
+bayes_R2(bayes.pd.TD.lat.2re)
+control_params(bayes.pd.TD.lat.2re)
+
+# PD ~ poly TD multilevel lat effect plotting
+pp_check(bayes.pd.TD.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.pd.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.pd.TD.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.PD"), alpha = 0.1, aes(x = TD, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Phylogenetic richness", breaks = c(0, 160, 320, 480, 640)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(0, 647.1955), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.pd.TD.lat, file = "p1.pd.TD.lat_post.linpred.re2.rdata")
+
+# PD ~ poly TD multilevel elev effect model
+bayes.pd.TD.elev.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | elev_class),
+                            data = subset(lmdata, variable == "Glob.PD"), family = Gamma(link = "log"),
+                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            warmup = 1000, iter = 3000, chains = 4,
+                            control = list(adapt_delta = 0.99),
+                            seed = 1)
+
+waic(bayes.pd.TD.elev.2re, pointwise = TRUE)
+loo(bayes.pd.TD.elev.2re, pointwise = TRUE)
+summary(bayes.pd.TD.elev.2re)
+prior_summary(bayes.pd.TD.elev.2re)
+coef(bayes.pd.TD.elev.2re)
+fixef(bayes.pd.TD.elev.2re)
+bayes_R2(bayes.pd.TD.elev.2re)
+control_params(bayes.pd.TD.elev.2re)
+
+# PD ~ poly TD multilevel elev effect plotting
+pp_check(bayes.pd.TD.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.pd.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.pd.TD.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.PD"), alpha = 0.1, aes(x = TD, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Phylogenetic richness", breaks = c(0, 160, 320, 480, 640)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(0, 647.1955), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.pd.TD.elev, file = "p1.pd.TD.elev_post.linpred.re2.rdata")
+
+# FRic ~ poly TD multilevel lat effect model
+mix <- mixture(Beta, Beta)
+bayes.FRic.TD.lat.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | lat_class),
+                             data = subset(lmdata, variable == "Glob.FRic"), family = mix,
+                             prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
+                                       prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                             warmup = 1000, iter = 9000, chains = 4, inits = 0,
+                             control = list(adapt_delta = 0.99, max_treedepth = 15),
+                             seed = 1)
+
+waic(bayes.FRic.TD.lat.2re, pointwise = TRUE)
+loo(bayes.FRic.TD.lat.2re, pointwise = TRUE)
+summary(bayes.FRic.TD.lat.2re)
+prior_summary(bayes.FRic.TD.lat.2re)
+coef(bayes.FRic.TD.lat.2re)
+fixef(bayes.FRic.TD.lat.2re)
+bayes_R2(bayes.FRic.TD.lat.2re)
+control_params(bayes.FRic.TD.lat.2re)
+
+# FRic ~ poly TD multilevel lat effect plotting
+pp_check(bayes.FRic.TD.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FRic.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.FRic.TD.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.FRic"), alpha = 0.1, aes(x = TD, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Functional richness", breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(0, 1), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.FRic.TD.lat, file = "p1.FRic.TD.lat_post.linpred.re2.rdata")
+
+# FRic ~ poly TD multilevel elev effect model
+mix <- mixture(Beta, Beta)
+bayes.FRic.TD.elev.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | elev_class),
+                              data = subset(lmdata, variable == "Glob.FRic"), family = mix,
+                              prior = c(prior("normal(0,5)", class = "b", dpar = mu1), prior("normal(0,5)", class = "b", dpar = mu2), 
+                                        prior("student_t(3,-0.5,0.2)", class = "Intercept", dpar = mu1), prior("student_t(3,0.5,0.2)", class = "Intercept", dpar = mu2)),
+                              warmup = 1000, iter = 9000, chains = 4, inits = 0,
+                              control = list(adapt_delta = 0.99, max_treedepth = 15),
+                              seed = 1)
+
+waic(bayes.FRic.TD.elev.2re, pointwise = TRUE)
+loo(bayes.FRic.TD.elev.2re, pointwise = TRUE)
+summary(bayes.FRic.TD.elev.2re)
+prior_summary(bayes.FRic.TD.elev.2re)
+coef(bayes.FRic.TD.elev.2re)
+fixef(bayes.FRic.TD.elev.2re)
+bayes_R2(bayes.FRic.TD.elev.2re)
+control_params(bayes.FRic.TD.elev.2re)
+
+# FRic ~ poly TD multilevel elev effect plotting
+pp_check(bayes.FRic.TD.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FRic.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.FRic.TD.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "Glob.FRic"), alpha = 0.1, aes(x = TD, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Functional richness", breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(0, 1), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.FRic.TD.elev, file = "p1.FRic.TD.elev_post.linpred.re2.rdata")
+
+# CWM.Bl ~ poly TD multilevel lat effect model
+bayes.CWM.Bl.TD.lat.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | lat_class),
+                           data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
+                           prior = c(set_prior("normal(0,5)", class = "b")),
+                           warmup = 1000, iter = 3000, chains = 4,
+                           control = list(adapt_delta = 0.99),
+                           seed = 1)
+
+waic(bayes.CWM.Bl.TD.lat.2re, pointwise = TRUE)
+loo(bayes.CWM.Bl.TD.lat.2re, pointwise = TRUE)
+summary(bayes.CWM.Bl.TD.lat.2re)
+prior_summary(bayes.CWM.Bl.TD.lat.2re)
+coef(bayes.CWM.Bl.TD.lat.2re)
+fixef(bayes.CWM.Bl.TD.lat.2re)
+bayes_R2(bayes.CWM.Bl.TD.lat.2re)
+control_params(bayes.CWM.Bl.TD.lat.2re)
+
+# CWM.Bl ~ poly TD multilevel lat effect plotting
+pp_check(bayes.CWM.Bl.TD.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.CWM.Bl.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.CWM.Bl.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.CWM.Bl.TD.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "CWM.Bl"), alpha = 0.1, aes(x = TD, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Community mean body length", breaks = c(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(0, 3.5), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.CWM.Bl.TD.lat, file = "p1.CWM.Bl.TD.lat_post.linpred.re2.rdata")
+
+# CWM.Bl ~ poly TD multilevel elev effect model
+bayes.CWM.Bl.TD.elev.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | elev_class),
+                            data = subset(lmdata, variable == "CWM.Bl"), family = Gamma(link = "log"),
+                            prior = c(set_prior("normal(0,5)", class = "b")),
+                            warmup = 1000, iter = 3000, chains = 4,
+                            control = list(adapt_delta = 0.99),
+                            seed = 1)
+
+waic(bayes.CWM.Bl.TD.elev.2re, pointwise = TRUE)
+loo(bayes.CWM.Bl.TD.elev.2re, pointwise = TRUE)
+summary(bayes.CWM.Bl.TD.elev.2re)
+prior_summary(bayes.CWM.Bl.TD.elev.2re)
+coef(bayes.CWM.Bl.TD.elev.2re)
+fixef(bayes.CWM.Bl.TD.elev.2re)
+bayes_R2(bayes.CWM.Bl.TD.elev.2re)
+control_params(bayes.CWM.Bl.TD.elev.2re)
+
+# CWM.Bl ~ poly TD multilevel elev effect plotting
+pp_check(bayes.CWM.Bl.TD.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.CWM.Bl.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.CWM.Bl.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.CWM.Bl.TD.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "CWM.Bl"), alpha = 0.1, aes(x = TD, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Community mean body length", breaks = c(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(0, 3.5), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.CWM.Bl.TD.elev, file = "p1.CWM.Bl.TD.elev_post.linpred.re2.rdata")
+
+# PD.obs.z ~ poly TD multilevel lat effect model
+bayes.pd.obs.z.lat.TD.lat.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | lat_class),
+                               data = subset(lmdata, variable == "pd.obs.z.lat"),family = skew_normal(),
+                               prior = c(set_prior("normal(0,5)", class = "b")),
+                               warmup = 1000, iter = 3000, chains = 4,
+                               control = list(adapt_delta = 0.99),
+                               seed = 1)
+
+waic(bayes.pd.obs.z.lat.TD.lat.2re, pointwise = TRUE)
+loo(bayes.pd.obs.z.lat.TD.lat.2re, pointwise = TRUE)
+summary(bayes.pd.obs.z.lat.TD.lat.2re)
+prior_summary(bayes.pd.obs.z.lat.TD.lat.2re)
+coef(bayes.pd.obs.z.lat.TD.lat.2re)
+fixef(bayes.pd.obs.z.lat.TD.lat.2re)
+bayes_R2(bayes.pd.obs.z.lat.TD.lat.2re)
+control_params(bayes.pd.obs.z.lat.TD.lat.2re)
+
+# PD.obs.z ~ poly TD multilevel lat effect plotting
+pp_check(bayes.pd.obs.z.lat.TD.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.pd.obs.z.lat.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.obs.z.lat.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.pd.obs.z.lat.TD.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "pd.obs.z.lat"), alpha = 0.1, aes(x = TD, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized phylogenetic richness", breaks = c(-5, -3, -1, 1, 3)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(-4.75, 3.361625), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.pd.obs.z.lat.TD.lat, file = "p1.pd.obs.z.lat.TD.lat_post.linpred.re2.rdata")
+
+# PD.obs.z ~ poly TD multilevel elev effect model
+bayes.pd.obs.z.ele.TD.elev.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | elev_class),
+                                data = subset(lmdata, variable == "pd.obs.z.ele"),family = skew_normal(),
+                                prior = c(set_prior("normal(0,5)", class = "b")),
+                                warmup = 1000, iter = 3000, chains = 4,
+                                control = list(adapt_delta = 0.99),
+                                seed = 1)
+
+waic(bayes.pd.obs.z.ele.TD.elev.2re, pointwise = TRUE)
+loo(bayes.pd.obs.z.ele.TD.elev.2re, pointwise = TRUE)
+summary(bayes.pd.obs.z.ele.TD.elev.2re)
+prior_summary(bayes.pd.obs.z.ele.TD.elev.2re)
+coef(bayes.pd.obs.z.ele.TD.elev.2re)
+fixef(bayes.pd.obs.z.ele.TD.elev.2re)
+bayes_R2(bayes.pd.obs.z.ele.TD.elev.2re)
+control_params(bayes.pd.obs.z.ele.TD.elev.2re)
+
+# PD.obs.z ~ poly TD multilevel elev effect plotting
+pp_check(bayes.pd.obs.z.ele.TD.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.pd.obs.z.ele.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.pd.obs.z.ele.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.pd.obs.z.ele.TD.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "pd.obs.z.ele"), alpha = 0.1, aes(x = TD, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized phylogenetic richness", breaks = c(-5, -3, -1, 1, 3)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(-4.75, 3.361625), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.pd.obs.z.ele.TD.elev, file = "p1.pd.obs.z.ele.TD.elev_post.linpred.re2.rdata")
+
+# MPD.obs.z ~ poly TD multilevel lat effect model
+bayes.mpd.obs.z.lat.TD.lat.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | lat_class),
+                                      data = subset(lmdata, variable == "mpd.obs.z.lat"),family = skew_normal(),
+                                      prior = c(set_prior("normal(0,5)", class = "b")),
+                                      warmup = 1000, iter = 3000, chains = 4,
+                                      control = list(adapt_delta = 0.99),
+                                      seed = 1)
+
+waic(bayes.mpd.obs.z.lat.TD.lat.2re, pointwise = TRUE)
+loo(bayes.mpd.obs.z.lat.TD.lat.2re, pointwise = TRUE)
+summary(bayes.mpd.obs.z.lat.TD.lat.2re)
+prior_summary(bayes.mpd.obs.z.lat.TD.lat.2re)
+coef(bayes.mpd.obs.z.lat.TD.lat.2re)
+fixef(bayes.mpd.obs.z.lat.TD.lat.2re)
+bayes_R2(bayes.mpd.obs.z.lat.TD.lat.2re)
+control_params(bayes.mpd.obs.z.lat.TD.lat.2re)
+
+# MPD.obs.z ~ poly TD multilevel lat effect plotting
+pp_check(bayes.mpd.obs.z.lat.TD.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.mpd.obs.z.lat.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.mpd.obs.z.lat.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.mpd.obs.z.lat.TD.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "mpd.obs.z.lat"), alpha = 0.1, aes(x = TD, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized phylogenetic MPD", breaks = c(-5, -2.5, 0, 2.5)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(-5.255725, 2.434389), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.mpd.obs.z.lat.TD.lat, file = "p1.mpd.obs.z.lat.TD.lat_post.linpred.re2.rdata")
+
+# MPD.obs.z ~ poly TD multilevel elev effect model
+bayes.mpd.obs.z.ele.TD.elev.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | elev_class),
+                                       data = subset(lmdata, variable == "mpd.obs.z.ele"),family = skew_normal(),
+                                       prior = c(set_prior("normal(0,5)", class = "b")),
+                                       warmup = 1000, iter = 3000, chains = 4,
+                                       control = list(adapt_delta = 0.99),
+                                       seed = 1)
+
+waic(bayes.mpd.obs.z.ele.TD.elev.2re, pointwise = TRUE)
+loo(bayes.mpd.obs.z.ele.TD.elev.2re, pointwise = TRUE)
+summary(bayes.mpd.obs.z.ele.TD.elev.2re)
+prior_summary(bayes.mpd.obs.z.ele.TD.elev.2re)
+coef(bayes.mpd.obs.z.ele.TD.elev.2re)
+fixef(bayes.mpd.obs.z.ele.TD.elev.2re)
+bayes_R2(bayes.mpd.obs.z.ele.TD.elev.2re)
+control_params(bayes.mpd.obs.z.ele.TD.elev.2re)
+
+# MPD.obs.z ~ poly TD multilevel elev effect plotting
+pp_check(bayes.mpd.obs.z.ele.TD.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.mpd.obs.z.ele.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.mpd.obs.z.ele.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.mpd.obs.z.ele.TD.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "mpd.obs.z.ele"), alpha = 0.1, aes(x = TD, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized phylogenetic MPD", breaks = c(-5, -2.5, 0, 2.5)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(-5.255725, 2.434389), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.mpd.obs.z.ele.TD.elev, file = "p1.mpd.obs.z.ele.TD.elev_post.linpred.re2.rdata")
+
+# FRic.obs.z ~ poly TD multilevel lat effect model
+bayes.FRic.obs.z.lat.TD.lat.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | lat_class),
+                                       data = subset(lmdata, variable == "FRic.obs.z.lat"), family = skew_normal(),
+                                       prior = c(set_prior("normal(0,5)", class = "b")),
+                                       warmup = 1000, iter = 3000, chains = 4,
+                                       control = list(adapt_delta = 0.99),
+                                       seed = 1)
+
+waic(bayes.FRic.obs.z.lat.TD.lat.2re, pointwise = TRUE)
+loo(bayes.FRic.obs.z.lat.TD.lat.2re, pointwise = TRUE)
+summary(bayes.FRic.obs.z.lat.TD.lat.2re)
+prior_summary(bayes.FRic.obs.z.lat.TD.lat.2re)
+coef(bayes.FRic.obs.z.lat.TD.lat.2re)
+fixef(bayes.FRic.obs.z.lat.TD.lat.2re)
+bayes_R2(bayes.FRic.obs.z.lat.TD.lat.2re)
+control_params(bayes.FRic.obs.z.lat.TD.lat.2re)
+
+# FRic.obs.z ~ poly TD multilevel lat effect plotting
+pp_check(bayes.FRic.obs.z.lat.TD.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FRic.obs.z.lat.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.obs.z.lat.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.FRic.obs.z.lat.TD.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "FRic.obs.z.lat"), alpha = 0.1, aes(x = TD, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized functional richness", breaks = c(-4, -2, 0, 2, 4)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(-4.067616, 4), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.FRic.obs.z.lat.TD.lat, file = "p1.FRic.obs.z.lat.TD.lat_post.linpred.re2.rdata")
+
+# FRic.obs.z ~ poly TD multilevel elev effect model
+bayes.FRic.obs.z.ele.TD.elev.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | elev_class),
+                                        data = subset(lmdata, variable == "FRic.obs.z.ele"), family = skew_normal(),
+                                        prior = c(set_prior("normal(0,5)", class = "b")),
+                                        warmup = 1000, iter = 3000, chains = 4,
+                                        control = list(adapt_delta = 0.99),
+                                        seed = 1)
+
+waic(bayes.FRic.obs.z.ele.TD.elev.2re, pointwise = TRUE)
+loo(bayes.FRic.obs.z.ele.TD.elev.2re, pointwise = TRUE)
+summary(bayes.FRic.obs.z.ele.TD.elev.2re)
+prior_summary(bayes.FRic.obs.z.ele.TD.elev.2re)
+coef(bayes.FRic.obs.z.ele.TD.elev.2re)
+fixef(bayes.FRic.obs.z.ele.TD.elev.2re)
+bayes_R2(bayes.FRic.obs.z.ele.TD.elev.2re)
+control_params(bayes.FRic.obs.z.ele.TD.elev.2re)
+
+# FRic.obs.z ~ poly TD multilevel elev effect plotting
+pp_check(bayes.FRic.obs.z.ele.TD.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FRic.obs.z.ele.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FRic.obs.z.ele.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.FRic.obs.z.ele.TD.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "FRic.obs.z.ele"), alpha = 0.1, aes(x = TD, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized functional richness", breaks = c(-4, -2, 0, 2, 4)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(-4.067616, 4), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.FRic.obs.z.ele.TD.elev, file = "p1.FRic.obs.z.ele.TD.elev_post.linpred.re2.rdata")
+
+# FDis.obs.z ~ poly TD multilevel lat effect model
+bayes.FDis.obs.z.lat.TD.lat.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | lat_class),
+                                       data = subset(lmdata, variable == "FDis.obs.z.lat"), family = skew_normal(),
+                                       prior = c(set_prior("normal(0,5)", class = "b")),
+                                       warmup = 1000, iter = 3000, chains = 4,
+                                       control = list(adapt_delta = 0.99),
+                                       seed = 1)
+
+waic(bayes.FDis.obs.z.lat.TD.lat.2re, pointwise = TRUE)
+loo(bayes.FDis.obs.z.lat.TD.lat.2re, pointwise = TRUE)
+summary(bayes.FDis.obs.z.lat.TD.lat.2re)
+prior_summary(bayes.FDis.obs.z.lat.TD.lat.2re)
+coef(bayes.FDis.obs.z.lat.TD.lat.2re)
+fixef(bayes.FDis.obs.z.lat.TD.lat.2re)
+bayes_R2(bayes.FDis.obs.z.lat.TD.lat.2re)
+control_params(bayes.FDis.obs.z.lat.TD.lat.2re)
+
+# FDis.obs.z ~ poly TD multilevel lat effect plotting
+pp_check(bayes.FDis.obs.z.lat.TD.lat.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FDis.obs.z.lat.TD.lat.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FDis.obs.z.lat.TD.lat.2re, terms = c("TD.scale [all]", "lat_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.FDis.obs.z.lat.TD.lat <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "FDis.obs.z.lat"), alpha = 0.1, aes(x = TD, y = value, colour = lat_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized functional dispersion", breaks = c(-3, -1.5, 0, 1.5, 3)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(-3.079376, 2.948407), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Latitude", values = a60505_6e068f))
+
+save(p1.FDis.obs.z.lat.TD.lat, file = "p1.FDis.obs.z.lat.TD.lat_post.linpred.re2.rdata")
+
+# FDis.obs.z ~ poly TD multilevel elev effect model
+bayes.FDis.obs.z.ele.TD.elev.2re <- brm(formula = value ~ poly(TD.scale, 2, raw = FALSE) + (1 + poly(TD.scale, 2, raw = FALSE) | elev_class),
+                                        data = subset(lmdata, variable == "FDis.obs.z.ele"), family = skew_normal(),
+                                        prior = c(set_prior("normal(0,5)", class = "b")),
+                                        warmup = 1000, iter = 3000, chains = 4,
+                                        control = list(adapt_delta = 0.99),
+                                        seed = 1)
+
+waic(bayes.FDis.obs.z.ele.TD.elev.2re, pointwise = TRUE)
+loo(bayes.FDis.obs.z.ele.TD.elev.2re, pointwise = TRUE)
+summary(bayes.FDis.obs.z.ele.TD.elev.2re)
+prior_summary(bayes.FDis.obs.z.ele.TD.elev.2re)
+coef(bayes.FDis.obs.z.ele.TD.elev.2re)
+fixef(bayes.FDis.obs.z.ele.TD.elev.2re)
+bayes_R2(bayes.FDis.obs.z.ele.TD.elev.2re)
+control_params(bayes.FDis.obs.z.ele.TD.elev.2re)
+
+# FDis.obs.z ~ poly TD multilevel elev effect plotting
+pp_check(bayes.FDis.obs.z.ele.TD.elev.2re, plotfun = "dens_overlay", nsamples = 100)
+
+pra <- ggpredict(bayes.FDis.obs.z.ele.TD.elev.2re, terms = c("TD.scale [all]"), type = "re", ppd = FALSE)
+prb <- ggpredict(bayes.FDis.obs.z.ele.TD.elev.2re, terms = c("TD.scale [all]", "elev_class"), type = "re", ppd = FALSE)
+
+raw_data <- attr(prb, "rawdata", exact = TRUE)
+!is.null(raw_data)
+
+ranges <- lapply(split(raw_data, raw_data$group), function(i) round(range(i$x, na.rm = TRUE), 3))
+for (i in names(ranges)) {
+  remove <- prb$group == i & prb$x < ranges[[i]][1]
+  prb$x[remove] <- NA
+  remove <- prb$group == i & prb$x > ranges[[i]][2]
+  prb$x[remove] <- NA
+}
+
+pra$x <- pra$x * sd(lmdata$TD) + mean(lmdata$TD) 
+prb$x <- prb$x * sd(lmdata$TD) + mean(lmdata$TD) 
+
+(p1.FDis.obs.z.ele.TD.elev <- ggplot() +
+    geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
+    geom_point(data = subset(lmdata, variable == "FDis.obs.z.ele"), alpha = 0.1, aes(x = TD, y = value, colour = elev_class)) +
+    geom_line(data = prb, aes(x, predicted, colour = group)) +
+    geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
+    scale_y_continuous("Standardized functional dispersion", breaks = c(-3, -1.5, 0, 1.5, 3)) +
+    scale_x_continuous("Temperature difference (°C)", breaks = c(12, 22, 32, 42)) +
+    coord_cartesian(ylim = c(-3.079376, 2.948407), xlim = c(11.95769, 42.71731)) +
+    workingtheme +
+    scale_colour_manual(name = "Elevation", values = a60505_6e068f))
+
+save(p1.FDis.obs.z.ele.TD.elev, file = "p1.FDis.obs.z.ele.TD.elev_post.linpred.re2.rdata")
+
+# Plotting mean annual temperature relationships to other diversity metrics (SI in manuscript)
+# requires some minor revisions in a graphics editor
+load("p1.alpha.MAT.elev_post.linpred.re2.rdata")
+load("p1.alpha.MAT.lat_post.linpred.re2.rdata")
+load("p1.pd.MAT.elev_post.linpred.re2.rdata")
+load("p1.pd.MAT.lat_post.linpred.re2.rdata")
+load("p1.mpd.obs.z.ele.MAT.elev_post.linpred.re2.rdata")
+load("p1.mpd.obs.z.lat.MAT.lat_post.linpred.re2.rdata")
+load("p1.FRic.MAT.elev_post.linpred.re2.rdata")
+load("p1.FRic.MAT.lat_post.linpred.re2.rdata")
+load("p1.FDis.obs.z.ele.MAT.elev_post.linpred.re2.rdata")
+load("p1.FDis.obs.z.lat.MAT.lat_post.linpred.re2.rdata")
+load("p1.CWM.Bl.MAT.elev_post.linpred.re2.rdata")
+load("p1.CWM.Bl.MAT.lat_post.linpred.re2.rdata")
+load("p1.pd.obs.z.ele.MAT.elev_post.linpred.re2.rdata")
+load("p1.pd.obs.z.lat.MAT.lat_post.linpred.re2.rdata")
+load("p1.FRic.obs.z.ele.MAT.elev_post.linpred.re2.rdata")
+load("p1.FRic.obs.z.lat.MAT.lat_post.linpred.re2.rdata")
+
+p1.alpha.MAT.elev <- ggplotGrob(p1.alpha.MAT.elev)
+p1.alpha.MAT.lat <- ggplotGrob(p1.alpha.MAT.lat)
+p1.pd.MAT.elev <- ggplotGrob(p1.pd.MAT.elev)
+p1.pd.MAT.lat <- ggplotGrob(p1.pd.MAT.lat)
+p1.mpd.obs.z.ele.MAT.elev <- ggplotGrob(p1.mpd.obs.z.ele.MAT.elev)
+p1.mpd.obs.z.lat.MAT.lat <- ggplotGrob(p1.mpd.obs.z.lat.MAT.lat)
+p1.FRic.MAT.elev <- ggplotGrob(p1.FRic.MAT.elev)
+p1.FRic.MAT.lat <- ggplotGrob(p1.FRic.MAT.lat)
+p1.FDis.obs.z.ele.MAT.elev <- ggplotGrob(p1.FDis.obs.z.ele.MAT.elev)
+p1.FDis.obs.z.lat.MAT.lat <- ggplotGrob(p1.FDis.obs.z.lat.MAT.lat)
+p1.CWM.Bl.MAT.elev <- ggplotGrob(p1.CWM.Bl.MAT.elev)
+p1.CWM.Bl.MAT.lat <- ggplotGrob(p1.CWM.Bl.MAT.lat)
+p1.pd.obs.z.ele.MAT.elev <- ggplotGrob(p1.pd.obs.z.ele.MAT.elev)
+p1.pd.obs.z.lat.MAT.lat <- ggplotGrob(p1.pd.obs.z.lat.MAT.lat)
+p1.FRic.obs.z.ele.MAT.elev <- ggplotGrob(p1.FRic.obs.z.ele.MAT.elev)
+p1.FRic.obs.z.lat.MAT.lat <- ggplotGrob(p1.FRic.obs.z.lat.MAT.lat)
+
+g11.c1 <- rbind(p1.alpha.MAT.elev,
+                p1.FRic.MAT.elev,
+                p1.pd.MAT.elev,
+                p1.FDis.obs.z.ele.MAT.elev)
+
+g11.c1$widths <- unit.pmax(p1.alpha.MAT.elev$widths,
+                           p1.FRic.MAT.elev$widths,
+                           p1.pd.MAT.elev$widths,
+                           p1.FDis.obs.z.ele.MAT.elev$widths)
+
+g11.c2 <- rbind(p1.CWM.Bl.MAT.elev,
+                p1.FRic.obs.z.ele.MAT.elev,
+                p1.pd.obs.z.ele.MAT.elev,
+                p1.mpd.obs.z.ele.MAT.elev)
+
+g11.c2$widths <- unit.pmax(p1.CWM.Bl.MAT.elev$widths,
+                           p1.FRic.obs.z.ele.MAT.elev$widths,
+                           p1.pd.obs.z.ele.MAT.elev$widths,
+                           p1.mpd.obs.z.ele.MAT.elev$widths)
+
+g11.c3 <- rbind(p1.alpha.MAT.lat,
+                p1.FRic.MAT.lat,
+                p1.pd.MAT.lat,
+                p1.FDis.obs.z.lat.MAT.lat)
+
+g11.c3$widths <- unit.pmax(p1.alpha.MAT.lat$widths,
+                           p1.FRic.MAT.lat$widths,
+                           p1.pd.MAT.lat$widths,
+                           p1.FDis.obs.z.lat.MAT.lat$widths)
+
+g11.c4 <- rbind(p1.CWM.Bl.MAT.lat,
+                p1.FRic.obs.z.lat.MAT.lat,
+                p1.pd.obs.z.lat.MAT.lat,
+                p1.mpd.obs.z.lat.MAT.lat)
+
+g11.c4$widths <- unit.pmax(p1.CWM.Bl.MAT.lat$widths,
+                           p1.FRic.obs.z.lat.MAT.lat$widths,
+                           p1.pd.obs.z.lat.MAT.lat$widths,
+                           p1.mpd.obs.z.lat.MAT.lat$widths)
+
+g11 <- cbind(g11.c1, g11.c2, g11.c3, g11.c4)
+grid.newpage()
+grid.draw(g11)
+
+# Plotting mean temperature difference relationships to other diversity metrics (SI in manuscript)
+# requires some minor revisions in a graphics editor
+load("p1.alpha.TD.elev_post.linpred.re2.rdata")
+load("p1.alpha.TD.lat_post.linpred.re2.rdata")
+load("p1.pd.TD.elev_post.linpred.re2.rdata")
+load("p1.pd.TD.lat_post.linpred.re2.rdata")
+load("p1.mpd.obs.z.ele.TD.elev_post.linpred.re2.rdata")
+load("p1.mpd.obs.z.lat.TD.lat_post.linpred.re2.rdata")
+load("p1.FRic.TD.elev_post.linpred.re2.rdata")
+load("p1.FRic.TD.lat_post.linpred.re2.rdata")
+load("p1.FDis.obs.z.ele.TD.elev_post.linpred.re2.rdata")
+load("p1.FDis.obs.z.lat.TD.lat_post.linpred.re2.rdata")
+load("p1.CWM.Bl.TD.elev_post.linpred.re2.rdata")
+load("p1.CWM.Bl.TD.lat_post.linpred.re2.rdata")
+load("p1.pd.obs.z.ele.TD.elev_post.linpred.re2.rdata")
+load("p1.pd.obs.z.lat.TD.lat_post.linpred.re2.rdata")
+load("p1.FRic.obs.z.ele.TD.elev_post.linpred.re2.rdata")
+load("p1.FRic.obs.z.lat.TD.lat_post.linpred.re2.rdata")
+
+p1.alpha.TD.elev <- ggplotGrob(p1.alpha.TD.elev)
+p1.alpha.TD.lat <- ggplotGrob(p1.alpha.TD.lat)
+p1.pd.TD.elev <- ggplotGrob(p1.pd.TD.elev)
+p1.pd.TD.lat <- ggplotGrob(p1.pd.TD.lat)
+p1.mpd.obs.z.ele.TD.elev <- ggplotGrob(p1.mpd.obs.z.ele.TD.elev)
+p1.mpd.obs.z.lat.TD.lat <- ggplotGrob(p1.mpd.obs.z.lat.TD.lat)
+p1.FRic.TD.elev <- ggplotGrob(p1.FRic.TD.elev)
+p1.FRic.TD.lat <- ggplotGrob(p1.FRic.TD.lat)
+p1.FDis.obs.z.ele.TD.elev <- ggplotGrob(p1.FDis.obs.z.ele.TD.elev)
+p1.FDis.obs.z.lat.TD.lat <- ggplotGrob(p1.FDis.obs.z.lat.TD.lat)
+p1.CWM.Bl.TD.elev <- ggplotGrob(p1.CWM.Bl.TD.elev)
+p1.CWM.Bl.TD.lat <- ggplotGrob(p1.CWM.Bl.TD.lat)
+p1.pd.obs.z.ele.TD.elev <- ggplotGrob(p1.pd.obs.z.ele.TD.elev)
+p1.pd.obs.z.lat.TD.lat <- ggplotGrob(p1.pd.obs.z.lat.TD.lat)
+p1.FRic.obs.z.ele.TD.elev <- ggplotGrob(p1.FRic.obs.z.ele.TD.elev)
+p1.FRic.obs.z.lat.TD.lat <- ggplotGrob(p1.FRic.obs.z.lat.TD.lat)
+
+g12.c1 <- rbind(p1.alpha.TD.elev,
+                p1.FRic.TD.elev,
+                p1.pd.TD.elev,
+                p1.FDis.obs.z.ele.TD.elev)
+
+g12.c1$widths <- unit.pmax(p1.alpha.TD.elev$widths,
+                           p1.FRic.TD.elev$widths,
+                           p1.pd.TD.elev$widths,
+                           p1.FDis.obs.z.ele.TD.elev$widths)
+
+g12.c2 <- rbind(p1.CWM.Bl.TD.elev,
+                p1.FRic.obs.z.ele.TD.elev,
+                p1.pd.obs.z.ele.TD.elev,
+                p1.mpd.obs.z.ele.TD.elev)
+
+g12.c2$widths <- unit.pmax(p1.CWM.Bl.TD.elev$widths,
+                           p1.FRic.obs.z.ele.TD.elev$widths,
+                           p1.pd.obs.z.ele.TD.elev$widths,
+                           p1.mpd.obs.z.ele.TD.elev$widths)
+
+g12.c3 <- rbind(p1.alpha.TD.lat,
+                p1.FRic.TD.lat,
+                p1.pd.TD.lat,
+                p1.FDis.obs.z.lat.TD.lat)
+
+g12.c3$widths <- unit.pmax(p1.alpha.TD.lat$widths,
+                           p1.FRic.TD.lat$widths,
+                           p1.pd.TD.lat$widths,
+                           p1.FDis.obs.z.lat.TD.lat$widths)
+
+g12.c4 <- rbind(p1.CWM.Bl.TD.lat,
+                p1.FRic.obs.z.lat.TD.lat,
+                p1.pd.obs.z.lat.TD.lat,
+                p1.mpd.obs.z.lat.TD.lat)
+
+g12.c4$widths <- unit.pmax(p1.CWM.Bl.TD.lat$widths,
+                           p1.FRic.obs.z.lat.TD.lat$widths,
+                           p1.pd.obs.z.lat.TD.lat$widths,
+                           p1.mpd.obs.z.lat.TD.lat$widths)
+
+g12 <- cbind(g12.c1, g12.c2, g12.c3, g12.c4)
+grid.newpage()
+grid.draw(g12)
 
 ###################################################################################################################
