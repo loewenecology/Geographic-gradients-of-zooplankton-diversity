@@ -1,0 +1,289 @@
+Metric,Climate,Group,Parameter,Class,Estimate,Est.Error,Q2.5,Q97.5
+Species richness,Mean temperature,Elevation,Intercept,36.6-39.3,1.100138,0.14694137,0.8058629,1.378061
+Species richness,Mean temperature,Elevation,Intercept,39.3-41.2,1.465449,0.25655088,0.9569472,1.986009
+Species richness,Mean temperature,Elevation,Intercept,41.2-43.2,1.362239,0.2304795,0.8730207,1.786291
+Species richness,Mean temperature,Elevation,Intercept,43.2-44.6,1.43631,0.18140406,1.0414207,1.760859
+Species richness,Mean temperature,Elevation,Intercept,44.6-46.3,1.409151,0.20293987,0.9997379,1.800503
+Species richness,Mean temperature,Elevation,Intercept,46.3-48.0,1.036511,0.19941347,0.5932258,1.377273
+Species richness,Mean temperature,Elevation,Intercept,48.0-50.0,1.548116,0.07570001,1.3982808,1.696255
+Species richness,Mean temperature,Elevation,Intercept,50.0-52.1,1.74072,0.04041363,1.6588879,1.818514
+Species richness,Mean temperature,Elevation,Intercept,52.1-54.2,1.78854,0.04771348,1.6955014,1.882912
+Species richness,Mean temperature,Elevation,Intercept,54.2-58.1,1.692586,0.11185006,1.4683398,1.910225
+Species richness,Mean temperature,Elevation,Intercept,58.1-62.1,1.73356,0.14717747,1.4391075,2.019787
+Species richness,Mean temperature,Elevation,Intercept,62.1-66.2,1.763742,0.18182177,1.4118967,2.122397
+Species richness,Mean temperature,Elevation,B1,36.6-39.3,14.235597,6.506067,1.877069,27.380737
+Species richness,Mean temperature,Elevation,B1,39.3-41.2,8.441679,8.58452,-9.282677,25.457717
+Species richness,Mean temperature,Elevation,B1,41.2-43.2,11.604149,8.267291,-3.676025,29.213905
+Species richness,Mean temperature,Elevation,B1,43.2-44.6,12.941235,7.560455,-1.018498,28.938724
+Species richness,Mean temperature,Elevation,B1,44.6-46.3,10.057545,7.746481,-5.053292,25.66023
+Species richness,Mean temperature,Elevation,B1,46.3-48.0,24.64418,8.802962,9.881605,44.565897
+Species richness,Mean temperature,Elevation,B1,48.0-50.0,18.929029,4.147604,10.738962,27.084446
+Species richness,Mean temperature,Elevation,B1,50.0-52.1,7.872304,1.34592,5.236567,10.50585
+Species richness,Mean temperature,Elevation,B1,52.1-54.2,16.47862,1.909017,12.754222,20.212215
+Species richness,Mean temperature,Elevation,B1,54.2-58.1,7.722043,5.17201,-2.792017,17.660729
+Species richness,Mean temperature,Elevation,B1,58.1-62.1,2.457436,3.961025,-5.815133,9.870836
+Species richness,Mean temperature,Elevation,B1,62.1-66.2,3.270592,3.820986,-4.623808,10.452245
+Species richness,Mean temperature,Elevation,B2,36.6-39.3,1.729331,4.944316,-7.469029,11.8384749
+Species richness,Mean temperature,Elevation,B2,39.3-41.2,-3.0763882,5.390148,-14.174949,7.6125536
+Species richness,Mean temperature,Elevation,B2,41.2-43.2,-1.0062333,3.327827,-7.885027,5.4734237
+Species richness,Mean temperature,Elevation,B2,43.2-44.6,-3.9383003,3.825057,-12.050251,3.1469445
+Species richness,Mean temperature,Elevation,B2,44.6-46.3,-3.5629488,3.966291,-11.702132,4.1549816
+Species richness,Mean temperature,Elevation,B2,46.3-48.0,-8.4439804,5.156631,-19.832175,0.2816292
+Species richness,Mean temperature,Elevation,B2,48.0-50.0,-3.4579274,2.281099,-7.870695,1.0292052
+Species richness,Mean temperature,Elevation,B2,50.0-52.1,-2.1619191,1.452821,-5.000061,0.6502703
+Species richness,Mean temperature,Elevation,B2,52.1-54.2,-13.6837409,2.25355,-18.098309,-9.2220281
+Species richness,Mean temperature,Elevation,B2,54.2-58.1,-4.8678883,3.911914,-12.985374,2.4697769
+Species richness,Mean temperature,Elevation,B2,58.1-62.1,0.4094144,3.168196,-5.636246,6.7376401
+Species richness,Mean temperature,Elevation,B2,62.1-66.2,-0.9094271,2.259231,-5.501937,3.4365449
+Species richness,Mean temperature,Latitude,Intercept,0-258,1.835928,0.19095703,1.4829993,2.226551
+Species richness,Mean temperature,Latitude,Intercept,258-599,1.721622,0.09291572,1.5425728,1.907121
+Species richness,Mean temperature,Latitude,Intercept,599-856,1.757619,0.06081175,1.6385033,1.874855
+Species richness,Mean temperature,Latitude,Intercept,856-1100,1.788755,0.05184087,1.6866299,1.890979
+Species richness,Mean temperature,Latitude,Intercept,1100-1320,1.978742,0.05203291,1.8764709,2.080503
+Species richness,Mean temperature,Latitude,Intercept,1320-1500,1.828941,0.05236944,1.7213913,1.928887
+Species richness,Mean temperature,Latitude,Intercept,1500-1670,1.863364,0.06953896,1.7286756,1.999145
+Species richness,Mean temperature,Latitude,Intercept,1670-1870,1.565086,0.05689039,1.4542845,1.677572
+Species richness,Mean temperature,Latitude,Intercept,1870-2090,1.445662,0.05724316,1.3300388,1.556195
+Species richness,Mean temperature,Latitude,Intercept,2090-2330,1.449712,0.06398131,1.320161,1.572174
+Species richness,Mean temperature,Latitude,Intercept,2330-2780,1.32698,0.12141427,1.0712463,1.549079
+Species richness,Mean temperature,Latitude,Intercept,2780-3740,1.27099,0.15187498,0.9453884,1.552982
+Species richness,Mean temperature,Latitude,B1,0-258,3.031727,5.15809,-6.8770073,13.7983296
+Species richness,Mean temperature,Latitude,B1,258-599,4.4132929,1.427924,1.6647095,7.3072662
+Species richness,Mean temperature,Latitude,B1,599-856,0.5967692,1.565921,-2.6030973,3.6399949
+Species richness,Mean temperature,Latitude,B1,856-1100,1.1868079,1.715849,-2.143496,4.6184434
+Species richness,Mean temperature,Latitude,B1,1100-1320,-4.2468704,2.13293,-8.508331,-0.1009926
+Species richness,Mean temperature,Latitude,B1,1320-1500,-0.7889029,2.140142,-4.9230863,3.5314253
+Species richness,Mean temperature,Latitude,B1,1500-1670,-7.7698356,2.767757,-13.0665639,-2.3106218
+Species richness,Mean temperature,Latitude,B1,1670-1870,3.9409833,2.069761,-0.1323637,8.0627429
+Species richness,Mean temperature,Latitude,B1,1870-2090,2.690353,1.983137,-1.3069648,6.5135948
+Species richness,Mean temperature,Latitude,B1,2090-2330,5.9779035,2.005684,2.0125206,9.8257752
+Species richness,Mean temperature,Latitude,B1,2330-2780,6.2879504,3.378846,-0.751432,12.3810817
+Species richness,Mean temperature,Latitude,B1,2780-3740,7.4570046,4.997087,-1.6430795,18.1059147
+Species richness,Mean temperature,Latitude,B2,0-258,2.350715,2.550718,-2.8090919,7.2161264
+Species richness,Mean temperature,Latitude,B2,258-599,3.24869,1.404317,0.4988797,5.9722853
+Species richness,Mean temperature,Latitude,B2,599-856,-3.903731,1.790402,-7.4399038,-0.4259887
+Species richness,Mean temperature,Latitude,B2,856-1100,-2.841504,1.625449,-6.0715185,0.2627022
+Species richness,Mean temperature,Latitude,B2,1100-1320,-6.862495,1.692608,-10.2643578,-3.6146038
+Species richness,Mean temperature,Latitude,B2,1320-1500,-7.608035,2.257726,-12.2951814,-3.4597541
+Species richness,Mean temperature,Latitude,B2,1500-1670,8.444934,3.652571,1.1921922,15.5439691
+Species richness,Mean temperature,Latitude,B2,1670-1870,7.170815,3.056403,1.2859741,13.3561195
+Species richness,Mean temperature,Latitude,B2,1870-2090,8.543874,2.760549,3.2107539,13.9722437
+Species richness,Mean temperature,Latitude,B2,2090-2330,6.174244,3.112022,0.1301132,12.2906762
+Species richness,Mean temperature,Latitude,B2,2330-2780,3.264776,5.033764,-6.700497,13.187853
+Species richness,Mean temperature,Latitude,B2,2780-3740,10.700099,5.926078,-0.8031223,22.8104075
+Species richness,Temperature difference,Elevation,Intercept,36.6-39.3,1.512637,0.34863095,0.7902391,2.170893
+Species richness,Temperature difference,Elevation,Intercept,39.3-41.2,1.703748,0.32142646,1.0640922,2.326797
+Species richness,Temperature difference,Elevation,Intercept,41.2-43.2,1.805871,0.30152405,1.1865058,2.379328
+Species richness,Temperature difference,Elevation,Intercept,43.2-44.6,1.72654,0.33362667,1.0566959,2.393814
+Species richness,Temperature difference,Elevation,Intercept,44.6-46.3,1.716501,0.3201088,1.0812983,2.372882
+Species richness,Temperature difference,Elevation,Intercept,46.3-48.0,1.575209,0.29245191,0.9442365,2.108271
+Species richness,Temperature difference,Elevation,Intercept,48.0-50.0,2.400706,0.0867822,2.2305935,2.569451
+Species richness,Temperature difference,Elevation,Intercept,50.0-52.1,2.072128,0.07453103,1.9247621,2.215276
+Species richness,Temperature difference,Elevation,Intercept,52.1-54.2,1.77869,0.0528249,1.6751062,1.88113
+Species richness,Temperature difference,Elevation,Intercept,54.2-58.1,1.716184,0.16527123,1.3788394,2.041415
+Species richness,Temperature difference,Elevation,Intercept,58.1-62.1,1.564849,0.17989128,1.1870985,1.91678
+Species richness,Temperature difference,Elevation,Intercept,62.1-66.2,1.492196,0.22120846,1.0414713,1.915779
+Species richness,Temperature difference,Elevation,B1,36.6-39.3,19.9452246,22.586067,-24.879834,64.803608
+Species richness,Temperature difference,Elevation,B1,39.3-41.2,3.0860634,20.206936,-38.481806,42.535458
+Species richness,Temperature difference,Elevation,B1,41.2-43.2,10.0864174,19.060069,-30.365725,45.874858
+Species richness,Temperature difference,Elevation,B1,43.2-44.6,-8.4238904,21.304915,-50.899711,32.987303
+Species richness,Temperature difference,Elevation,B1,44.6-46.3,-1.9372142,20.013004,-42.303457,37.034502
+Species richness,Temperature difference,Elevation,B1,46.3-48.0,4.4168042,19.216859,-35.853358,39.738887
+Species richness,Temperature difference,Elevation,B1,48.0-50.0,54.8278403,7.185256,40.860553,69.124507
+Species richness,Temperature difference,Elevation,B1,50.0-52.1,56.5650525,7.991318,41.113618,72.201065
+Species richness,Temperature difference,Elevation,B1,52.1-54.2,41.016199,5.774744,29.702093,52.566142
+Species richness,Temperature difference,Elevation,B1,54.2-58.1,6.8289819,10.173251,-13.439062,27.044085
+Species richness,Temperature difference,Elevation,B1,58.1-62.1,1.6616701,3.657758,-5.547278,9.285534
+Species richness,Temperature difference,Elevation,B1,62.1-66.2,-0.6527686,3.916898,-8.593463,7.077422
+Species richness,Temperature difference,Elevation,B2,36.6-39.3,15.6795652,19.50315,-21.898901,54.669319
+Species richness,Temperature difference,Elevation,B2,39.3-41.2,0.9500114,17.178592,-33.579619,34.578542
+Species richness,Temperature difference,Elevation,B2,41.2-43.2,10.9613439,11.325664,-12.146044,33.250096
+Species richness,Temperature difference,Elevation,B2,43.2-44.6,-15.4050097,15.461656,-46.811861,13.719052
+Species richness,Temperature difference,Elevation,B2,44.6-46.3,-7.6273369,14.017748,-36.167102,18.820573
+Species richness,Temperature difference,Elevation,B2,46.3-48.0,3.6173029,13.332763,-23.571965,29.002597
+Species richness,Temperature difference,Elevation,B2,48.0-50.0,38.8287213,5.857813,27.458411,50.316937
+Species richness,Temperature difference,Elevation,B2,50.0-52.1,52.4292311,6.804695,39.154835,65.405784
+Species richness,Temperature difference,Elevation,B2,52.1-54.2,29.8487891,4.413815,21.102052,38.430603
+Species richness,Temperature difference,Elevation,B2,54.2-58.1,1.4699154,11.105719,-20.723391,23.374201
+Species richness,Temperature difference,Elevation,B2,58.1-62.1,0.2810745,2.726981,-5.122137,5.712317
+Species richness,Temperature difference,Elevation,B2,62.1-66.2,1.2038763,2.498528,-3.650544,6.202402
+Species richness,Temperature difference,Latitude,Intercept,0-258,2.106114,0.11145443,1.8839994,2.31802
+Species richness,Temperature difference,Latitude,Intercept,258-599,2.037458,0.0782837,1.8851741,2.191365
+Species richness,Temperature difference,Latitude,Intercept,599-856,1.723386,0.09774394,1.5179922,1.905399
+Species richness,Temperature difference,Latitude,Intercept,856-1100,1.790619,0.05102925,1.6913194,1.889911
+Species richness,Temperature difference,Latitude,Intercept,1100-1320,1.918664,0.04225673,1.8378952,2.002147
+Species richness,Temperature difference,Latitude,Intercept,1320-1500,1.862891,0.04581182,1.7717803,1.950364
+Species richness,Temperature difference,Latitude,Intercept,1500-1670,1.741843,0.05218776,1.6453705,1.8501
+Species richness,Temperature difference,Latitude,Intercept,1670-1870,1.466771,0.05265808,1.3609533,1.568025
+Species richness,Temperature difference,Latitude,Intercept,1870-2090,1.308937,0.06592547,1.176832,1.432681
+Species richness,Temperature difference,Latitude,Intercept,2090-2330,1.341587,0.08038887,1.1861756,1.505547
+Species richness,Temperature difference,Latitude,Intercept,2330-2780,1.146337,0.1181301,0.9112937,1.377436
+Species richness,Temperature difference,Latitude,Intercept,2780-3740,1.059307,0.17114795,0.7116134,1.382764
+Species richness,Temperature difference,Latitude,B1,0-258,-2.42844181,2.870917,-8.163634,3.4884985
+Species richness,Temperature difference,Latitude,B1,258-599,-4.05875656,2.024033,-8.151229,-0.3115778
+Species richness,Temperature difference,Latitude,B1,599-856,0.04906115,2.136974,-3.852744,4.4606639
+Species richness,Temperature difference,Latitude,B1,856-1100,-1.30107946,1.466992,-4.284514,1.5289745
+Species richness,Temperature difference,Latitude,B1,1100-1320,2.64366039,2.742908,-2.427834,8.1250633
+Species richness,Temperature difference,Latitude,B1,1320-1500,0.64934906,2.658651,-5.017406,5.5594731
+Species richness,Temperature difference,Latitude,B1,1500-1670,2.53863088,3.299258,-2.326236,10.4526556
+Species richness,Temperature difference,Latitude,B1,1670-1870,-1.11828707,2.654095,-6.696841,3.7884471
+Species richness,Temperature difference,Latitude,B1,1870-2090,0.58040793,2.950808,-5.131614,6.5238035
+Species richness,Temperature difference,Latitude,B1,2090-2330,-1.17456185,3.085565,-7.165376,5.2888594
+Species richness,Temperature difference,Latitude,B1,2330-2780,-0.10002324,3.686311,-7.324692,7.7299841
+Species richness,Temperature difference,Latitude,B1,2780-3740,1.0791998,4.350604,-7.565431,10.0974982
+Species richness,Temperature difference,Latitude,B2,0-258,-1.4665394,2.219378,-5.793441,2.9516428
+Species richness,Temperature difference,Latitude,B2,258-599,0.3260455,1.552733,-2.695343,3.3702943
+Species richness,Temperature difference,Latitude,B2,599-856,-2.454275,1.610945,-5.567207,0.6521502
+Species richness,Temperature difference,Latitude,B2,856-1100,-2.840292,2.086363,-7.070928,1.1915356
+Species richness,Temperature difference,Latitude,B2,1100-1320,-10.8019496,3.179183,-17.117486,-4.7112179
+Species richness,Temperature difference,Latitude,B2,1320-1500,-9.544135,3.223152,-16.49332,-3.9247705
+Species richness,Temperature difference,Latitude,B2,1500-1670,-5.6824452,3.398661,-11.544134,2.1638928
+Species richness,Temperature difference,Latitude,B2,1670-1870,-1.9634852,2.805398,-7.639304,3.4670446
+Species richness,Temperature difference,Latitude,B2,1870-2090,-3.7749169,3.38789,-10.782992,2.6655427
+Species richness,Temperature difference,Latitude,B2,2090-2330,1.2033005,3.762819,-5.511715,9.2297975
+Species richness,Temperature difference,Latitude,B2,2330-2780,-0.2797118,4.454825,-8.653917,9.0428876
+Species richness,Temperature difference,Latitude,B2,2780-3740,-2.3197895,5.902828,-13.508118,10.4150337
+Mean temperature,Elevation,Elevation,Intercept,36.6-39.3,1.8396599,0.19146935,1.4182814,2.1719031
+Mean temperature,Elevation,Elevation,Intercept,39.3-41.2,1.645401,0.17090965,1.2691584,1.9415584
+Mean temperature,Elevation,Elevation,Intercept,41.2-43.2,1.3851506,0.05746856,1.2697933,1.4987764
+Mean temperature,Elevation,Elevation,Intercept,43.2-44.6,0.9155718,0.06914664,0.7875429,1.0612023
+Mean temperature,Elevation,Elevation,Intercept,44.6-46.3,0.6924165,0.0981523,0.4955154,0.8814862
+Mean temperature,Elevation,Elevation,Intercept,46.3-48.0,0.5496611,0.02539171,0.4999569,0.599206
+Mean temperature,Elevation,Elevation,Intercept,48.0-50.0,0.2883057,0.0157114,0.257631,0.3199954
+Mean temperature,Elevation,Elevation,Intercept,50.0-52.1,-0.3411545,0.01414102,-0.3690601,-0.3130739
+Mean temperature,Elevation,Elevation,Intercept,52.1-54.2,-0.4708611,0.01461563,-0.4994335,-0.4420824
+Mean temperature,Elevation,Elevation,Intercept,54.2-58.1,-1.3850348,0.23478324,-1.8872136,-0.991889
+Mean temperature,Elevation,Elevation,Intercept,58.1-62.1,-2.1687886,0.43433775,-3.0323612,-1.2008846
+Mean temperature,Elevation,Elevation,Intercept,62.1-66.2,-3.7204022,0.57637619,-4.7722886,-2.7714067
+Mean temperature,Elevation,Elevation,B1,36.6-39.3,-21.8915,5.5777501,-31.20173,-9.591646
+Mean temperature,Elevation,Elevation,B1,39.3-41.2,-20.49479,6.168133,-30.92881,-6.800152
+Mean temperature,Elevation,Elevation,B1,41.2-43.2,-32.27103,2.9078866,-37.98157,-26.726734
+Mean temperature,Elevation,Elevation,B1,43.2-44.6,-29.28424,1.9494835,-33.12139,-25.537419
+Mean temperature,Elevation,Elevation,B1,44.6-46.3,-27.14156,3.4955684,-34.18574,-20.372095
+Mean temperature,Elevation,Elevation,B1,46.3-48.0,-24.99798,1.0944922,-27.13763,-22.835545
+Mean temperature,Elevation,Elevation,B1,48.0-50.0,-26.59793,0.7643185,-28.07843,-25.115219
+Mean temperature,Elevation,Elevation,B1,50.0-52.1,-28.69929,0.4632369,-29.5876,-27.767337
+Mean temperature,Elevation,Elevation,B1,52.1-54.2,-21.65813,0.5527007,-22.76766,-20.575477
+Mean temperature,Elevation,Elevation,B1,54.2-58.1,-35.03294,7.8385645,-52.01309,-22.142262
+Mean temperature,Elevation,Elevation,B1,58.1-62.1,-25.76755,14.4022989,-54.55896,6.473025
+Mean temperature,Elevation,Elevation,B1,62.1-66.2,-56.95304,20.9851551,-95.11023,-22.534984
+Mean temperature,Elevation,Elevation,B2,36.6-39.3,-2.2754662,2.0039724,-6.720959,1.088106
+Mean temperature,Elevation,Elevation,B2,39.3-41.2,2.6809496,4.3491158,-6.511193,10.729619
+Mean temperature,Elevation,Elevation,B2,41.2-43.2,-6.1513022,4.4422552,-15.11218,2.201014
+Mean temperature,Elevation,Elevation,B2,43.2-44.6,4.0878744,4.2096078,-3.714175,12.973036
+Mean temperature,Elevation,Elevation,B2,44.6-46.3,-0.285918,4.1238563,-8.653792,7.75262
+Mean temperature,Elevation,Elevation,B2,46.3-48.0,-0.6129889,1.5452752,-3.644193,2.386254
+Mean temperature,Elevation,Elevation,B2,48.0-50.0,-0.2296691,0.761383,-1.736672,1.242567
+Mean temperature,Elevation,Elevation,B2,50.0-52.1,3.3183765,0.5754454,2.195185,4.443691
+Mean temperature,Elevation,Elevation,B2,52.1-54.2,4.3601563,0.5957188,3.184538,5.510803
+Mean temperature,Elevation,Elevation,B2,54.2-58.1,-2.286313,4.3280087,-11.43733,5.100508
+Mean temperature,Elevation,Elevation,B2,58.1-62.1,-4.5466493,9.3194396,-23.799223,15.655444
+Mean temperature,Elevation,Elevation,B2,62.1-66.2,-28.3639303,14.7463155,-55.323731,-3.605821
+Mean temperature,Latitude,Latitude,Intercept,0-258,1.8092308,0.11188191,1.57776697,2.0200495
+Mean temperature,Latitude,Latitude,Intercept,258-599,1.5053525,0.0506738,1.40717963,1.6033317
+Mean temperature,Latitude,Latitude,Intercept,599-856,1.0905599,0.05432452,0.98407944,1.1972657
+Mean temperature,Latitude,Latitude,Intercept,856-1100,0.6422024,0.02519078,0.59247412,0.691268
+Mean temperature,Latitude,Latitude,Intercept,1100-1320,0.3778746,0.02036161,0.33783941,0.4180369
+Mean temperature,Latitude,Latitude,Intercept,1320-1500,0.0939131,0.02109737,0.05281673,0.1344172
+Mean temperature,Latitude,Latitude,Intercept,1500-1670,-0.2694274,0.04785564,-0.36281936,-0.1765883
+Mean temperature,Latitude,Latitude,Intercept,1670-1870,-0.4674358,0.03963538,-0.54563364,-0.3912784
+Mean temperature,Latitude,Latitude,Intercept,1870-2090,-0.5375879,0.02824832,-0.59151581,-0.4806444
+Mean temperature,Latitude,Latitude,Intercept,2090-2330,-0.7583576,0.02228455,-0.80105606,-0.71393
+Mean temperature,Latitude,Latitude,Intercept,2330-2780,-1.1228469,0.03441292,-1.19041145,-1.0559903
+Mean temperature,Latitude,Latitude,Intercept,2780-3740,0.424575,1.01550741,-1.401624,2.5585567
+Mean temperature,Latitude,Latitude,B1,0-258,-29.702177,3.2099136,-35.96692,-23.47782
+Mean temperature,Latitude,Latitude,B1,258-599,-38.141525,1.944934,-41.93808,-34.32562
+Mean temperature,Latitude,Latitude,B1,599-856,-39.235435,1.7312533,-42.67634,-35.87572
+Mean temperature,Latitude,Latitude,B1,856-1100,-31.83599,1.0477838,-33.88245,-29.75485
+Mean temperature,Latitude,Latitude,B1,1100-1320,-34.796692,0.9350736,-36.63395,-32.94465
+Mean temperature,Latitude,Latitude,B1,1320-1500,-34.276744,0.9744816,-36.21695,-32.3862
+Mean temperature,Latitude,Latitude,B1,1500-1670,-41.076195,2.5874894,-46.23397,-36.13313
+Mean temperature,Latitude,Latitude,B1,1670-1870,-40.947217,2.2776866,-45.45416,-36.55467
+Mean temperature,Latitude,Latitude,B1,1870-2090,-35.882188,2.1056036,-40.00875,-31.68161
+Mean temperature,Latitude,Latitude,B1,2090-2330,-28.491434,2.6713963,-33.6352,-23.12881
+Mean temperature,Latitude,Latitude,B1,2330-2780,-28.979979,5.7506601,-39.45189,-16.97076
+Mean temperature,Latitude,Latitude,B1,2780-3740,-5.574683,20.0184828,-39.28189,36.41575
+Mean temperature,Latitude,Latitude,B2,0-258,-9.67302267,5.661336,-21.62532,0.9199308
+Mean temperature,Latitude,Latitude,B2,258-599,-7.0705996,1.470637,-9.914208,-4.2252727
+Mean temperature,Latitude,Latitude,B2,599-856,-0.658778,1.372008,-3.356663,2.0843401
+Mean temperature,Latitude,Latitude,B2,856-1100,-5.49802271,1.082995,-7.630378,-3.3655378
+Mean temperature,Latitude,Latitude,B2,1100-1320,-0.6983154,1.162218,-2.971191,1.6078255
+Mean temperature,Latitude,Latitude,B2,1320-1500,-4.54762317,1.116157,-6.710866,-2.3467563
+Mean temperature,Latitude,Latitude,B2,1500-1670,-13.07587991,3.275961,-19.576237,-6.7984248
+Mean temperature,Latitude,Latitude,B2,1670-1870,-9.83717773,2.601967,-15.01598,-4.7984456
+Mean temperature,Latitude,Latitude,B2,1870-2090,-1.11293024,1.869494,-4.749147,2.5676664
+Mean temperature,Latitude,Latitude,B2,2090-2330,2.03878541,2.158016,-2.020795,6.3354202
+Mean temperature,Latitude,Latitude,B2,2330-2780,-0.08193081,4.1009,-7.497596,8.5576718
+Mean temperature,Latitude,Latitude,B2,2780-3740,-9.69016454,6.281744,-22.676665,2.4205612
+Temperature difference,Elevation,Elevation,Intercept,36.6-39.3,-0.8430463,0.24130177,-1.3425337,-0.3600384
+Temperature difference,Elevation,Elevation,Intercept,39.3-41.2,-0.6707621,0.21337812,-1.1003032,-0.237547
+Temperature difference,Elevation,Elevation,Intercept,41.2-43.2,-0.8475021,0.08504243,-1.0151546,-0.6807108
+Temperature difference,Elevation,Elevation,Intercept,43.2-44.6,-0.845544,0.07946902,-1.0003856,-0.6827351
+Temperature difference,Elevation,Elevation,Intercept,44.6-46.3,-0.8537367,0.07754898,-1.0127228,-0.6991782
+Temperature difference,Elevation,Elevation,Intercept,46.3-48.0,-0.8460724,0.03774975,-0.9197303,-0.7723441
+Temperature difference,Elevation,Elevation,Intercept,48.0-50.0,-0.2844479,0.02429802,-0.3317861,-0.2370353
+Temperature difference,Elevation,Elevation,Intercept,50.0-52.1,0.3967222,0.02159391,0.3546088,0.4390807
+Temperature difference,Elevation,Elevation,Intercept,52.1-54.2,0.4623673,0.02271039,0.4188001,0.5079922
+Temperature difference,Elevation,Elevation,Intercept,54.2-58.1,0.5095154,0.15348354,0.1944417,0.7954809
+Temperature difference,Elevation,Elevation,Intercept,58.1-62.1,1.5190376,0.23484498,1.0571616,1.9632342
+Temperature difference,Elevation,Elevation,Intercept,62.1-66.2,1.9512256,0.32133224,1.3450912,2.5840904
+Temperature difference,Elevation,Elevation,B1,36.6-39.3,0.7545595,6.6677099,-12.9686291,14.543092
+Temperature difference,Elevation,Elevation,B1,39.3-41.2,0.6785835,7.5196424,-15.1228923,15.909595
+Temperature difference,Elevation,Elevation,B1,41.2-43.2,10.9760239,4.416492,2.4805026,19.775388
+Temperature difference,Elevation,Elevation,B1,43.2-44.6,1.1553516,2.7323396,-4.1748892,6.636575
+Temperature difference,Elevation,Elevation,B1,44.6-46.3,-0.3970869,3.0450567,-6.7147904,5.423223
+Temperature difference,Elevation,Elevation,B1,46.3-48.0,-0.1366128,1.5499422,-3.1753023,2.904994
+Temperature difference,Elevation,Elevation,B1,48.0-50.0,-0.1714719,1.1273536,-2.4279,1.983657
+Temperature difference,Elevation,Elevation,B1,50.0-52.1,3.0848007,0.7055481,1.696291,4.473389
+Temperature difference,Elevation,Elevation,B1,52.1-54.2,0.6956635,0.8492924,-0.9760153,2.364841
+Temperature difference,Elevation,Elevation,B1,54.2-58.1,-5.881079,4.4252417,-15.4363308,2.091742
+Temperature difference,Elevation,Elevation,B1,58.1-62.1,-12.5855266,7.2365421,-26.6425163,1.136607
+Temperature difference,Elevation,Elevation,B1,62.1-66.2,-24.5962169,11.1553885,-45.5381334,-2.247365
+Temperature difference,Elevation,Elevation,B2,36.6-39.3,-0.1069308,2.4195674,-5.024744,4.7108363
+Temperature difference,Elevation,Elevation,B2,39.3-41.2,-2.7680034,5.9243111,-14.470778,9.0320964
+Temperature difference,Elevation,Elevation,B2,41.2-43.2,-8.5085227,4.7978866,-18.280504,0.7148757
+Temperature difference,Elevation,Elevation,B2,43.2-44.6,0.3833143,4.535661,-8.23292,9.8928442
+Temperature difference,Elevation,Elevation,B2,44.6-46.3,0.3522168,3.602697,-6.733805,7.5058186
+Temperature difference,Elevation,Elevation,B2,46.3-48.0,2.0108119,2.2335731,-2.294369,6.5166095
+Temperature difference,Elevation,Elevation,B2,48.0-50.0,-7.3452896,1.112919,-9.521451,-5.2014493
+Temperature difference,Elevation,Elevation,B2,50.0-52.1,-10.8395615,0.8895664,-12.573859,-9.0526285
+Temperature difference,Elevation,Elevation,B2,52.1-54.2,-16.4510247,0.9206911,-18.26217,-14.6503816
+Temperature difference,Elevation,Elevation,B2,54.2-58.1,-7.1828447,2.8677229,-12.970073,-1.584014
+Temperature difference,Elevation,Elevation,B2,58.1-62.1,-5.3452905,5.3109915,-15.43026,5.7685005
+Temperature difference,Elevation,Elevation,B2,62.1-66.2,6.3810115,7.7319997,-7.939403,22.0369187
+Temperature difference,Latitude,Latitude,Intercept,0-258,-0.14670238,0.24517984,-0.63638718,0.332859898
+Temperature difference,Latitude,Latitude,Intercept,258-599,-0.09330711,0.0704394,-0.2344604,0.040687123
+Temperature difference,Latitude,Latitude,Intercept,599-856,0.12085974,0.07112141,-0.0168284,0.260917572
+Temperature difference,Latitude,Latitude,Intercept,856-1100,-0.07333778,0.03668812,-0.14501564,-0.001365504
+Temperature difference,Latitude,Latitude,Intercept,1100-1320,-0.03964931,0.03020737,-0.10025498,0.018140935
+Temperature difference,Latitude,Latitude,Intercept,1320-1500,-0.03963085,0.0314908,-0.10121496,0.021467479
+Temperature difference,Latitude,Latitude,Intercept,1500-1670,0.33062696,0.06929699,0.19874067,0.467744359
+Temperature difference,Latitude,Latitude,Intercept,1670-1870,0.34621411,0.05880146,0.23126095,0.460716349
+Temperature difference,Latitude,Latitude,Intercept,1870-2090,0.19211733,0.0422413,0.10912298,0.275212044
+Temperature difference,Latitude,Latitude,Intercept,2090-2330,0.19648613,0.03349231,0.1309672,0.261439841
+Temperature difference,Latitude,Latitude,Intercept,2330-2780,0.1729228,0.05170894,0.07231716,0.276270422
+Temperature difference,Latitude,Latitude,Intercept,2780-3740,-0.06938701,0.28319453,-0.70135214,0.437739396
+Temperature difference,Latitude,Latitude,B1,0-258,4.222723,5.101622,-5.825229,14.20348
+Temperature difference,Latitude,Latitude,B1,258-599,32.344098,2.805628,26.860584,37.85863
+Temperature difference,Latitude,Latitude,B1,599-856,27.510106,2.337272,22.906313,32.02235
+Temperature difference,Latitude,Latitude,B1,856-1100,37.563429,1.571441,34.51635,40.66204
+Temperature difference,Latitude,Latitude,B1,1100-1320,38.401476,1.40793,35.675146,41.18307
+Temperature difference,Latitude,Latitude,B1,1320-1500,33.240764,1.481333,30.341303,36.12921
+Temperature difference,Latitude,Latitude,B1,1500-1670,54.151099,3.759531,46.931115,61.54495
+Temperature difference,Latitude,Latitude,B1,1670-1870,55.299919,3.445211,48.678859,62.19506
+Temperature difference,Latitude,Latitude,B1,1870-2090,37.300673,3.326943,30.783962,43.91542
+Temperature difference,Latitude,Latitude,B1,2090-2330,25.058548,4.130824,16.986985,33.16441
+Temperature difference,Latitude,Latitude,B1,2330-2780,22.740614,10.393996,2.031939,42.30651
+Temperature difference,Latitude,Latitude,B1,2780-3740,11.720093,18.118787,-24.848498,46.35008
+Temperature difference,Latitude,Latitude,B2,0-258,66.3306695,13.661451,39.2874778,93.25648
+Temperature difference,Latitude,Latitude,B2,258-599,10.6316183,2.182233,6.3314921,14.9326302
+Temperature difference,Latitude,Latitude,B2,599-856,8.5991895,1.960982,4.7832148,12.4429458
+Temperature difference,Latitude,Latitude,B2,856-1100,-6.5270451,1.646695,-9.6611671,-3.3538057
+Temperature difference,Latitude,Latitude,B2,1100-1320,-6.8934277,1.740012,-10.3624816,-3.4824617
+Temperature difference,Latitude,Latitude,B2,1320-1500,-4.029935,1.714765,-7.3641103,-0.7017969
+Temperature difference,Latitude,Latitude,B2,1500-1670,31.4648209,4.798136,22.3345884,40.7420929
+Temperature difference,Latitude,Latitude,B2,1670-1870,40.3092272,3.944165,32.708935,48.1038239
+Temperature difference,Latitude,Latitude,B2,1870-2090,18.0244501,2.971256,12.2856918,23.9904145
+Temperature difference,Latitude,Latitude,B2,2090-2330,5.5884776,3.345518,-0.9750374,12.076935
+Temperature difference,Latitude,Latitude,B2,2330-2780,4.5815328,7.455242,-10.1217493,18.8651254
+Temperature difference,Latitude,Latitude,B2,2780-3740,0.2994643,10.91778,-21.0717543,21.2635876

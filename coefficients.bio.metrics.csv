@@ -1,0 +1,721 @@
+Metric,Group,Parameter,Class,Estimate,Est.Error,Q2.5,Q97.5
+Species richness,Elevation,Intercept,36.6-39.3,1.768648,0.17394074,1.4598366,2.138769
+Species richness,Elevation,Intercept,39.3-41.2,1.77797,0.15624319,1.4825461,2.095972
+Species richness,Elevation,Intercept,41.2-43.2,1.710926,0.09663737,1.5218974,1.901539
+Species richness,Elevation,Intercept,43.2-44.6,1.660696,0.07732513,1.5046522,1.812091
+Species richness,Elevation,Intercept,44.6-46.3,1.490993,0.10773016,1.2741639,1.705636
+Species richness,Elevation,Intercept,46.3-48.0,1.370363,0.07562676,1.2114555,1.51079
+Species richness,Elevation,Intercept,48.0-50.0,1.698762,0.04071337,1.6174304,1.778077
+Species richness,Elevation,Intercept,50.0-52.1,1.701477,0.03425318,1.633787,1.768684
+Species richness,Elevation,Intercept,52.1-54.2,1.696117,0.03782607,1.6233374,1.771321
+Species richness,Elevation,Intercept,54.2-58.1,1.553161,0.13192895,1.2775544,1.802156
+Species richness,Elevation,Intercept,58.1-62.1,1.469844,0.14955441,1.1622282,1.759286
+Species richness,Elevation,Intercept,62.1-66.2,1.383202,0.17811872,0.9995088,1.692304
+Species richness,Elevation,B1,36.6-39.3,-6.912115,4.094277,-14.55078,1.52408424
+Species richness,Elevation,B1,39.3-41.2,-6.606714,5.095064,-15.79238,4.07141276
+Species richness,Elevation,B1,41.2-43.2,-11.472308,4.09686,-19.51455,-3.12253662
+Species richness,Elevation,B1,43.2-44.6,-8.227583,3.782254,-15.09839,-0.19713535
+Species richness,Elevation,B1,44.6-46.3,-8.600327,4.27497,-16.62401,0.05830226
+Species richness,Elevation,B1,46.3-48.0,-13.188263,2.900606,-18.94452,-7.5965596
+Species richness,Elevation,B1,48.0-50.0,-15.740814,1.968364,-19.62326,-11.9377584
+Species richness,Elevation,B1,50.0-52.1,-9.723628,1.166417,-12.02029,-7.44052702
+Species richness,Elevation,B1,52.1-54.2,-17.177591,1.60268,-20.23969,-14.05173032
+Species richness,Elevation,B1,54.2-58.1,-9.572095,4.134088,-17.93008,-1.26737161
+Species richness,Elevation,B1,58.1-62.1,-6.957286,4.733172,-15.96525,2.42551624
+Species richness,Elevation,B1,62.1-66.2,-6.174121,5.577662,-17.00974,5.04160361
+Species richness,Elevation,B2,36.6-39.3,-2.933558,1.990552,-7.150518,0.8257319
+Species richness,Elevation,B2,39.3-41.2,-2.946763,4.041215,-10.668259,5.2762635
+Species richness,Elevation,B2,41.2-43.2,-5.867818,3.911201,-14.118299,1.8004217
+Species richness,Elevation,B2,43.2-44.6,-5.46322,4.050708,-14.034234,2.5135428
+Species richness,Elevation,B2,44.6-46.3,-5.3304,4.216281,-14.104069,2.9964439
+Species richness,Elevation,B2,46.3-48.0,-11.114697,4.188349,-20.299226,-4.0152658
+Species richness,Elevation,B2,48.0-50.0,-4.992459,1.719586,-8.351263,-1.634658
+Species richness,Elevation,B2,50.0-52.1,-3.508204,1.331914,-6.121314,-0.8473147
+Species richness,Elevation,B2,52.1-54.2,-10.152511,1.571458,-13.251803,-7.0198324
+Species richness,Elevation,B2,54.2-58.1,-6.060857,3.461665,-12.806505,0.8576033
+Species richness,Elevation,B2,58.1-62.1,-4.950825,4.49045,-13.819769,4.4056914
+Species richness,Elevation,B2,62.1-66.2,-2.37403,4.94079,-11.048777,8.4790892
+Species richness,Latitude,Intercept,0-258,2.039698,0.11419944,1.8230914,2.275085
+Species richness,Latitude,Intercept,258-599,2.022641,0.0934402,1.8464542,2.214245
+Species richness,Latitude,Intercept,599-856,1.703824,0.09410119,1.5129126,1.883548
+Species richness,Latitude,Intercept,856-1100,1.782961,0.05352645,1.6785968,1.886471
+Species richness,Latitude,Intercept,1100-1320,1.887278,0.04494124,1.7991999,1.975057
+Species richness,Latitude,Intercept,1320-1500,1.849018,0.04567492,1.755488,1.934851
+Species richness,Latitude,Intercept,1500-1670,1.732395,0.06150396,1.6279419,1.875461
+Species richness,Latitude,Intercept,1670-1870,1.464606,0.06085506,1.3462223,1.584666
+Species richness,Latitude,Intercept,1870-2090,1.363215,0.05842009,1.249993,1.479889
+Species richness,Latitude,Intercept,2090-2330,1.340185,0.05219023,1.2349587,1.440544
+Species richness,Latitude,Intercept,2330-2780,1.181098,0.09256217,0.9978453,1.357825
+Species richness,Latitude,Intercept,2780-3740,1.650134,0.3303347,0.9522366,2.283477
+Species richness,Latitude,B1,0-258,-1.443372,3.952677,-10.511847,5.042663
+Species richness,Latitude,B1,258-599,-1.58800063,3.195037,-8.497934,3.808005
+Species richness,Latitude,B1,599-856,2.70685456,2.462298,-1.850102,7.99426
+Species richness,Latitude,B1,856-1100,0.07049225,1.968935,-3.915235,3.781425
+Species richness,Latitude,B1,1100-1320,6.41859726,2.195668,2.065555,10.690785
+Species richness,Latitude,B1,1320-1500,1.3954873,1.892458,-2.490371,4.946934
+Species richness,Latitude,B1,1500-1670,2.4854721,2.958365,-1.906059,9.991094
+Species richness,Latitude,B1,1670-1870,-1.71326869,3.0459,-7.570329,4.619421
+Species richness,Latitude,B1,1870-2090,-0.05010121,3.201325,-6.10812,6.705539
+Species richness,Latitude,B1,2090-2330,-2.46612304,3.630128,-10.551365,3.704268
+Species richness,Latitude,B1,2330-2780,0.44520263,4.042517,-8.123899,8.347255
+Species richness,Latitude,B1,2780-3740,2.4714529,3.364165,-4.702218,9.065062
+Species richness,Latitude,B2,0-258,-7.0684683,5.03894,-18.141454,2.1354262
+Species richness,Latitude,B2,258-599,-3.2597697,2.584986,-7.872235,2.1554303
+Species richness,Latitude,B2,599-856,-4.8200244,2.238283,-9.364556,-0.4975901
+Species richness,Latitude,B2,856-1100,-3.7942804,2.126784,-8.051158,0.319161
+Species richness,Latitude,B2,1100-1320,-10.3587263,2.568493,-15.488726,-5.5110025
+Species richness,Latitude,B2,1320-1500,-7.6323487,2.543645,-13.226254,-3.2708472
+Species richness,Latitude,B2,1500-1670,-0.2868095,3.86413,-5.698758,9.4787465
+Species richness,Latitude,B2,1670-1870,4.7288051,3.605548,-1.611869,12.6326596
+Species richness,Latitude,B2,1870-2090,4.1318745,3.060067,-1.402742,10.5723762
+Species richness,Latitude,B2,2090-2330,2.1267723,2.988056,-4.392004,7.5469137
+Species richness,Latitude,B2,2330-2780,1.3249717,3.28892,-5.286154,7.726074
+Species richness,Latitude,B2,2780-3740,-5.5938811,3.896891,-13.459121,2.1914536
+Community mean body length,Elevation,Intercept,36.6-39.3,-0.04256168,0.12434918,-0.28904149,0.1934005
+Community mean body length,Elevation,Intercept,39.3-41.2,0.15148156,0.09359361,-0.03048483,0.3387721
+Community mean body length,Elevation,Intercept,41.2-43.2,0.08480006,0.06156538,-0.04049076,0.2043622
+Community mean body length,Elevation,Intercept,43.2-44.6,0.11100331,0.04745715,0.01203888,0.1990384
+Community mean body length,Elevation,Intercept,44.6-46.3,0.16461204,0.06447323,0.03670802,0.297208
+Community mean body length,Elevation,Intercept,46.3-48.0,0.16015768,0.03338588,0.09455739,0.2240717
+Community mean body length,Elevation,Intercept,48.0-50.0,0.24454746,0.02415661,0.19684008,0.2923095
+Community mean body length,Elevation,Intercept,50.0-52.1,0.296875,0.02183538,0.25525869,0.3407694
+Community mean body length,Elevation,Intercept,52.1-54.2,0.33314881,0.0225445,0.29027518,0.3777104
+Community mean body length,Elevation,Intercept,54.2-58.1,0.38393908,0.1341086,0.11641206,0.638738
+Community mean body length,Elevation,Intercept,58.1-62.1,0.41507955,0.12441779,0.17557556,0.664638
+Community mean body length,Elevation,Intercept,62.1-66.2,0.51321181,0.13435846,0.23512723,0.7646614
+Community mean body length,Elevation,B1,36.6-39.3,-0.1261101,2.5313635,-5.220776,4.90716
+Community mean body length,Elevation,B1,39.3-41.2,0.2293984,2.8457818,-5.792282,5.456281
+Community mean body length,Elevation,B1,41.2-43.2,1.2272417,2.6672651,-4.404498,6.155351
+Community mean body length,Elevation,B1,43.2-44.6,2.3045858,2.2106268,-2.15137,6.58779
+Community mean body length,Elevation,B1,44.6-46.3,3.1820735,2.6535986,-1.908764,8.637791
+Community mean body length,Elevation,B1,46.3-48.0,1.3913519,1.5008746,-1.574928,4.271994
+Community mean body length,Elevation,B1,48.0-50.0,1.2401895,1.148793,-1.061886,3.450697
+Community mean body length,Elevation,B1,50.0-52.1,3.8726294,0.6820669,2.526198,5.17005
+Community mean body length,Elevation,B1,52.1-54.2,7.0685204,0.8713827,5.367464,8.786547
+Community mean body length,Elevation,B1,54.2-58.1,-0.3609148,3.9795985,-8.923935,6.637328
+Community mean body length,Elevation,B1,58.1-62.1,1.6065258,3.7974697,-6.121911,8.792297
+Community mean body length,Elevation,B1,62.1-66.2,0.7455876,4.1226795,-8.1976,8.198951
+Community mean body length,Elevation,B2,36.6-39.3,2.0482944,1.1767236,-0.24506548,4.448167
+Community mean body length,Elevation,B2,39.3-41.2,0.9529508,2.6011484,-4.86967874,5.384257
+Community mean body length,Elevation,B2,41.2-43.2,1.7495753,2.680482,-4.30190513,6.433431
+Community mean body length,Elevation,B2,43.2-44.6,2.23846,2.5345561,-3.24981774,6.831045
+Community mean body length,Elevation,B2,44.6-46.3,3.0894647,2.3632665,-1.70234554,7.874195
+Community mean body length,Elevation,B2,46.3-48.0,1.3432632,1.7499452,-2.4186327,4.486829
+Community mean body length,Elevation,B2,48.0-50.0,2.0318936,1.0629018,-0.09834964,4.04313
+Community mean body length,Elevation,B2,50.0-52.1,5.2383198,0.9687527,3.39343472,7.148334
+Community mean body length,Elevation,B2,52.1-54.2,4.4373923,0.8989175,2.69610347,6.20902
+Community mean body length,Elevation,B2,54.2-58.1,0.1173144,2.8184956,-6.21369102,4.765837
+Community mean body length,Elevation,B2,58.1-62.1,0.2428696,3.2635265,-7.36877553,5.248976
+Community mean body length,Elevation,B2,62.1-66.2,1.0696567,3.0145902,-5.70709987,6.20871
+Community mean body length,Latitude,Intercept,0-258,0.2185748,0.05241844,0.11653338,0.322554
+Community mean body length,Latitude,Intercept,258-599,0.300635,0.04876325,0.20739218,0.3977987
+Community mean body length,Latitude,Intercept,599-856,0.2693198,0.04830273,0.17634687,0.3666476
+Community mean body length,Latitude,Intercept,856-1100,0.1476357,0.03179265,0.08610179,0.2097405
+Community mean body length,Latitude,Intercept,1100-1320,0.1465009,0.02693944,0.09441202,0.1993867
+Community mean body length,Latitude,Intercept,1320-1500,0.1554411,0.02728097,0.10211675,0.2095675
+Community mean body length,Latitude,Intercept,1500-1670,0.2084829,0.03498327,0.13441947,0.274364
+Community mean body length,Latitude,Intercept,1670-1870,0.2307243,0.0338399,0.16320894,0.2974767
+Community mean body length,Latitude,Intercept,1870-2090,0.352606,0.03322418,0.29076522,0.4214496
+Community mean body length,Latitude,Intercept,2090-2330,0.4118312,0.02775633,0.35974739,0.4681883
+Community mean body length,Latitude,Intercept,2330-2780,0.5459255,0.04431649,0.45927485,0.6348191
+Community mean body length,Latitude,Intercept,2780-3740,0.2968204,0.16002882,-0.01119609,0.6221623
+Community mean body length,Latitude,B1,0-258,1.483515,2.399224,-4.0398848,5.161265
+Community mean body length,Latitude,B1,258-599,3.558691,1.25981,0.9943655,6.040779
+Community mean body length,Latitude,B1,599-856,3.472018,1.120842,1.2593222,5.755193
+Community mean body length,Latitude,B1,856-1100,4.227517,1.061277,2.3025535,6.518147
+Community mean body length,Latitude,B1,1100-1320,2.91548,1.099601,0.7502882,5.039557
+Community mean body length,Latitude,B1,1320-1500,2.552207,1.167136,0.182689,4.703313
+Community mean body length,Latitude,B1,1500-1670,2.903735,1.63683,-0.7886917,5.782908
+Community mean body length,Latitude,B1,1670-1870,4.688178,1.617257,1.3873152,7.966906
+Community mean body length,Latitude,B1,1870-2090,6.486326,2.192478,3.1854984,11.57487
+Community mean body length,Latitude,B1,2090-2330,8.025849,2.79406,3.6508,14.531598
+Community mean body length,Latitude,B1,2330-2780,8.297223,3.333232,3.0519997,15.961702
+Community mean body length,Latitude,B1,2780-3740,3.43879,3.030864,-2.3849352,10.187877
+Community mean body length,Latitude,B2,0-258,-0.6351351,1.93806,-5.6052224,2.459351
+Community mean body length,Latitude,B2,258-599,-0.7996143,1.092145,-3.1160878,1.078033
+Community mean body length,Latitude,B2,599-856,-0.7560081,1.04385,-3.0452719,1.020973
+Community mean body length,Latitude,B2,856-1100,0.7201679,1.033588,-1.2453518,2.794004
+Community mean body length,Latitude,B2,1100-1320,1.0786912,1.158417,-0.9239615,3.528184
+Community mean body length,Latitude,B2,1320-1500,0.77977,1.090905,-1.1479638,3.173541
+Community mean body length,Latitude,B2,1500-1670,-0.202193,1.597472,-4.230568,2.601268
+Community mean body length,Latitude,B2,1670-1870,-0.3545716,1.585258,-4.0802689,2.515405
+Community mean body length,Latitude,B2,1870-2090,1.0134829,1.855098,-1.7519874,5.579085
+Community mean body length,Latitude,B2,2090-2330,0.817461,2.135936,-2.5179628,5.942926
+Community mean body length,Latitude,B2,2330-2780,-0.1320738,2.318105,-4.1852296,5.310195
+Community mean body length,Latitude,B2,2780-3740,1.0198351,1.739107,-2.0089148,4.946578
+Community mean feeding guilds,Elevation,Intercept,36.6-39.3,0.9558835,0.05218224,0.8439008,1.0500207
+Community mean feeding guilds,Elevation,Intercept,39.3-41.2,0.9145809,0.0534062,0.8085664,1.0175913
+Community mean feeding guilds,Elevation,Intercept,41.2-43.2,0.8848508,0.0346016,0.8117625,0.9485714
+Community mean feeding guilds,Elevation,Intercept,43.2-44.6,0.9112298,0.03141392,0.8385371,0.9617391
+Community mean feeding guilds,Elevation,Intercept,44.6-46.3,0.9210493,0.03201885,0.8570799,0.9852858
+Community mean feeding guilds,Elevation,Intercept,46.3-48.0,0.9359586,0.01757563,0.9015516,0.9702729
+Community mean feeding guilds,Elevation,Intercept,48.0-50.0,0.9369191,0.01242532,0.9127333,0.9611227
+Community mean feeding guilds,Elevation,Intercept,50.0-52.1,0.988648,0.0111008,0.9670696,1.0106924
+Community mean feeding guilds,Elevation,Intercept,52.1-54.2,1.0036449,0.01180877,0.9809208,1.0266572
+Community mean feeding guilds,Elevation,Intercept,54.2-58.1,1.0426987,0.04695762,0.9525801,1.1386657
+Community mean feeding guilds,Elevation,Intercept,58.1-62.1,1.0190565,0.04132724,0.9384005,1.1044257
+Community mean feeding guilds,Elevation,Intercept,62.1-66.2,1.0388482,0.04446213,0.9567258,1.1335097
+Community mean feeding guilds,Elevation,B1,36.6-39.3,0.1271968,1.0848342,-1.5253657,2.74057479
+Community mean feeding guilds,Elevation,B1,39.3-41.2,-0.9271406,1.6339392,-4.3747622,2.1269606
+Community mean feeding guilds,Elevation,B1,41.2-43.2,0.5118426,1.3415667,-2.2430748,3.15020224
+Community mean feeding guilds,Elevation,B1,43.2-44.6,0.645469,1.0997371,-1.5064108,2.88669601
+Community mean feeding guilds,Elevation,B1,44.6-46.3,1.0797993,1.1328678,-1.1724561,3.30656604
+Community mean feeding guilds,Elevation,B1,46.3-48.0,1.5521536,0.7327489,0.167747,3.09257263
+Community mean feeding guilds,Elevation,B1,48.0-50.0,1.7350104,0.5874743,0.5880171,2.89371549
+Community mean feeding guilds,Elevation,B1,50.0-52.1,-0.7688398,0.3629706,-1.4759411,-0.05491269
+Community mean feeding guilds,Elevation,B1,52.1-54.2,0.5498589,0.4218074,-0.278109,1.38111625
+Community mean feeding guilds,Elevation,B1,54.2-58.1,-1.3614669,1.4883531,-4.5218696,1.36425908
+Community mean feeding guilds,Elevation,B1,58.1-62.1,-0.8398601,1.3358725,-3.6386822,1.68473068
+Community mean feeding guilds,Elevation,B1,62.1-66.2,-1.1989825,1.4872634,-4.3198144,1.6082046
+Community mean feeding guilds,Elevation,B2,36.6-39.3,-0.1126002,0.5138952,-1.2391828,0.7854586
+Community mean feeding guilds,Elevation,B2,39.3-41.2,-0.8410266,1.762686,-4.7186275,2.1991063
+Community mean feeding guilds,Elevation,B2,41.2-43.2,0.6054866,1.7590313,-3.2911257,3.7962172
+Community mean feeding guilds,Elevation,B2,43.2-44.6,0.2187784,1.7949893,-4.0302872,3.0211964
+Community mean feeding guilds,Elevation,B2,44.6-46.3,1.8084353,1.4122734,-0.9026649,4.7967688
+Community mean feeding guilds,Elevation,B2,46.3-48.0,1.7586763,0.9649299,-0.1199885,3.614801
+Community mean feeding guilds,Elevation,B2,48.0-50.0,2.7707063,0.6195891,1.5448923,3.9703564
+Community mean feeding guilds,Elevation,B2,50.0-52.1,-0.1834332,0.4263515,-1.0157847,0.6545816
+Community mean feeding guilds,Elevation,B2,52.1-54.2,1.0408348,0.4454137,0.1803551,1.9141152
+Community mean feeding guilds,Elevation,B2,54.2-58.1,-0.4211948,1.3248857,-3.231174,2.0078359
+Community mean feeding guilds,Elevation,B2,58.1-62.1,-0.4049835,1.5843702,-3.9889118,2.5400701
+Community mean feeding guilds,Elevation,B2,62.1-66.2,-1.1231949,1.5813176,-4.5933998,1.6742962
+Community mean feeding guilds,Latitude,Intercept,0-258,0.997489,0.02634832,0.9495363,1.0529353
+Community mean feeding guilds,Latitude,Intercept,258-599,0.9892092,0.02324282,0.9470501,1.038278
+Community mean feeding guilds,Latitude,Intercept,599-856,0.9589163,0.02230958,0.9142481,1.0020243
+Community mean feeding guilds,Latitude,Intercept,856-1100,0.9355184,0.01549581,0.9036056,0.9641976
+Community mean feeding guilds,Latitude,Intercept,1100-1320,0.9351909,0.01254044,0.9108573,0.9594817
+Community mean feeding guilds,Latitude,Intercept,1320-1500,0.9346435,0.0130398,0.9085428,0.9599102
+Community mean feeding guilds,Latitude,Intercept,1500-1670,0.9634114,0.01425921,0.9367928,0.9926642
+Community mean feeding guilds,Latitude,Intercept,1670-1870,0.9494143,0.01241002,0.9247086,0.9733345
+Community mean feeding guilds,Latitude,Intercept,1870-2090,0.9951242,0.01418016,0.9679946,1.0233103
+Community mean feeding guilds,Latitude,Intercept,2090-2330,0.9699338,0.0127588,0.9453382,0.9954927
+Community mean feeding guilds,Latitude,Intercept,2330-2780,0.9575991,0.01934269,0.9199723,0.9966188
+Community mean feeding guilds,Latitude,Intercept,2780-3740,0.9718503,0.04008123,0.8993298,1.0600625
+Community mean feeding guilds,Latitude,B1,0-258,2.041982,0.6556058,0.5202642,3.168328
+Community mean feeding guilds,Latitude,B1,258-599,2.148768,0.5416322,1.011375,3.209993
+Community mean feeding guilds,Latitude,B1,599-856,2.335471,0.5271878,1.4103074,3.56714
+Community mean feeding guilds,Latitude,B1,856-1100,2.350072,0.4271202,1.5689439,3.252934
+Community mean feeding guilds,Latitude,B1,1100-1320,2.347876,0.4129755,1.5716021,3.213294
+Community mean feeding guilds,Latitude,B1,1320-1500,2.308392,0.41722,1.4947273,3.191634
+Community mean feeding guilds,Latitude,B1,1500-1670,2.203368,0.5176884,1.2048082,3.282539
+Community mean feeding guilds,Latitude,B1,1670-1870,2.291342,0.4337674,1.4592426,3.199931
+Community mean feeding guilds,Latitude,B1,1870-2090,2.005988,0.5639995,0.7078215,2.961435
+Community mean feeding guilds,Latitude,B1,2090-2330,2.20427,0.4914191,1.2232284,3.160547
+Community mean feeding guilds,Latitude,B1,2330-2780,2.21448,0.627439,0.9550715,3.483195
+Community mean feeding guilds,Latitude,B1,2780-3740,2.073293,0.6663332,0.5485559,3.273238
+Community mean feeding guilds,Latitude,B2,0-258,-0.9664732,1.2706123,-3.7698915,1.40765013
+Community mean feeding guilds,Latitude,B2,258-599,-1.0748025,0.6015944,-2.2843792,0.04644545
+Community mean feeding guilds,Latitude,B2,599-856,-0.8347031,0.5916904,-2.0497284,0.24337207
+Community mean feeding guilds,Latitude,B2,856-1100,0.3045272,0.5895603,-0.8937781,1.44150834
+Community mean feeding guilds,Latitude,B2,1100-1320,0.4973834,0.690277,-0.8499892,1.85084821
+Community mean feeding guilds,Latitude,B2,1320-1500,1.0188619,0.691204,-0.2714814,2.44559927
+Community mean feeding guilds,Latitude,B2,1500-1670,1.4325547,0.9588689,-0.1763355,3.54012127
+Community mean feeding guilds,Latitude,B2,1670-1870,0.2827528,0.7046847,-1.0910918,1.73770922
+Community mean feeding guilds,Latitude,B2,1870-2090,-0.5632006,0.6502357,-1.889016,0.67577385
+Community mean feeding guilds,Latitude,B2,2090-2330,0.3637108,0.5859394,-0.7173574,1.58095314
+Community mean feeding guilds,Latitude,B2,2330-2780,1.5466535,0.7559513,0.1707722,3.1315092
+Community mean feeding guilds,Latitude,B2,2780-3740,1.1982851,0.7379526,-0.360787,2.58477837
+Functional richness mu1,Elevation,Intercept,36.6-39.3,-0.6524777,0.2096383,-1.0350398,-0.1793891
+Functional richness mu1,Elevation,Intercept,39.3-41.2,-0.7448771,0.1793802,-1.1087772,-0.38515113
+Functional richness mu1,Elevation,Intercept,41.2-43.2,-0.7068603,0.1790339,-1.0449303,-0.31192563
+Functional richness mu1,Elevation,Intercept,43.2-44.6,-0.7860949,0.1029317,-0.9986102,-0.59247531
+Functional richness mu1,Elevation,Intercept,44.6-46.3,-0.8808244,0.1748319,-1.1869496,-0.50988466
+Functional richness mu1,Elevation,Intercept,46.3-48.0,-0.8421748,0.1140412,-1.0744089,-0.6311318
+Functional richness mu1,Elevation,Intercept,48.0-50.0,-0.6223824,0.3166131,-0.995969,0.01897773
+Functional richness mu1,Elevation,Intercept,50.0-52.1,-0.4758767,0.1137643,-0.698104,-0.25256442
+Functional richness mu1,Elevation,Intercept,52.1-54.2,-0.5981007,0.1131161,-0.8106985,-0.36871646
+Functional richness mu1,Elevation,Intercept,54.2-58.1,-0.7157959,0.1743056,-1.0679784,-0.3614457
+Functional richness mu1,Elevation,Intercept,58.1-62.1,-0.7394021,0.1450422,-1.035892,-0.45569523
+Functional richness mu1,Elevation,Intercept,62.1-66.2,-0.8225755,0.1652656,-1.1789505,-0.52356869
+Functional richness mu1,Elevation,B1,36.6-39.3,-3.887604,2.299181,-8.532154,0.57287986
+Functional richness mu1,Elevation,B1,39.3-41.2,-4.014338,2.444458,-9.077434,0.61476087
+Functional richness mu1,Elevation,B1,41.2-43.2,-4.043128,2.484212,-9.225329,0.61603056
+Functional richness mu1,Elevation,B1,43.2-44.6,-3.73168,2.392395,-8.420002,1.02593492
+Functional richness mu1,Elevation,B1,44.6-46.3,-4.129113,2.720082,-9.953392,0.86756802
+Functional richness mu1,Elevation,B1,46.3-48.0,-3.74796,2.334542,-8.35402,0.94026943
+Functional richness mu1,Elevation,B1,48.0-50.0,-4.168674,2.224882,-8.814299,-0.01129929
+Functional richness mu1,Elevation,B1,50.0-52.1,-3.508682,2.128929,-7.649692,0.82889937
+Functional richness mu1,Elevation,B1,52.1-54.2,-3.841083,2.101825,-8.056455,0.23784635
+Functional richness mu1,Elevation,B1,54.2-58.1,-3.916346,2.382539,-8.829953,0.72466513
+Functional richness mu1,Elevation,B1,58.1-62.1,-3.855572,2.397508,-8.785252,0.78524148
+Functional richness mu1,Elevation,B1,62.1-66.2,-3.745359,2.467273,-8.78011,1.12505058
+Functional richness mu1,Elevation,B2,36.6-39.3,-2.815101,2.478014,-7.947287,1.727024
+Functional richness mu1,Elevation,B2,39.3-41.2,-2.429366,3.016436,-8.428303,3.442905
+Functional richness mu1,Elevation,B2,41.2-43.2,-2.285754,3.000812,-8.283614,3.65103
+Functional richness mu1,Elevation,B2,43.2-44.6,-2.447384,2.885219,-8.489059,3.009092
+Functional richness mu1,Elevation,B2,44.6-46.3,-1.512964,3.257785,-7.404369,5.786384
+Functional richness mu1,Elevation,B2,46.3-48.0,-2.225191,2.844293,-8.001209,3.402404
+Functional richness mu1,Elevation,B2,48.0-50.0,-2.367737,3.171995,-9.232355,3.486768
+Functional richness mu1,Elevation,B2,50.0-52.1,-2.829603,2.657674,-8.200967,2.191542
+Functional richness mu1,Elevation,B2,52.1-54.2,-2.588964,2.48336,-7.601931,2.121484
+Functional richness mu1,Elevation,B2,54.2-58.1,-2.153946,2.885193,-7.774984,3.773692
+Functional richness mu1,Elevation,B2,58.1-62.1,-2.113427,3.045257,-7.894744,4.189297
+Functional richness mu1,Elevation,B2,62.1-66.2,-1.951607,3.033399,-7.67496,4.403202
+Functional richness mu1,Latitude,Intercept,0-258,-0.6707298,0.1752207,-0.9139666,-0.2533893
+Functional richness mu1,Latitude,Intercept,258-599,-0.6976741,0.1412235,-0.9188593,-0.3946553
+Functional richness mu1,Latitude,Intercept,599-856,-0.748967,0.1318529,-0.9853827,-0.4679191
+Functional richness mu1,Latitude,Intercept,856-1100,-0.724939,0.1287718,-0.9383635,-0.4515799
+Functional richness mu1,Latitude,Intercept,1100-1320,-0.7457608,0.1344762,-0.9774779,-0.4606545
+Functional richness mu1,Latitude,Intercept,1320-1500,-0.6487947,0.1466223,-0.8678778,-0.3330369
+Functional richness mu1,Latitude,Intercept,1500-1670,-0.7201182,0.1885149,-0.992821,-0.3042133
+Functional richness mu1,Latitude,Intercept,1670-1870,-0.7165219,0.1222762,-0.9069239,-0.4529717
+Functional richness mu1,Latitude,Intercept,1870-2090,-0.7546599,0.1522722,-1.0135926,-0.427982
+Functional richness mu1,Latitude,Intercept,2090-2330,-0.7156745,0.1498081,-0.9415536,-0.387003
+Functional richness mu1,Latitude,Intercept,2330-2780,-0.7268681,0.1489272,-0.9823643,-0.4090742
+Functional richness mu1,Latitude,Intercept,2780-3740,-0.7071402,0.1654328,-0.9775456,-0.3436066
+Functional richness mu1,Latitude,B1,0-258,4.473377,2.569475,-0.67102339,9.771698
+Functional richness mu1,Latitude,B1,258-599,4.224019,2.184844,-0.33002811,8.431189
+Functional richness mu1,Latitude,B1,599-856,4.57272,2.009393,0.71881899,8.768494
+Functional richness mu1,Latitude,B1,856-1100,3.790626,2.239958,-1.14722336,7.885278
+Functional richness mu1,Latitude,B1,1100-1320,4.832823,2.285574,0.63855238,9.800882
+Functional richness mu1,Latitude,B1,1320-1500,4.617797,2.440059,0.03801823,9.87817
+Functional richness mu1,Latitude,B1,1500-1670,4.738969,2.509183,0.18485181,10.311238
+Functional richness mu1,Latitude,B1,1670-1870,4.980505,2.301102,0.91644812,10.189302
+Functional richness mu1,Latitude,B1,1870-2090,4.274028,2.269347,-0.31023635,8.790455
+Functional richness mu1,Latitude,B1,2090-2330,3.899479,2.467044,-1.66521127,8.505492
+Functional richness mu1,Latitude,B1,2330-2780,4.694039,2.470219,0.0445946,9.996455
+Functional richness mu1,Latitude,B1,2780-3740,4.229137,2.451111,-0.86135598,9.060432
+Functional richness mu1,Latitude,B2,0-258,-4.492384,3.192557,-11.803565,1.06610743
+Functional richness mu1,Latitude,B2,258-599,-3.81731,2.420788,-8.764125,0.97622387
+Functional richness mu1,Latitude,B2,599-856,-4.123995,2.370435,-9.09597,0.28397694
+Functional richness mu1,Latitude,B2,856-1100,-4.63939,2.619255,-10.524154,-0.07810414
+Functional richness mu1,Latitude,B2,1100-1320,-4.365256,2.762305,-10.509428,0.58274443
+Functional richness mu1,Latitude,B2,1320-1500,-4.91187,3.313175,-12.909898,0.48343927
+Functional richness mu1,Latitude,B2,1500-1670,-3.908657,3.314153,-11.212503,2.54904436
+Functional richness mu1,Latitude,B2,1670-1870,-4.256028,2.713096,-10.103187,0.82680933
+Functional richness mu1,Latitude,B2,1870-2090,-3.214588,2.646968,-8.074472,2.65066623
+Functional richness mu1,Latitude,B2,2090-2330,-2.500041,2.971121,-7.472114,4.53371821
+Functional richness mu1,Latitude,B2,2330-2780,-4.428045,2.772632,-10.664388,0.61218054
+Functional richness mu1,Latitude,B2,2780-3740,-3.581544,2.694952,-8.822199,2.04274487
+Functional richness mu2,Elevation,Intercept,36.6-39.3,1.03831045,0.66756269,-0.8964573,2.1014245
+Functional richness mu2,Elevation,Intercept,39.3-41.2,0.32678896,0.71565256,-1.6990317,1.213627
+Functional richness mu2,Elevation,Intercept,41.2-43.2,0.47078976,0.85381766,-2.4702682,1.1785443
+Functional richness mu2,Elevation,Intercept,43.2-44.6,-1.05915523,0.15170788,-1.3824364,-0.7885196
+Functional richness mu2,Elevation,Intercept,44.6-46.3,0.3619465,0.99517227,-2.5077249,1.1856484
+Functional richness mu2,Elevation,Intercept,46.3-48.0,1.2949522,0.0993709,1.089461,1.476209
+Functional richness mu2,Elevation,Intercept,48.0-50.0,-0.07060903,2.35802549,-4.5205027,1.5411192
+Functional richness mu2,Elevation,Intercept,50.0-52.1,1.49141404,0.05816328,1.375269,1.6040436
+Functional richness mu2,Elevation,Intercept,52.1-54.2,1.51870436,0.05751789,1.397347,1.6233241
+Functional richness mu2,Elevation,Intercept,54.2-58.1,-0.6053793,0.49396589,-1.5047878,0.4238489
+Functional richness mu2,Elevation,Intercept,58.1-62.1,-1.24715078,0.37466005,-1.942367,-0.4191103
+Functional richness mu2,Elevation,Intercept,62.1-66.2,-1.24955066,0.51918758,-2.1587733,-0.1294335
+Functional richness mu2,Elevation,B1,36.6-39.3,0.9081897,8.854369,-18.072378,17.80274
+Functional richness mu2,Elevation,B1,39.3-41.2,3.5800519,10.79384,-18.393484,26.796987
+Functional richness mu2,Elevation,B1,41.2-43.2,-1.1045502,8.35912,-19.001711,13.702595
+Functional richness mu2,Elevation,B1,43.2-44.6,5.8521356,9.33601,-12.466548,25.871504
+Functional richness mu2,Elevation,B1,44.6-46.3,0.4365623,9.906906,-19.863156,20.549885
+Functional richness mu2,Elevation,B1,46.3-48.0,5.4507312,5.102389,-5.234234,15.581291
+Functional richness mu2,Elevation,B1,48.0-50.0,-16.1976548,14.448212,-32.393579,12.919807
+Functional richness mu2,Elevation,B1,50.0-52.1,0.3523939,2.114967,-3.649033,4.704008
+Functional richness mu2,Elevation,B1,52.1-54.2,8.0133916,2.508682,3.271764,13.092194
+Functional richness mu2,Elevation,B1,54.2-58.1,9.7810957,11.01561,-10.854133,33.126671
+Functional richness mu2,Elevation,B1,58.1-62.1,6.4892098,9.916663,-12.712464,28.224931
+Functional richness mu2,Elevation,B1,62.1-66.2,3.983185,9.981046,-16.106827,25.437463
+Functional richness mu2,Elevation,B2,36.6-39.3,2.509045,3.185587,-4.317901,7.914705
+Functional richness mu2,Elevation,B2,39.3-41.2,2.773896,4.11564,-6.464891,10.508802
+Functional richness mu2,Elevation,B2,41.2-43.2,2.456032,4.118682,-7.13958,9.715197
+Functional richness mu2,Elevation,B2,43.2-44.6,2.13635,4.916129,-9.325481,10.991404
+Functional richness mu2,Elevation,B2,44.6-46.3,2.436189,4.446844,-7.943758,10.339631
+Functional richness mu2,Elevation,B2,46.3-48.0,2.602686,3.929952,-6.751974,9.244552
+Functional richness mu2,Elevation,B2,48.0-50.0,1.013002,5.153967,-9.463625,10.24437
+Functional richness mu2,Elevation,B2,50.0-52.1,5.504451,2.037024,1.753766,9.687537
+Functional richness mu2,Elevation,B2,52.1-54.2,2.469869,2.896261,-1.786462,6.286331
+Functional richness mu2,Elevation,B2,54.2-58.1,1.416736,4.71538,-9.493948,9.47411
+Functional richness mu2,Elevation,B2,58.1-62.1,2.264312,4.802449,-8.822215,11.233255
+Functional richness mu2,Elevation,B2,62.1-66.2,2.825664,4.821366,-7.602147,12.532045
+Functional richness mu2,Latitude,Intercept,0-258,1.0305442,1.11398311,-1.0593826,2.0420225
+Functional richness mu2,Latitude,Intercept,258-599,-0.6510223,0.11182835,-0.8769525,-0.4400804
+Functional richness mu2,Latitude,Intercept,599-856,-1.2460931,0.1685341,-1.5707679,-0.906522
+Functional richness mu2,Latitude,Intercept,856-1100,1.0068578,0.08442423,0.837852,1.1638659
+Functional richness mu2,Latitude,Intercept,1100-1320,1.1783808,0.10352034,0.9283292,1.3370129
+Functional richness mu2,Latitude,Intercept,1320-1500,1.2378679,0.08789495,1.0463892,1.3944752
+Functional richness mu2,Latitude,Intercept,1500-1670,0.6042122,1.00853265,-1.2511208,1.3288171
+Functional richness mu2,Latitude,Intercept,1670-1870,1.2237306,0.09509837,1.0349583,1.4099979
+Functional richness mu2,Latitude,Intercept,1870-2090,0.8069916,0.99766288,-1.2194356,1.529379
+Functional richness mu2,Latitude,Intercept,2090-2330,1.1225814,0.7582907,-0.4128479,1.7571441
+Functional richness mu2,Latitude,Intercept,2330-2780,1.5552501,0.52377956,-0.7305866,1.9480948
+Functional richness mu2,Latitude,Intercept,2780-3740,1.0313851,1.22009154,-1.5278697,3.0193126
+Functional richness mu2,Latitude,B1,0-258,0.5238115,5.548271,-12.114415,9.114861
+Functional richness mu2,Latitude,B1,258-599,-0.02001682,4.291045,-9.316328,6.951297
+Functional richness mu2,Latitude,B1,599-856,0.02867901,4.520074,-9.875517,7.436711
+Functional richness mu2,Latitude,B1,856-1100,1.97738564,3.227176,-4.991918,7.49222
+Functional richness mu2,Latitude,B1,1100-1320,6.21942333,3.733422,-1.33263,13.474482
+Functional richness mu2,Latitude,B1,1320-1500,4.59374271,3.325356,-2.174157,11.184589
+Functional richness mu2,Latitude,B1,1500-1670,2.04216218,5.807521,-10.898527,11.02787
+Functional richness mu2,Latitude,B1,1670-1870,3.74368048,3.468305,-3.446079,10.615872
+Functional richness mu2,Latitude,B1,1870-2090,3.50947508,5.560543,-8.667966,12.849563
+Functional richness mu2,Latitude,B1,2090-2330,1.78472694,5.097083,-9.911798,10.403548
+Functional richness mu2,Latitude,B1,2330-2780,2.27909521,4.294341,-7.108913,10.077128
+Functional richness mu2,Latitude,B1,2780-3740,2.25751899,5.242958,-9.467205,12.176886
+Functional richness mu2,Latitude,B2,0-258,-6.384876,5.371383,-19.55842,2.81128744
+Functional richness mu2,Latitude,B2,258-599,-5.628558,3.224171,-11.94506,0.88430177
+Functional richness mu2,Latitude,B2,599-856,-5.11802,3.134216,-11.12395,1.39340392
+Functional richness mu2,Latitude,B2,856-1100,-5.779659,5.22036,-17.11036,3.84291719
+Functional richness mu2,Latitude,B2,1100-1320,-11.094603,7.778748,-30.43159,-1.46815537
+Functional richness mu2,Latitude,B2,1320-1500,-8.52801,5.531458,-22.45264,-0.78996806
+Functional richness mu2,Latitude,B2,1500-1670,-4.730138,4.06331,-12.50355,4.01848342
+Functional richness mu2,Latitude,B2,1670-1870,-7.24881,4.330892,-17.51358,0.05482778
+Functional richness mu2,Latitude,B2,1870-2090,-5.651566,4.197393,-13.35522,2.35294275
+Functional richness mu2,Latitude,B2,2090-2330,-4.685005,5.43411,-16.49514,7.34687745
+Functional richness mu2,Latitude,B2,2330-2780,-4.125361,4.516962,-11.50092,4.38630905
+Functional richness mu2,Latitude,B2,2780-3740,-5.112932,5.719889,-16.49101,6.93071713
+Standardized functional richness,Elevation,Intercept,36.6-39.3,-0.03565497,0.163371,-0.42247314,0.26166459
+Standardized functional richness,Elevation,Intercept,39.3-41.2,-0.04558826,0.16694893,-0.4360057,0.25204233
+Standardized functional richness,Elevation,Intercept,41.2-43.2,0.01062185,0.12115648,-0.23101427,0.26468754
+Standardized functional richness,Elevation,Intercept,43.2-44.6,0.06237411,0.09468108,-0.11282403,0.25549379
+Standardized functional richness,Elevation,Intercept,44.6-46.3,0.06004019,0.12413303,-0.19459531,0.30447411
+Standardized functional richness,Elevation,Intercept,46.3-48.0,0.16924616,0.1088741,-0.02899569,0.38914002
+Standardized functional richness,Elevation,Intercept,48.0-50.0,-0.10270555,0.07834315,-0.2604796,0.03889754
+Standardized functional richness,Elevation,Intercept,50.0-52.1,-0.06991588,0.06387155,-0.19676825,0.05161076
+Standardized functional richness,Elevation,Intercept,52.1-54.2,-0.03739492,0.06328042,-0.16276378,0.08682993
+Standardized functional richness,Elevation,Intercept,54.2-58.1,0.02557632,0.1427514,-0.28612361,0.29860714
+Standardized functional richness,Elevation,Intercept,58.1-62.1,-0.01326029,0.12697109,-0.28095776,0.23668522
+Standardized functional richness,Elevation,Intercept,62.1-66.2,0.092213,0.14712141,-0.16484121,0.4223475
+Standardized functional richness,Elevation,B1,36.6-39.3,0.316763,5.758131,-11.905168,11.204982
+Standardized functional richness,Elevation,B1,39.3-41.2,-3.322141,7.187911,-18.376941,10.251245
+Standardized functional richness,Elevation,B1,41.2-43.2,3.800801,7.003284,-10.028252,17.511624
+Standardized functional richness,Elevation,B1,43.2-44.6,3.954205,6.142782,-8.086491,16.349461
+Standardized functional richness,Elevation,B1,44.6-46.3,-8.80864,7.65324,-25.72949,4.455171
+Standardized functional richness,Elevation,B1,46.3-48.0,1.922594,4.641829,-7.178525,11.07488
+Standardized functional richness,Elevation,B1,48.0-50.0,10.31577,3.74427,2.843296,17.33407
+Standardized functional richness,Elevation,B1,50.0-52.1,13.707382,2.376918,9.041046,18.398502
+Standardized functional richness,Elevation,B1,52.1-54.2,13.333977,2.763785,7.956466,18.764573
+Standardized functional richness,Elevation,B1,54.2-58.1,-2.60178,5.402771,-14.179058,7.27821
+Standardized functional richness,Elevation,B1,58.1-62.1,5.29967,4.514847,-3.896665,14.166228
+Standardized functional richness,Elevation,B1,62.1-66.2,-2.960677,5.153231,-13.140854,6.984072
+Standardized functional richness,Elevation,B2,36.6-39.3,0.89579749,3.013298,-4.750855,7.42891
+Standardized functional richness,Elevation,B2,39.3-41.2,-0.74830934,4.693435,-11.18,8.025823
+Standardized functional richness,Elevation,B2,41.2-43.2,0.20025104,4.275039,-9.023125,8.68835
+Standardized functional richness,Elevation,B2,43.2-44.6,-0.82908552,4.285727,-10.685685,6.968488
+Standardized functional richness,Elevation,B2,44.6-46.3,0.8803128,4.825667,-8.57751,11.176974
+Standardized functional richness,Elevation,B2,46.3-48.0,0.92540843,4.34998,-7.611519,10.478958
+Standardized functional richness,Elevation,B2,48.0-50.0,-3.66961084,3.742804,-11.48777,2.568945
+Standardized functional richness,Elevation,B2,50.0-52.1,2.46741418,2.44202,-1.972268,7.682562
+Standardized functional richness,Elevation,B2,52.1-54.2,2.26962698,2.410774,-2.154317,7.381827
+Standardized functional richness,Elevation,B2,54.2-58.1,0.02256511,3.976247,-8.753174,7.443329
+Standardized functional richness,Elevation,B2,58.1-62.1,-0.49423142,4.288494,-10.661494,7.298543
+Standardized functional richness,Elevation,B2,62.1-66.2,-0.8725878,4.653785,-11.74608,7.406069
+Standardized functional richness,Latitude,Intercept,0-258,0.054397265,0.0764836,-0.099783062,0.2133927
+Standardized functional richness,Latitude,Intercept,258-599,-0.000619629,0.09042409,-0.217134651,0.1425426
+Standardized functional richness,Latitude,Intercept,599-856,-0.05018363,0.11799861,-0.338330351,0.1140244
+Standardized functional richness,Latitude,Intercept,856-1100,0.056162249,0.06687627,-0.073997648,0.1955216
+Standardized functional richness,Latitude,Intercept,1100-1320,0.044276127,0.05481302,-0.064919537,0.1500203
+Standardized functional richness,Latitude,Intercept,1320-1500,0.048129479,0.05967055,-0.069513176,0.1728164
+Standardized functional richness,Latitude,Intercept,1500-1670,0.089437861,0.0660423,-0.024191229,0.2403342
+Standardized functional richness,Latitude,Intercept,1670-1870,0.138486046,0.08983987,0.001695426,0.3431459
+Standardized functional richness,Latitude,Intercept,1870-2090,0.031275844,0.06675911,-0.113609238,0.1556126
+Standardized functional richness,Latitude,Intercept,2090-2330,0.041923166,0.0626841,-0.087378593,0.1661591
+Standardized functional richness,Latitude,Intercept,2330-2780,0.080728859,0.09175887,-0.078190693,0.2974031
+Standardized functional richness,Latitude,Intercept,2780-3740,0.046279917,0.10850683,-0.180030323,0.2735583
+Standardized functional richness,Latitude,B1,0-258,7.161856,2.953023,1.0279844,13.423914
+Standardized functional richness,Latitude,B1,258-599,7.10052,2.314053,2.2106971,11.64287
+Standardized functional richness,Latitude,B1,599-856,7.279904,2.367827,2.7157459,12.347783
+Standardized functional richness,Latitude,B1,856-1100,4.543722,2.963475,-2.1578974,9.076866
+Standardized functional richness,Latitude,B1,1100-1320,6.909255,2.173557,2.4103835,11.090746
+Standardized functional richness,Latitude,B1,1320-1500,8.24646,2.685247,3.6682711,14.564912
+Standardized functional richness,Latitude,B1,1500-1670,7.9754,2.657035,3.3521933,14.060845
+Standardized functional richness,Latitude,B1,1670-1870,9.88844,3.766774,4.4299358,19.0033
+Standardized functional richness,Latitude,B1,1870-2090,8.365714,2.71228,3.8278356,14.740425
+Standardized functional richness,Latitude,B1,2090-2330,8.318741,2.889645,3.6084713,15.517629
+Standardized functional richness,Latitude,B1,2330-2780,6.522109,2.981352,-0.24428,12.1789
+Standardized functional richness,Latitude,B1,2780-3740,6.776784,2.83368,0.8849014,12.576987
+Standardized functional richness,Latitude,B2,0-258,-3.74689,2.811474,-9.860976,1.7612289
+Standardized functional richness,Latitude,B2,258-599,-2.814928,2.06472,-6.627629,1.6915213
+Standardized functional richness,Latitude,B2,599-856,-1.570012,2.52802,-5.651228,4.2469617
+Standardized functional richness,Latitude,B2,856-1100,-3.939457,2.455106,-9.299789,0.8057615
+Standardized functional richness,Latitude,B2,1100-1320,-4.027607,2.315489,-9.201238,0.1293922
+Standardized functional richness,Latitude,B2,1320-1500,-4.230344,2.697281,-10.555737,0.5644408
+Standardized functional richness,Latitude,B2,1500-1670,-4.94254,2.995484,-12.393561,-0.1548716
+Standardized functional richness,Latitude,B2,1670-1870,-6.402622,4.014704,-16.281793,-0.4844586
+Standardized functional richness,Latitude,B2,1870-2090,-3.986719,2.323251,-9.114524,0.2672896
+Standardized functional richness,Latitude,B2,2090-2330,-3.091998,2.296043,-7.402158,1.8677771
+Standardized functional richness,Latitude,B2,2330-2780,-3.133857,2.553456,-8.176489,2.2997592
+Standardized functional richness,Latitude,B2,2780-3740,-2.900817,2.426608,-7.613897,2.167195
+Phylogenetic richness,Elevation,Intercept,36.6-39.3,5.391283,0.13139986,5.17251,5.682917
+Phylogenetic richness,Elevation,Intercept,39.3-41.2,5.377498,0.11370698,5.175559,5.617049
+Phylogenetic richness,Elevation,Intercept,41.2-43.2,5.33413,0.06611343,5.211239,5.472134
+Phylogenetic richness,Elevation,Intercept,43.2-44.6,5.316497,0.05118418,5.211263,5.415067
+Phylogenetic richness,Elevation,Intercept,44.6-46.3,5.205779,0.06854736,5.063521,5.336702
+Phylogenetic richness,Elevation,Intercept,46.3-48.0,5.136425,0.04847318,5.040233,5.231506
+Phylogenetic richness,Elevation,Intercept,48.0-50.0,5.31136,0.02934973,5.255691,5.369573
+Phylogenetic richness,Elevation,Intercept,50.0-52.1,5.320137,0.02601068,5.270068,5.372079
+Phylogenetic richness,Elevation,Intercept,52.1-54.2,5.3064,0.0265972,5.254035,5.358718
+Phylogenetic richness,Elevation,Intercept,54.2-58.1,5.279108,0.08976312,5.089989,5.457533
+Phylogenetic richness,Elevation,Intercept,58.1-62.1,5.191486,0.10681337,4.96038,5.381221
+Phylogenetic richness,Elevation,Intercept,62.1-66.2,5.12697,0.1312933,4.826991,5.341043
+Phylogenetic richness,Elevation,B1,36.6-39.3,-2.999102,3.3956334,-9.949606,3.477326
+Phylogenetic richness,Elevation,B1,39.3-41.2,-3.916575,3.8592077,-11.237052,3.811982
+Phylogenetic richness,Elevation,B1,41.2-43.2,-7.901514,3.0552608,-14.002125,-1.855315
+Phylogenetic richness,Elevation,B1,43.2-44.6,-4.79274,2.8954017,-10.131572,1.110991
+Phylogenetic richness,Elevation,B1,44.6-46.3,-4.847311,3.0915417,-10.742085,1.266504
+Phylogenetic richness,Elevation,B1,46.3-48.0,-6.239061,2.035179,-10.148891,-2.126187
+Phylogenetic richness,Elevation,B1,48.0-50.0,-11.146445,1.3205152,-13.684183,-8.497518
+Phylogenetic richness,Elevation,B1,50.0-52.1,-7.137427,0.8531258,-8.812923,-5.444486
+Phylogenetic richness,Elevation,B1,52.1-54.2,-11.872346,1.0660023,-13.961417,-9.773484
+Phylogenetic richness,Elevation,B1,54.2-58.1,-7.046007,2.7286166,-12.613934,-1.774599
+Phylogenetic richness,Elevation,B1,58.1-62.1,-3.787973,3.2880212,-10.528489,2.383777
+Phylogenetic richness,Elevation,B1,62.1-66.2,-3.732953,3.7945314,-11.407583,3.387473
+Phylogenetic richness,Elevation,B2,36.6-39.3,-2.351082,1.4426379,-5.160666,0.4635911
+Phylogenetic richness,Elevation,B2,39.3-41.2,-3.181161,2.5086422,-8.474437,1.8356092
+Phylogenetic richness,Elevation,B2,41.2-43.2,-3.99499,2.3616059,-9.244704,0.5377773
+Phylogenetic richness,Elevation,B2,43.2-44.6,-4.242826,2.5373419,-10.150345,0.2791772
+Phylogenetic richness,Elevation,B2,44.6-46.3,-3.855493,2.5054903,-9.227488,1.0469883
+Phylogenetic richness,Elevation,B2,46.3-48.0,-5.653427,2.3751967,-10.868639,-1.5786822
+Phylogenetic richness,Elevation,B2,48.0-50.0,-2.885749,1.2308617,-5.151655,-0.3676787
+Phylogenetic richness,Elevation,B2,50.0-52.1,-2.782672,0.9158322,-4.476556,-0.9044391
+Phylogenetic richness,Elevation,B2,52.1-54.2,-5.668964,1.135863,-7.918981,-3.4577007
+Phylogenetic richness,Elevation,B2,54.2-58.1,-4.199537,2.0397646,-8.616589,-0.2670007
+Phylogenetic richness,Elevation,B2,58.1-62.1,-3.826531,2.6389673,-9.359156,1.4288835
+Phylogenetic richness,Elevation,B2,62.1-66.2,-2.648101,2.8295356,-7.765319,3.7405323
+Phylogenetic richness,Latitude,Intercept,0-258,5.616144,0.08429317,5.458868,5.788173
+Phylogenetic richness,Latitude,Intercept,258-599,5.572685,0.07092879,5.441332,5.714685
+Phylogenetic richness,Latitude,Intercept,599-856,5.273563,0.0757519,5.116115,5.413391
+Phylogenetic richness,Latitude,Intercept,856-1100,5.390282,0.03925996,5.314389,5.468829
+Phylogenetic richness,Latitude,Intercept,1100-1320,5.442389,0.03173798,5.38264,5.505661
+Phylogenetic richness,Latitude,Intercept,1320-1500,5.424991,0.03438501,5.356763,5.492772
+Phylogenetic richness,Latitude,Intercept,1500-1670,5.331623,0.04126273,5.256889,5.421456
+Phylogenetic richness,Latitude,Intercept,1670-1870,5.210215,0.04103755,5.132014,5.293751
+Phylogenetic richness,Latitude,Intercept,1870-2090,5.086659,0.03871437,5.011532,5.161582
+Phylogenetic richness,Latitude,Intercept,2090-2330,5.071261,0.03465549,5.002162,5.137537
+Phylogenetic richness,Latitude,Intercept,2330-2780,4.925938,0.05840363,4.814764,5.04277
+Phylogenetic richness,Latitude,Intercept,2780-3740,5.328047,0.24607018,4.837686,5.818161
+Phylogenetic richness,Latitude,B1,0-258,-0.9046486,2.880029,-7.516676,3.965075
+Phylogenetic richness,Latitude,B1,258-599,-1.0686105,2.345087,-6.286997,2.87404
+Phylogenetic richness,Latitude,B1,599-856,2.7180436,2.078943,-0.797389,7.305713
+Phylogenetic richness,Latitude,B1,856-1100,-0.2581902,1.442022,-3.230659,2.457822
+Phylogenetic richness,Latitude,B1,1100-1320,4.141588,1.540091,1.246146,7.192562
+Phylogenetic richness,Latitude,B1,1320-1500,0.670682,1.388251,-2.122986,3.343697
+Phylogenetic richness,Latitude,B1,1500-1670,0.2519305,1.912931,-2.974309,4.767425
+Phylogenetic richness,Latitude,B1,1670-1870,-1.2853276,1.987555,-5.046309,2.880008
+Phylogenetic richness,Latitude,B1,1870-2090,-1.1571817,2.194165,-5.539925,3.076064
+Phylogenetic richness,Latitude,B1,2090-2330,-2.1612499,2.509311,-7.57857,2.362323
+Phylogenetic richness,Latitude,B1,2330-2780,-0.3600045,2.856316,-6.386796,5.019057
+Phylogenetic richness,Latitude,B1,2780-3740,1.3531387,2.261646,-3.575295,5.737395
+Phylogenetic richness,Latitude,B2,0-258,-4.7283709,3.368694,-12.21277,1.3390848
+Phylogenetic richness,Latitude,B2,258-599,-2.6586007,1.821896,-5.957535,1.2303808
+Phylogenetic richness,Latitude,B2,599-856,-3.4312882,1.686026,-6.965484,-0.3700208
+Phylogenetic richness,Latitude,B2,856-1100,-2.59903,1.473668,-5.551995,0.3051976
+Phylogenetic richness,Latitude,B2,1100-1320,-6.0572965,1.680811,-9.365181,-2.77279
+Phylogenetic richness,Latitude,B2,1320-1500,-3.672032,1.737379,-7.352417,-0.3904112
+Phylogenetic richness,Latitude,B2,1500-1670,0.6268992,2.527728,-3.132819,6.8268968
+Phylogenetic richness,Latitude,B2,1670-1870,2.2871986,2.333086,-1.656794,7.5322122
+Phylogenetic richness,Latitude,B2,1870-2090,2.5617517,2.042742,-1.341371,6.7003014
+Phylogenetic richness,Latitude,B2,2090-2330,2.328776,2.095353,-1.862174,6.4083922
+Phylogenetic richness,Latitude,B2,2330-2780,1.7655329,2.256487,-2.746917,6.2435654
+Phylogenetic richness,Latitude,B2,2780-3740,-3.4856208,2.706319,-9.076638,1.8919103
+Standardized phylogenetic richness,Elevation,Intercept,36.6-39.3,0.2872809,0.06757896,0.15432148,0.4316113
+Standardized phylogenetic richness,Elevation,Intercept,39.3-41.2,0.2791925,0.06711107,0.13751789,0.4149348
+Standardized phylogenetic richness,Elevation,Intercept,41.2-43.2,0.2930442,0.06518628,0.16825892,0.4416225
+Standardized phylogenetic richness,Elevation,Intercept,43.2-44.6,0.2871644,0.05687467,0.16926448,0.4008322
+Standardized phylogenetic richness,Elevation,Intercept,44.6-46.3,0.3083559,0.0583163,0.20822533,0.4457187
+Standardized phylogenetic richness,Elevation,Intercept,46.3-48.0,0.2648702,0.05290844,0.14216198,0.3557362
+Standardized phylogenetic richness,Elevation,Intercept,48.0-50.0,0.2580365,0.05074938,0.14654588,0.3464576
+Standardized phylogenetic richness,Elevation,Intercept,50.0-52.1,0.3096414,0.04615792,0.22865869,0.4121704
+Standardized phylogenetic richness,Elevation,Intercept,52.1-54.2,0.2797401,0.04367352,0.18895843,0.3655276
+Standardized phylogenetic richness,Elevation,Intercept,54.2-58.1,0.2713846,0.06725407,0.11613667,0.3994852
+Standardized phylogenetic richness,Elevation,Intercept,58.1-62.1,0.2606319,0.06961314,0.09514267,0.3832265
+Standardized phylogenetic richness,Elevation,Intercept,62.1-66.2,0.2763775,0.06436109,0.13221752,0.4035535
+Standardized phylogenetic richness,Elevation,B1,36.6-39.3,-3.753002,2.659487,-8.858688,2.1594284
+Standardized phylogenetic richness,Elevation,B1,39.3-41.2,-4.026456,2.658552,-9.39357,1.5967791
+Standardized phylogenetic richness,Elevation,B1,41.2-43.2,-3.097606,2.966181,-8.359014,3.9100149
+Standardized phylogenetic richness,Elevation,B1,43.2-44.6,-2.076323,3.36438,-6.981123,6.3057064
+Standardized phylogenetic richness,Elevation,B1,44.6-46.3,-4.720875,2.677838,-10.606532,0.3339737
+Standardized phylogenetic richness,Elevation,B1,46.3-48.0,-2.800078,2.492627,-6.890809,2.9552491
+Standardized phylogenetic richness,Elevation,B1,48.0-50.0,-4.824393,2.060016,-8.978168,-0.664441
+Standardized phylogenetic richness,Elevation,B1,50.0-52.1,-4.756692,1.573053,-8.073473,-1.8015225
+Standardized phylogenetic richness,Elevation,B1,52.1-54.2,-5.994549,1.983715,-10.305374,-2.533599
+Standardized phylogenetic richness,Elevation,B1,54.2-58.1,-3.176787,2.384274,-7.373628,2.1778836
+Standardized phylogenetic richness,Elevation,B1,58.1-62.1,-2.357029,2.575704,-6.552321,3.5512256
+Standardized phylogenetic richness,Elevation,B1,62.1-66.2,-3.051084,2.29651,-7.040704,2.0465247
+Standardized phylogenetic richness,Elevation,B2,36.6-39.3,1.3711901,2.076444,-3.0125614,5.098448
+Standardized phylogenetic richness,Elevation,B2,39.3-41.2,2.0394078,3.876204,-6.7744278,9.00711
+Standardized phylogenetic richness,Elevation,B2,41.2-43.2,1.8131039,3.783362,-6.8386647,8.70655
+Standardized phylogenetic richness,Elevation,B2,43.2-44.6,0.6004422,3.576761,-7.3077413,6.372362
+Standardized phylogenetic richness,Elevation,B2,44.6-46.3,1.814433,3.370358,-5.6348475,7.880724
+Standardized phylogenetic richness,Elevation,B2,46.3-48.0,1.7520981,3.035266,-4.9487947,7.17378
+Standardized phylogenetic richness,Elevation,B2,48.0-50.0,6.8698973,2.590875,2.4307379,12.269213
+Standardized phylogenetic richness,Elevation,B2,50.0-52.1,3.5594737,1.92364,-0.3351414,7.38723
+Standardized phylogenetic richness,Elevation,B2,52.1-54.2,5.1679337,2.030059,1.5048559,9.338701
+Standardized phylogenetic richness,Elevation,B2,54.2-58.1,1.9978278,2.979497,-4.3692193,7.51586
+Standardized phylogenetic richness,Elevation,B2,58.1-62.1,1.2803538,3.777527,-6.9776177,7.831052
+Standardized phylogenetic richness,Elevation,B2,62.1-66.2,1.4353171,3.328854,-6.0372415,7.386375
+Standardized phylogenetic richness,Latitude,Intercept,0-258,0.3890754,0.09238985,0.23351031,0.5960963
+Standardized phylogenetic richness,Latitude,Intercept,258-599,0.4821819,0.12830219,0.28095567,0.7654828
+Standardized phylogenetic richness,Latitude,Intercept,599-856,0.3120128,0.09152977,0.09703077,0.4824
+Standardized phylogenetic richness,Latitude,Intercept,856-1100,0.4104251,0.07834856,0.27940148,0.5806963
+Standardized phylogenetic richness,Latitude,Intercept,1100-1320,0.3084251,0.05247277,0.19926669,0.4102396
+Standardized phylogenetic richness,Latitude,Intercept,1320-1500,0.3197442,0.05477538,0.21241318,0.4306095
+Standardized phylogenetic richness,Latitude,Intercept,1500-1670,0.2408312,0.0718769,0.08631979,0.3690075
+Standardized phylogenetic richness,Latitude,Intercept,1670-1870,0.2881229,0.05779125,0.16719499,0.3961193
+Standardized phylogenetic richness,Latitude,Intercept,1870-2090,0.2441531,0.06783241,0.09865579,0.3600041
+Standardized phylogenetic richness,Latitude,Intercept,2090-2330,0.280132,0.05875155,0.15917585,0.3896692
+Standardized phylogenetic richness,Latitude,Intercept,2330-2780,0.2647261,0.08279227,0.08156658,0.4072522
+Standardized phylogenetic richness,Latitude,Intercept,2780-3740,0.3703709,0.1444406,0.07470356,0.6791849
+Standardized phylogenetic richness,Latitude,B1,0-258,-2.5209941,2.890529,-8.793706,3.19065009
+Standardized phylogenetic richness,Latitude,B1,258-599,-1.9898134,3.084541,-8.518074,4.34482864
+Standardized phylogenetic richness,Latitude,B1,599-856,-0.8938618,2.743632,-5.090119,5.72701256
+Standardized phylogenetic richness,Latitude,B1,856-1100,-4.0628392,2.630172,-10.138777,0.24669294
+Standardized phylogenetic richness,Latitude,B1,1100-1320,-2.2607938,2.019943,-6.18276,1.95598095
+Standardized phylogenetic richness,Latitude,B1,1320-1500,-2.9063222,2.070055,-7.203689,1.10917525
+Standardized phylogenetic richness,Latitude,B1,1500-1670,-5.2427698,3.410984,-13.330403,0.07298123
+Standardized phylogenetic richness,Latitude,B1,1670-1870,-2.907139,2.144411,-7.444002,1.18694321
+Standardized phylogenetic richness,Latitude,B1,1870-2090,-2.7801423,2.390884,-7.798866,1.88934523
+Standardized phylogenetic richness,Latitude,B1,2090-2330,-3.4524552,2.589515,-9.364211,1.18089238
+Standardized phylogenetic richness,Latitude,B1,2330-2780,-2.8663534,2.564969,-8.554929,1.96518579
+Standardized phylogenetic richness,Latitude,B1,2780-3740,-1.3442262,2.725294,-6.289654,4.73852442
+Standardized phylogenetic richness,Latitude,B2,0-258,-0.1354086,4.645472,-10.1432819,8.507096
+Standardized phylogenetic richness,Latitude,B2,258-599,-5.1121922,3.251412,-11.4401603,1.532929
+Standardized phylogenetic richness,Latitude,B2,599-856,2.2290113,2.986556,-4.2576389,7.704
+Standardized phylogenetic richness,Latitude,B2,856-1100,1.528761,3.016876,-4.3855784,7.544858
+Standardized phylogenetic richness,Latitude,B2,1100-1320,3.8237866,3.070554,-2.0827214,10.076231
+Standardized phylogenetic richness,Latitude,B2,1320-1500,5.7533243,3.499028,-0.5530723,13.232389
+Standardized phylogenetic richness,Latitude,B2,1500-1670,13.5070563,5.13033,3.872982,24.133773
+Standardized phylogenetic richness,Latitude,B2,1670-1870,5.5316639,3.273606,-0.6402028,12.262284
+Standardized phylogenetic richness,Latitude,B2,1870-2090,6.6015833,2.921131,1.2128019,12.673466
+Standardized phylogenetic richness,Latitude,B2,2090-2330,7.5333829,3.000006,1.82906,13.702417
+Standardized phylogenetic richness,Latitude,B2,2330-2780,5.2474664,3.137128,-0.7292377,11.602102
+Standardized phylogenetic richness,Latitude,B2,2780-3740,-2.7677642,3.1293,-9.0227775,3.34125
+Standardized functional dispersion,Elevation,Intercept,36.6-39.3,0.04447717,0.07872545,-0.155696439,0.16153
+Standardized functional dispersion,Elevation,Intercept,39.3-41.2,0.04671515,0.07264168,-0.132036234,0.164959
+Standardized functional dispersion,Elevation,Intercept,41.2-43.2,0.06799768,0.0629499,-0.064812967,0.1976732
+Standardized functional dispersion,Elevation,Intercept,43.2-44.6,0.09058961,0.05447256,-0.002445129,0.2186379
+Standardized functional dispersion,Elevation,Intercept,44.6-46.3,0.0756215,0.05749006,-0.039311539,0.1924655
+Standardized functional dispersion,Elevation,Intercept,46.3-48.0,0.08816634,0.0501662,0.000390344,0.2016254
+Standardized functional dispersion,Elevation,Intercept,48.0-50.0,0.07524532,0.04489191,-0.011104427,0.1694759
+Standardized functional dispersion,Elevation,Intercept,50.0-52.1,0.06676024,0.04262623,-0.019559053,0.1507305
+Standardized functional dispersion,Elevation,Intercept,52.1-54.2,0.0523968,0.04583957,-0.050347488,0.1340409
+Standardized functional dispersion,Elevation,Intercept,54.2-58.1,0.08141788,0.06946674,-0.042510215,0.2436826
+Standardized functional dispersion,Elevation,Intercept,58.1-62.1,0.04130334,0.06873813,-0.128538241,0.1467446
+Standardized functional dispersion,Elevation,Intercept,62.1-66.2,0.0697418,0.06239158,-0.058354653,0.1978216
+Standardized functional dispersion,Elevation,B1,36.6-39.3,1.8095946,2.683446,-4.3909939,6.474225
+Standardized functional dispersion,Elevation,B1,39.3-41.2,0.712115,3.350087,-7.0697267,6.186263
+Standardized functional dispersion,Elevation,B1,41.2-43.2,0.5533578,3.680321,-8.434304,6.234459
+Standardized functional dispersion,Elevation,B1,43.2-44.6,1.6019929,3.220218,-5.6777422,7.417727
+Standardized functional dispersion,Elevation,B1,44.6-46.3,-1.0542601,4.292267,-11.5892135,4.672915
+Standardized functional dispersion,Elevation,B1,46.3-48.0,2.5323173,2.595891,-2.7652329,7.895264
+Standardized functional dispersion,Elevation,B1,48.0-50.0,1.1796828,2.156459,-3.5811018,4.847696
+Standardized functional dispersion,Elevation,B1,50.0-52.1,4.1436752,1.751481,1.0385113,7.875921
+Standardized functional dispersion,Elevation,B1,52.1-54.2,4.4388899,2.020332,0.9863734,8.848231
+Standardized functional dispersion,Elevation,B1,54.2-58.1,0.967258,2.870347,-5.5551142,5.745207
+Standardized functional dispersion,Elevation,B1,58.1-62.1,3.4007323,2.362581,-1.2257049,8.507124
+Standardized functional dispersion,Elevation,B1,62.1-66.2,1.5491097,2.509682,-4.0282698,6.172509
+Standardized functional dispersion,Elevation,B2,36.6-39.3,2.2506431,1.711187,-0.6054931,6.32217
+Standardized functional dispersion,Elevation,B2,39.3-41.2,1.6244202,2.293109,-2.9782621,6.487518
+Standardized functional dispersion,Elevation,B2,41.2-43.2,1.5165115,2.214332,-3.1570377,5.909317
+Standardized functional dispersion,Elevation,B2,43.2-44.6,0.8180961,2.262906,-4.7658799,4.479886
+Standardized functional dispersion,Elevation,B2,44.6-46.3,1.8395059,2.277137,-2.5207967,7.150945
+Standardized functional dispersion,Elevation,B2,46.3-48.0,1.1458564,1.970909,-3.1801253,4.828008
+Standardized functional dispersion,Elevation,B2,48.0-50.0,0.8651275,1.811848,-3.39136,3.919126
+Standardized functional dispersion,Elevation,B2,50.0-52.1,1.2703972,1.57628,-2.1364136,4.188349
+Standardized functional dispersion,Elevation,B2,52.1-54.2,1.7230942,1.563136,-1.2747525,5.013839
+Standardized functional dispersion,Elevation,B2,54.2-58.1,1.4806798,2.083587,-2.9158174,5.497409
+Standardized functional dispersion,Elevation,B2,58.1-62.1,1.7273163,2.20462,-2.3795365,6.415627
+Standardized functional dispersion,Elevation,B2,62.1-66.2,1.6687941,2.130685,-2.551545,6.060966
+Standardized functional dispersion,Latitude,Intercept,0-258,0.071278768,0.08868302,-0.108739163,0.257869
+Standardized functional dispersion,Latitude,Intercept,258-599,0.085008807,0.08620866,-0.077121306,0.276076
+Standardized functional dispersion,Latitude,Intercept,599-856,-0.013038791,0.09732266,-0.233047332,0.1422775
+Standardized functional dispersion,Latitude,Intercept,856-1100,0.002269909,0.07534274,-0.160946303,0.1333098
+Standardized functional dispersion,Latitude,Intercept,1100-1320,0.105763173,0.06283584,-0.009637389,0.2369296
+Standardized functional dispersion,Latitude,Intercept,1320-1500,0.087540606,0.06641083,-0.035484956,0.2244416
+Standardized functional dispersion,Latitude,Intercept,1500-1670,0.14471478,0.08062775,0.011511386,0.3250826
+Standardized functional dispersion,Latitude,Intercept,1670-1870,0.169652699,0.08991342,0.024100804,0.3678991
+Standardized functional dispersion,Latitude,Intercept,1870-2090,0.032428002,0.0704359,-0.112053922,0.1646764
+Standardized functional dispersion,Latitude,Intercept,2090-2330,-0.008244611,0.07343603,-0.158738072,0.1239455
+Standardized functional dispersion,Latitude,Intercept,2330-2780,0.057967446,0.08636412,-0.108955838,0.243461
+Standardized functional dispersion,Latitude,Intercept,2780-3740,0.038260148,0.16023177,-0.280605847,0.392533
+Standardized functional dispersion,Latitude,B1,0-258,8.420559,3.649019,0.1725791,15.43816
+Standardized functional dispersion,Latitude,B1,258-599,7.918728,3.1202,0.7805869,13.42755
+Standardized functional dispersion,Latitude,B1,599-856,7.204477,2.951249,1.0162347,12.53068
+Standardized functional dispersion,Latitude,B1,856-1100,6.519044,3.150034,-0.4909352,11.62609
+Standardized functional dispersion,Latitude,B1,1100-1320,10.492489,2.689201,5.6864839,16.40277
+Standardized functional dispersion,Latitude,B1,1320-1500,11.076834,3.120414,5.9970192,18.20104
+Standardized functional dispersion,Latitude,B1,1500-1670,9.637872,3.151202,3.8242772,16.62696
+Standardized functional dispersion,Latitude,B1,1670-1870,12.340491,4.17253,5.9959979,22.39991
+Standardized functional dispersion,Latitude,B1,1870-2090,10.755102,3.783922,5.1880761,20.26594
+Standardized functional dispersion,Latitude,B1,2090-2330,9.07164,4.409043,1.1762959,19.60081
+Standardized functional dispersion,Latitude,B1,2330-2780,7.802149,4.072052,-0.6800437,15.87628
+Standardized functional dispersion,Latitude,B1,2780-3740,5.364337,6.024824,-8.1516817,15.58485
+Standardized functional dispersion,Latitude,B2,0-258,-8.984796,5.721836,-20.667201,2.0121518
+Standardized functional dispersion,Latitude,B2,258-599,-9.245381,3.289761,-15.560332,-2.55133
+Standardized functional dispersion,Latitude,B2,599-856,-10.144637,3.504651,-16.797709,-3.2894317
+Standardized functional dispersion,Latitude,B2,856-1100,-10.460694,3.743164,-18.033404,-3.3682252
+Standardized functional dispersion,Latitude,B2,1100-1320,-13.773797,3.961454,-21.86964,-6.4674247
+Standardized functional dispersion,Latitude,B2,1320-1500,-11.329981,4.216705,-20.025986,-3.2639955
+Standardized functional dispersion,Latitude,B2,1500-1670,-9.932179,4.657133,-19.271328,-0.5562971
+Standardized functional dispersion,Latitude,B2,1670-1870,-17.094086,5.267248,-27.727367,-7.0446791
+Standardized functional dispersion,Latitude,B2,1870-2090,-6.929384,3.876858,-13.75231,1.7062861
+Standardized functional dispersion,Latitude,B2,2090-2330,-0.775161,4.397162,-8.28198,8.6430396
+Standardized functional dispersion,Latitude,B2,2330-2780,-3.729976,4.09928,-10.941675,5.2280642
+Standardized functional dispersion,Latitude,B2,2780-3740,2.798892,4.724615,-6.759835,11.5689362
+Standardized phylogenetic MPD,Elevation,Intercept,36.6-39.3,0.2168123,0.06859583,0.08918367,0.3690084
+Standardized phylogenetic MPD,Elevation,Intercept,39.3-41.2,0.2049511,0.06507174,0.06519647,0.3360621
+Standardized phylogenetic MPD,Elevation,Intercept,41.2-43.2,0.2118015,0.06490224,0.08007912,0.3491539
+Standardized phylogenetic MPD,Elevation,Intercept,43.2-44.6,0.2137775,0.06834214,0.06739387,0.3521832
+Standardized phylogenetic MPD,Elevation,Intercept,44.6-46.3,0.2303776,0.06645424,0.11051858,0.3841152
+Standardized phylogenetic MPD,Elevation,Intercept,46.3-48.0,0.2048085,0.05540455,0.08747702,0.3133057
+Standardized phylogenetic MPD,Elevation,Intercept,48.0-50.0,0.2085817,0.04697818,0.11615986,0.3050935
+Standardized phylogenetic MPD,Elevation,Intercept,50.0-52.1,0.2189066,0.04493316,0.13469348,0.3141132
+Standardized phylogenetic MPD,Elevation,Intercept,52.1-54.2,0.1875896,0.04764227,0.08163144,0.2708468
+Standardized phylogenetic MPD,Elevation,Intercept,54.2-58.1,0.2148193,0.06377355,0.09370067,0.350986
+Standardized phylogenetic MPD,Elevation,Intercept,58.1-62.1,0.1963975,0.06585606,0.04740467,0.3220826
+Standardized phylogenetic MPD,Elevation,Intercept,62.1-66.2,0.219132,0.06809536,0.09611205,0.3753234
+Standardized phylogenetic MPD,Elevation,B1,36.6-39.3,-1.6312326,2.786789,-6.281554,4.8845907
+Standardized phylogenetic MPD,Elevation,B1,39.3-41.2,-2.3924652,2.660152,-7.705844,3.3406167
+Standardized phylogenetic MPD,Elevation,B1,41.2-43.2,-1.2138256,2.982951,-5.842705,5.8871221
+Standardized phylogenetic MPD,Elevation,B1,43.2-44.6,-0.4190287,3.321725,-5.293345,7.5822056
+Standardized phylogenetic MPD,Elevation,B1,44.6-46.3,-1.9923572,2.728295,-7.071986,4.0132032
+Standardized phylogenetic MPD,Elevation,B1,46.3-48.0,-1.300337,2.53545,-5.450321,4.5096062
+Standardized phylogenetic MPD,Elevation,B1,48.0-50.0,-3.2172594,1.979504,-7.108336,0.8386525
+Standardized phylogenetic MPD,Elevation,B1,50.0-52.1,-4.2349648,1.833808,-8.134967,-0.9653524
+Standardized phylogenetic MPD,Elevation,B1,52.1-54.2,-3.3349007,1.726723,-6.855587,0.0234816
+Standardized phylogenetic MPD,Elevation,B1,54.2-58.1,-2.5041516,2.212106,-6.889058,2.1201854
+Standardized phylogenetic MPD,Elevation,B1,58.1-62.1,-1.2818686,2.390375,-5.304048,4.0965353
+Standardized phylogenetic MPD,Elevation,B1,62.1-66.2,-1.8606016,2.333087,-6.26642,3.1338072
+Standardized phylogenetic MPD,Elevation,B2,36.6-39.3,0.8135164,2.377991,-4.18234,5.213601
+Standardized phylogenetic MPD,Elevation,B2,39.3-41.2,1.5460269,7.294895,-13.967278,14.936303
+Standardized phylogenetic MPD,Elevation,B2,41.2-43.2,1.573825,6.414352,-11.979257,13.694257
+Standardized phylogenetic MPD,Elevation,B2,43.2-44.6,-4.0176214,5.377714,-15.39228,5.681322
+Standardized phylogenetic MPD,Elevation,B2,44.6-46.3,-1.7734184,5.307322,-12.908453,8.04038
+Standardized phylogenetic MPD,Elevation,B2,46.3-48.0,-0.2696865,4.322734,-9.180494,7.748719
+Standardized phylogenetic MPD,Elevation,B2,48.0-50.0,13.5119606,2.761124,8.240264,19.094646
+Standardized phylogenetic MPD,Elevation,B2,50.0-52.1,11.4568932,2.548636,6.503202,16.383443
+Standardized phylogenetic MPD,Elevation,B2,52.1-54.2,11.11664,2.395111,6.44499,15.86907
+Standardized phylogenetic MPD,Elevation,B2,54.2-58.1,4.1204394,4.180009,-4.216738,12.313048
+Standardized phylogenetic MPD,Elevation,B2,58.1-62.1,1.0471869,5.961979,-11.053575,12.536972
+Standardized phylogenetic MPD,Elevation,B2,62.1-66.2,-0.4708348,5.204102,-11.599318,9.107147
+Standardized phylogenetic MPD,Latitude,Intercept,0-258,0.2764801,0.0903557,0.12947291,0.4914532
+Standardized phylogenetic MPD,Latitude,Intercept,258-599,0.3239867,0.119309,0.14907256,0.6025235
+Standardized phylogenetic MPD,Latitude,Intercept,599-856,0.2344235,0.09103977,0.03216991,0.4150265
+Standardized phylogenetic MPD,Latitude,Intercept,856-1100,0.265063,0.06691481,0.15767622,0.4195924
+Standardized phylogenetic MPD,Latitude,Intercept,1100-1320,0.2124186,0.05054254,0.10816327,0.3090367
+Standardized phylogenetic MPD,Latitude,Intercept,1320-1500,0.2394957,0.05726621,0.13276824,0.3628972
+Standardized phylogenetic MPD,Latitude,Intercept,1500-1670,0.1865943,0.06624161,0.04434951,0.3052642
+Standardized phylogenetic MPD,Latitude,Intercept,1670-1870,0.2113315,0.05482374,0.09314934,0.31696
+Standardized phylogenetic MPD,Latitude,Intercept,1870-2090,0.1847618,0.06191435,0.04705224,0.2906255
+Standardized phylogenetic MPD,Latitude,Intercept,2090-2330,0.2024998,0.05398904,0.08345946,0.3026266
+Standardized phylogenetic MPD,Latitude,Intercept,2330-2780,0.205664,0.07041458,0.04828567,0.3337129
+Standardized phylogenetic MPD,Latitude,Intercept,2780-3740,0.2490757,0.10897205,0.0498122,0.497283
+Standardized phylogenetic MPD,Latitude,B1,0-258,0.001427709,3.999522,-7.500871,8.594502
+Standardized phylogenetic MPD,Latitude,B1,258-599,4.014190433,4.850109,-4.566325,14.101122
+Standardized phylogenetic MPD,Latitude,B1,599-856,3.337829131,4.023962,-3.595642,12.000111
+Standardized phylogenetic MPD,Latitude,B1,856-1100,-4.145054438,2.852651,-10.118625,1.192095
+Standardized phylogenetic MPD,Latitude,B1,1100-1320,-3.689382283,2.570939,-8.892536,1.248433
+Standardized phylogenetic MPD,Latitude,B1,1320-1500,-6.794248365,2.979491,-13.020421,-1.367179
+Standardized phylogenetic MPD,Latitude,B1,1500-1670,-8.812197759,3.421255,-15.705773,-2.371558
+Standardized phylogenetic MPD,Latitude,B1,1670-1870,-3.148371857,2.556991,-8.581003,1.677226
+Standardized phylogenetic MPD,Latitude,B1,1870-2090,-2.275579925,2.841064,-7.907233,3.528332
+Standardized phylogenetic MPD,Latitude,B1,2090-2330,-3.303088485,2.838786,-8.929728,2.484875
+Standardized phylogenetic MPD,Latitude,B1,2330-2780,-2.807423589,3.197159,-9.374625,3.51574
+Standardized phylogenetic MPD,Latitude,B1,2780-3740,-0.416236635,3.074149,-6.893781,5.527155
+Standardized phylogenetic MPD,Latitude,B2,0-258,-1.3579016,4.92336,-11.6952939,8.0352932
+Standardized phylogenetic MPD,Latitude,B2,258-599,-8.467039,4.392955,-17.4109182,-0.3902491
+Standardized phylogenetic MPD,Latitude,B2,599-856,-2.1576194,4.075957,-10.6578039,5.4010095
+Standardized phylogenetic MPD,Latitude,B2,856-1100,5.0898292,3.334926,-1.2779164,11.7729854
+Standardized phylogenetic MPD,Latitude,B2,1100-1320,5.2691002,3.329373,-1.0946764,12.0430683
+Standardized phylogenetic MPD,Latitude,B2,1320-1500,8.9251646,3.873226,1.8263811,16.91562
+Standardized phylogenetic MPD,Latitude,B2,1500-1670,13.6368599,4.566055,5.0466232,23.0678898
+Standardized phylogenetic MPD,Latitude,B2,1670-1870,4.4630333,3.331983,-2.1112241,11.0547546
+Standardized phylogenetic MPD,Latitude,B2,1870-2090,5.0278631,2.894681,-0.4477899,10.9287059
+Standardized phylogenetic MPD,Latitude,B2,2090-2330,5.5860805,2.838359,0.3030465,11.4721402
+Standardized phylogenetic MPD,Latitude,B2,2330-2780,3.9200541,3.035191,-1.9642074,10.1836154
+Standardized phylogenetic MPD,Latitude,B2,2780-3740,-0.8002018,2.750314,-6.6626947,4.3107553
