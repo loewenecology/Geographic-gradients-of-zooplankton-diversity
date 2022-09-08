@@ -7377,7 +7377,7 @@ pra$x <- pra$x * sd(lmdata$Latitude) + mean(lmdata$Latitude)
     geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Latitude, y = Area)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
     scale_x_continuous("Latitude (°N)", breaks = c(36, 42, 48, 54, 60, 66)) +
-    scale_y_continuous("Area (m2)", breaks = c(0, 200000000,400000000, 600000000), labels = function(x) format(x, scientific = FALSE)) +
+    scale_y_continuous("Area (m2)", breaks = c(0, 200000000, 400000000, 600000000), labels = function(x) format(x, scientific = FALSE)) +
     workingtheme)
 
 save(size.area.lat.plot, file = "size.area.lat.plot.rdata")
@@ -7393,12 +7393,12 @@ size.area.ele <- brm(formula = Area.scale ~ Elevation.scale,
 pra <- ggpredict(size.area.ele, terms = c("Elevation.scale [all]"), ppd = FALSE)
 pra$x <- pra$x * sd(lmdata$Elevation) + mean(lmdata$Elevation) 
 
-size.area.ele.plot <- ggplot() +
+(size.area.ele.plot <- ggplot() +
     geom_ribbon(data = pra, aes(ymin = conf.low, ymax = conf.high, x = x), alpha = 0.075) +
     geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Elevation, y = Area)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
     scale_x_continuous("Elevation (masl)", breaks = c(0, 750, 1500, 2250, 3000, 3750)) +
-    scale_y_continuous("Area (m2)", breaks = c(0, 200000000,400000000, 600000000), labels = function(x) format(x, scientific = FALSE)) +
+    scale_y_continuous("Area (m2)", breaks = c(0, 200000000, 400000000, 600000000), labels = function(x) format(x, scientific = FALSE)) +
     workingtheme)
 
 save(size.area.ele.plot, file = "size.area.ele.plot.rdata")
