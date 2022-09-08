@@ -2760,7 +2760,7 @@ hist(dist$value)
 dist <- subset(lmdata, variable == "pd.obs.p.lat.qnorm")
 hist(dist$value)
 
-# PD.obs.z ~ simple elevation fixed effect model
+# PD.obs.p.qnorm ~ simple elevation fixed effect model
 bayes.pd.obs.p.lat.qnorm.elev.1fe <- brm(formula = value ~ Elevation.scale,
                                          data = subset(lmdata, variable == "pd.obs.p.lat.qnorm"), family = skew_normal(),
                                          prior = c(set_prior("normal(0, 5)", class = "b")),
