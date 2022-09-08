@@ -1429,6 +1429,7 @@ Bio.metrics$elev_class <- factor(Bio.metrics$elev_class, levels = c("0-258",
 lmdata <- Bio.metrics %>%
   melt(id.vars = c("ID", "Lake", "Elevation", "Elevation.scale", "Latitude", "Latitude.scale", "lat_class", "elev_class",
                    "MAT", "MAT.scale", "TD", "TD.scale", "Area", "Area.scale", "Depth", "Depth.scale",
+                   "Sampling.events", "Sampling.events.scale", "Sampling.years", "Sampling.years.scale"),
        measure.vars = c("Taxo.alpha",
                         "Glob.PD",
                         "Glob.MPD",
