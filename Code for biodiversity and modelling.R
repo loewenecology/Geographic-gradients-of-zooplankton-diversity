@@ -7240,7 +7240,7 @@ pra$x <- pra$x * sd(lmdata$Area) + mean(lmdata$Area)
     geom_point(data = subset(lmdata, variable == "Taxo.alpha"), alpha = 0.1, aes(x = Area, y = value)) +
     geom_line(data = pra, aes(x, predicted), size = 1, linetype = "longdash") +
     scale_y_continuous("Species richness", breaks = c(0, 5, 10, 15, 20, 25)) +
-    scale_x_continuous("Area (m2)", breaks = c(0, 200000000,400000000, 600000000), labels = function(x) format(x, scientific = FALSE)) +
+    scale_x_continuous("Area (m2)", breaks = c(0, 200000000, 400000000, 600000000), labels = function(x) format(x, scientific = FALSE)) +
     workingtheme)
 
 save(size.sp.area.plot, file = "size.sp.area.plot.rdata")
