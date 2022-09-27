@@ -149,8 +149,8 @@ mpd.obs.p.glob.fix (P-values for observed value used in calculations for phyloge
 mpd.obs.p.glob.qnorm (probit-transformed quantile P-values for phylogenetic mean pairwise distance SES with global pools);
 FRic.obs.p.glob.fix (P-values for observed value used in calculations for functional richness SES with global pools replacing values of 1);
 FRic.obs.p.glob.qnorm (probit-transformed quantile P-values for functional richness SES with global pools);
-FDis.obs.p.glob.fix (P-values for observed value used in calculations for functional dispersion SES with global pools replacing values of 1);
-FDis.obs.p.glob.qnorm (probit-transformed quantile P-values for functional dispersion SES with global pools);
+FDis.obs.p.glob.fix (P-values for observed value used in calculations for functional dispersion SES with global pools replacing values of 1); and
+FDis.obs.p.glob.qnorm (probit-transformed quantile P-values for functional dispersion SES with global pools).
 
 ClimateNA_input_elev_1964-2015Y.csv contains annual climate data across the entire study period (1964-2015) at each sampling location obtained using ClimateNA v6.40 (Wang et al. 2016).
 
