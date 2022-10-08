@@ -46,7 +46,7 @@ sites = read.table("Sitebygeo.csv", header = T, sep = ",") #matrix of sites (row
 rownames(sites) <- sites$ID
 
 traits = read.table("Spbytrait.csv", header = T, sep = ",", row.names = 1) #matrix of species (rows) by traits (columns)
-taxa.list = readRDS("Taxalist.RData") #taxonomic rankings
+taxa.list = readRDS("Taxalist.rds") #taxonomic rankings
 
 ##################
 # Mapping natural breaks
