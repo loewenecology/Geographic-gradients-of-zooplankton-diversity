@@ -10,7 +10,7 @@ Latitude (N);
 Longitude (E); 
 Area (km2); 
 Depth (m); 
-Sampling.events (estimated/presumed number of sampling events at each site); and
+Sampling.events (estimated/presumed number of sampling events at each site); and 
 Sampling.years (estimated/presumed number of years sampled at each site).
 
 Spbytrait.csv contains species trait data (species rows and trait/taxonomic columns), including: Rownames (taxa names); 
@@ -22,15 +22,17 @@ Order (taxonomic order);
 Length (taxa length); 
 Length.ref (taxa length reference, see Table S1 in manuscript); 
 Length.taxa (length representative taxa); 
-Feed.ord (feeding guild ordinal representation, 1 = substrate-grazing, 2 = seston-filtering, 3 = stationary suspension-feeding with occasional grasping, and 4 = raptorial-feeding); and Full (full taxa name).
+Feed.ord (feeding guild ordinal representation, 1 = substrate-grazing, 2 = seston-filtering, 3 = stationary suspension-feeding with occasional grasping, and 4 = raptorial-feeding); and 
+Full (full taxa name).
 
 coefficients.bio.metrics.csv contains data for plotting coefficients for biodiversity by elevation/latitude models, including: Metric (biodiversity metric); 
 Group (grouping); 
 Parameter (Coefficient); 
 Class (elevational/latitudinal zone); 
 Estimate (metric estimate); 
-Est.Error (metric estimate error); and
-Q2.5 (2.5% quantile); Q97.5 (97.5 % quantile).
+Est.Error (metric estimate error); 
+Q2.5 (2.5% quantile); and
+Q97.5 (97.5 % quantile).
 
 coefficients.clim.csv contains data for plotting coefficients for biodiversity by climate modelsi, ncluding: Metric (biodiversity metric); 
 Climate (climate variable); 
