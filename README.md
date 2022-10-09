@@ -1,21 +1,56 @@
 # Geographic-gradients-of-zooplankton-diversity
 Code and data for calculating zooplankton biodiversity metrics and replicating analysis of elevational and latitudinal diversity gradients by generalized linear mixed effect/multilevel models.
 
-Sitebysp.csv contains zooplankton occurrence data (site rows and species columns);
-Sitebygeo.csv contains site geographic coordinate data (site rows and variable columns);
-Spbytrait.csv contains species trait data (species rows and trait/taxonomic columns); and
-Taxalist.RData contains taxonomic ranks of species (RData file).
-coefficients.bio.metrics.csv contains data for plotting coefficients for biodiversity by elevation/latitude models
-coefficients.clim.csv contains data for plotting coefficients for biodiversity by climate models
+Sitebysp.csv contains zooplankton occurrence data (site rows and species columns).
 
-Sitebysp.csv, Sitebygeo.csv, Spbytrait.csv, Taxalist.RData, coefficients.bio.metrics.csv, and coefficients.clim.csv are permanently archived at (url).
+Sitebygeo.csv contains site geographic coordinate data (site rows and variable columns), including: ID (lake ID); 
+Lake (lake name); 
+Elevation (masl); 
+Latitude (N); 
+Longitude (E); 
+Area (km2); 
+Depth (m); 
+Sampling.events (estimated/presumed number of sampling events at each site); and
+Sampling.years (estimated/presumed number of years sampled at each site).
+
+Spbytrait.csv contains species trait data (species rows and trait/taxonomic columns), including: Rownames (taxa names); 
+(Sp (taxa name); 
+Sp (taxa name); 
+Taxa (taxa name with space); 
+Level (taxonomic level); 
+Order (taxonomic order); 
+Length (taxa length); 
+Length.ref (taxa length reference, see Table S1 in manuscript); 
+Length.taxa (length representative taxa); 
+Feed.ord (feeding guild ordinal representation, 1 = substrate-grazing, 2 = seston-filtering, 3 = stationary suspension-feeding with occasional grasping, and 4 = raptorial-feeding); and Full (full taxa name).
+
+coefficients.bio.metrics.csv contains data for plotting coefficients for biodiversity by elevation/latitude models, including: Metric (biodiversity metric); 
+Group (grouping); 
+Parameter (Coefficient); 
+Class (elevational/latitudinal zone); 
+Estimate (metric estimate); 
+Est.Error (metric estimate error); and
+Q2.5 (2.5% quantile); Q97.5 (97.5 % quantile).
+
+coefficients.clim.csv contains data for plotting coefficients for biodiversity by climate modelsi, ncluding: Metric (biodiversity metric); 
+Climate (climate variable); 
+Group (grouping); 
+Parameter (Coefficient); 
+Class (elevational/latitudinal zone); 
+Estimate (metric estimate); 
+Est.Error (metric estimate error); 
+Q2.5 (2.5% quantile); and 
+Q97.5 (97.5 % quantile).
+
+Taxalist.rds contains taxonomic ranks of species (rds file).
 
 Bio.metrics.pub.csv contains processed biodiversity data (site rows and biodiversity metric columns) for use with statistical code.
 
 Variables include:
+ID (lake ID); 
 Lake (lake name);
-Latitude;
-Elevation;
+Latitude (N);
+Elevation (masl);
 lat_class (site latitudinal zone);
 elev_class (site elevational zone);
 Area (km2);
@@ -154,7 +189,9 @@ FDis.obs.p.glob.qnorm (probit-transformed quantile P-values for functional dispe
 
 ClimateNA_input_elev_1964-2015Y.csv contains annual climate data across the entire study period (1964-2015) at each sampling location obtained using ClimateNA v6.40 (Wang et al. 2016).
 
-Wang, T., Hamann, A., Spittlehouse, D. & Carroll, C. (2016). Locally downscaled and spatially customizable climate data for historical and future periods for North America. PLoS One, 11, e0156720.
+MAT refers to mean annual temperature (°C) and TD refers to temperature difference between mean warmest month temperature and mean coldest month temperature, or continentality (°C). 
+Year (year); ID1 (lake ID); ID2 (lake region); Latitude (N); Longitude (E); and Elevation (masl). See Wang et al. (2016) for details of other variables.
 
-MAT refers to mean annual temperature (°C) and
-TD refers to temperature difference between mean warmest month temperature and mean coldest month temperature, or continentality (°C).
+REFERENCES
+
+Wang, T., Hamann, A., Spittlehouse, D. & Carroll, C. (2016). Locally downscaled and spatially customizable climate data for historical and future periods for North America. PLoS One, 11, e0156720.
