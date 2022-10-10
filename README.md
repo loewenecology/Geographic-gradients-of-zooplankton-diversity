@@ -19,7 +19,7 @@ Sp (taxa name);
 Taxa (taxa name with space); 
 Level (taxonomic level); 
 Order (taxonomic order); 
-Length (taxa length); 
+Length (taxa length, mm); 
 Length.ref (taxa length reference, see Table S1 in manuscript); 
 Length.taxa (length representative taxa); 
 Feed.ord (feeding guild ordinal representation, 1 = substrate-grazing, 2 = seston-filtering, 3 = stationary suspension-feeding with occasional grasping, and 4 = raptorial-feeding); and 
@@ -63,7 +63,7 @@ Taxo.alpha (species richness);
 Glob.nbsp (number of taxa excluding juveniles);
 Glob.FRic (functional richness standardized between zero and one);
 Glob.FDis (functional dispersion);
-CWM.Bl (community mean body length);
+CWM.Bl (community mean body length, mm);
 CWM.Feed (community mean feeding guilds);
 Glob.PD (phylogenetic richness);
 Glob.MPD (phylogenetic mean pairwise distance);
